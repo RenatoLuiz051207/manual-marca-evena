@@ -1,0 +1,872 @@
+@font-face {
+  font-family: "Fredoka Evena";
+  src:
+    url("/assets/fonts/Fredoka-VariableFont_wdth,wght.ttf") format("truetype"),
+    url("/assets/fonts/Fredoka.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.vibe-landing {
+  --purple: #4c007d;
+  --dark: #21002e;
+  --green: #00ff00;
+  --blue: #7290d5;
+  --ink: #111111;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #160020;
+  color: white;
+  font-family: "Fredoka Evena", "Comfortaa", Arial, sans-serif;
+}
+
+.page-close {
+  position: fixed;
+  top: clamp(18px, 2.4vw, 34px);
+  right: clamp(18px, 2.4vw, 34px);
+  z-index: 30;
+  width: 52px;
+  height: 52px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font: inherit;
+  font-size: 36px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+.page-close:hover {
+  background: white;
+  color: var(--purple);
+  transform: rotate(8deg) scale(1.04);
+}
+
+.landing-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 7vh 5vw;
+  mix-blend-mode: normal;
+}
+
+.stage-light {
+  position: absolute;
+  top: -30px;
+  width: 260px;
+  height: 380px;
+  background: linear-gradient(180deg, rgba(255,255,255,.28), transparent 74%);
+  filter: blur(8px);
+  opacity: .45;
+  pointer-events: none;
+  transform-origin: top center;
+}
+
+.stage-light.left {
+  left: 8%;
+  transform: rotate(24deg);
+}
+
+.stage-light.right {
+  right: 8%;
+  transform: rotate(-24deg);
+}
+
+.hero-equalizer {
+  position: absolute;
+  top: clamp(72px, 10vh, 110px);
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  height: 92px;
+  animation: eqIntro 1s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.hero-equalizer span {
+  width: 24px;
+  border-radius: 999px;
+  background: white;
+  animation: heroPulse 1s ease-in-out infinite;
+}
+
+.hero-equalizer span:nth-child(1) { height: 36px; animation-delay: -.1s; }
+.hero-equalizer span:nth-child(2) { height: 64px; animation-delay: -.24s; }
+.hero-equalizer span:nth-child(3) { height: 90px; background: var(--green); animation-delay: -.36s; }
+.hero-equalizer span:nth-child(4) { height: 58px; animation-delay: -.48s; }
+.hero-equalizer span:nth-child(5) { height: 42px; animation-delay: -.6s; }
+
+@keyframes heroPulse {
+  0%, 100% { transform: scaleY(.55); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes eqIntro {
+  from { opacity: 0; transform: translateY(-18px) scale(.72); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.landing-hero h1 {
+  margin: 0;
+  color: white;
+  font-size: clamp(76px, 14vw, 230px);
+  line-height: .72;
+  letter-spacing: -.11em;
+  text-shadow: 0 12px 38px rgba(0,0,0,.25);
+}
+
+.landing-hero p {
+  width: min(680px, 82vw);
+  margin: clamp(20px, 2vw, 32px) auto 0;
+  font-size: clamp(18px, 1.6vw, 30px);
+  line-height: 1.02;
+  color: rgba(255,255,255,.9);
+}
+
+.vibe-system {
+  position: absolute;
+  bottom: clamp(24px, 5vh, 58px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(780px, 88vw);
+}
+
+.vibe-system span {
+  padding: 10px 14px;
+  border: 2px solid rgba(255,255,255,.48);
+  background: rgba(0,0,0,.12);
+  font-weight: 700;
+}
+
+.vibe-system strong {
+  color: var(--green);
+  margin-right: 2px;
+}
+
+.explore-stripes {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stripe {
+  position: relative;
+  min-height: 100vh;
+  border: 0;
+  color: white;
+  padding: clamp(34px, 4vw, 70px);
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: flex .4s ease, filter .25s ease, transform .25s ease;
+}
+
+.stripe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background .25s ease;
+}
+
+.stripe:hover::before {
+  background: rgba(0,0,0,.10);
+}
+
+.stripe:hover {
+  filter: brightness(1.08);
+}
+
+.stripe-voice {
+  background: linear-gradient(180deg, #ff6b00, #f50068);
+}
+
+.stripe-energy {
+  background: linear-gradient(180deg, #00ff00, #4c007d);
+}
+
+.stripe-personality {
+  background: linear-gradient(180deg, #7290d5, #7137ff);
+}
+
+.stripe-number,
+.stripe h2,
+.stripe p,
+.explore-label,
+.stripe-preview {
+  position: relative;
+  z-index: 2;
+}
+
+.stripe-number {
+  font-weight: 700;
+  opacity: .75;
+  margin-bottom: 18px;
+}
+
+.stripe h2 {
+  margin: 0;
+  font-size: clamp(54px, 7vw, 130px);
+  line-height: .74;
+  letter-spacing: -.095em;
+}
+
+.stripe p {
+  width: min(360px, 82%);
+  margin: 18px 0 0;
+  color: rgba(255,255,255,.88);
+  font-size: clamp(15px, 1.2vw, 21px);
+  line-height: 1.04;
+}
+
+.explore-label {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: clamp(34px, 6vh, 86px);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.explore-label::after {
+  content: '→';
+  margin-left: 12px;
+  transition: transform .22s ease;
+}
+
+.stripe:hover .explore-label::after {
+  transform: translateX(8px);
+}
+
+.stripe-preview {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+
+.stripe:hover .stripe-preview {
+  opacity: 1;
+}
+
+.stripe-preview.chat i,
+.stripe-preview.chips i {
+  position: absolute;
+  display: inline-flex;
+  padding: 10px 14px;
+  border: 2px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.14);
+  font-style: normal;
+  font-weight: 700;
+  animation: floatLabel 3.4s ease-in-out infinite;
+}
+
+.stripe-preview.chat i:nth-child(1) { top: 18%; left: 10%; }
+.stripe-preview.chat i:nth-child(2) { top: 38%; right: 10%; animation-delay: -.8s; }
+.stripe-preview.chat i:nth-child(3) { top: 58%; left: 16%; animation-delay: -1.4s; }
+
+.stripe-preview.chips i:nth-child(1) { top: 22%; left: 12%; }
+.stripe-preview.chips i:nth-child(2) { top: 40%; right: 12%; animation-delay: -.8s; }
+.stripe-preview.chips i:nth-child(3) { top: 58%; left: 20%; animation-delay: -1.4s; }
+
+@keyframes floatLabel {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
+}
+
+.stripe-preview.pulse span {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 0 0 rgba(255,255,255,.48);
+  animation: stripePulse 1.3s ease-in-out infinite;
+}
+
+.stripe-preview.pulse em {
+  position: absolute;
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+}
+
+.stripe-preview.pulse em:nth-child(2) { top: 22%; left: 18%; }
+.stripe-preview.pulse em:nth-child(3) { top: 50%; right: 18%; }
+
+@keyframes stripePulse {
+  0%, 100% { transform: scale(.9); box-shadow: 0 0 0 0 rgba(255,255,255,.38); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 42px rgba(255,255,255,0); }
+}
+
+@media (max-width: 900px) {
+  .vibe-landing {
+    overflow: auto;
+  }
+
+  .landing-hero {
+    position: relative;
+    min-height: 74vh;
+  }
+
+  .explore-stripes {
+    grid-template-columns: 1fr;
+  }
+
+  .stripe {
+    min-height: 58vh;
+  }
+
+  .vibe-system {
+    position: relative;
+    bottom: auto;
+    margin-top: 26px;
+  }
+}
+
+
+/* === V93: correção da landing /vibe + efeitos especiais nos 3 blocos === */
+.vibe-landing {
+  overflow: hidden !important;
+}
+
+.landing-hero {
+  align-content: start !important;
+  place-items: start center !important;
+  padding-top: clamp(78px, 9vh, 118px) !important;
+  padding-bottom: 0 !important;
+}
+
+.hero-equalizer {
+  position: relative !important;
+  top: auto !important;
+  margin-bottom: clamp(10px, 1.8vh, 18px) !important;
+  height: 64px !important;
+  z-index: 8 !important;
+}
+
+.hero-equalizer span {
+  width: clamp(13px, 1.4vw, 22px) !important;
+}
+
+.hero-equalizer span:nth-child(1) { height: 24px !important; }
+.hero-equalizer span:nth-child(2) { height: 42px !important; }
+.hero-equalizer span:nth-child(3) { height: 62px !important; }
+.hero-equalizer span:nth-child(4) { height: 38px !important; }
+.hero-equalizer span:nth-child(5) { height: 28px !important; }
+
+.landing-hero h1 {
+  font-size: clamp(74px, 10vw, 168px) !important;
+  line-height: .72 !important;
+  margin-top: 0 !important;
+  z-index: 8 !important;
+}
+
+.landing-hero p {
+  margin-top: clamp(12px, 1.3vw, 18px) !important;
+  font-size: clamp(16px, 1.22vw, 23px) !important;
+  width: min(560px, 74vw) !important;
+  z-index: 8 !important;
+}
+
+.vibe-system {
+  bottom: clamp(26px, 4vh, 48px) !important;
+  z-index: 8 !important;
+}
+
+.explore-stripes {
+  z-index: 3 !important;
+}
+
+.stripe {
+  padding: clamp(28px, 3.2vw, 54px) !important;
+  justify-content: flex-end !important;
+}
+
+.stripe h2 {
+  font-size: clamp(46px, 5.4vw, 98px) !important;
+  line-height: .78 !important;
+  letter-spacing: -.085em !important;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.stripe-personality h2 {
+  font-size: clamp(38px, 4.6vw, 82px) !important;
+  letter-spacing: -.075em !important;
+}
+
+.stripe p {
+  width: min(360px, 96%) !important;
+  font-size: clamp(14px, 1vw, 18px) !important;
+}
+
+.explore-label {
+  margin-top: clamp(26px, 4.4vh, 64px) !important;
+}
+
+/* evita os previews ficarem em cima do logo Vibe */
+.stripe-preview {
+  z-index: 1 !important;
+}
+
+.stripe-preview.chat i,
+.stripe-preview.chips i {
+  padding: 9px 12px !important;
+  font-size: 13px !important;
+}
+
+.stripe-preview.chat i:nth-child(1) { top: 20%; left: 9%; }
+.stripe-preview.chat i:nth-child(2) { top: 40%; right: 10%; }
+.stripe-preview.chat i:nth-child(3) { top: 59%; left: 15%; }
+
+.stripe-preview.pulse span {
+  top: 24% !important;
+  left: 50% !important;
+  width: 86px !important;
+  height: 86px !important;
+  opacity: .82;
+}
+
+.stripe-preview.pulse em:nth-child(2) { top: 15% !important; left: 16% !important; }
+.stripe-preview.pulse em:nth-child(3) { top: 39% !important; right: 13% !important; }
+
+/* Efeito especial Voz: mensagens + aspas */
+.stripe-voice::after {
+  content: '“';
+  position: absolute;
+  top: 11%;
+  right: 10%;
+  z-index: 1;
+  color: rgba(255,255,255,.18);
+  font-size: clamp(100px, 12vw, 220px);
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(18px) rotate(-8deg);
+  transition: opacity .28s ease, transform .28s ease;
+}
+
+.stripe-voice:hover::after {
+  opacity: 1;
+  transform: translateY(0) rotate(-8deg);
+}
+
+/* Efeito especial Energia: pulso fora do texto */
+.stripe-energy::after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  z-index: 1;
+  width: clamp(120px, 14vw, 210px);
+  height: clamp(120px, 14vw, 210px);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.55);
+  box-shadow:
+    0 0 0 0 rgba(255,255,255,.42),
+    inset 0 0 42px rgba(255,255,255,.16);
+  opacity: 0;
+  transition: opacity .25s ease, transform .25s ease;
+  animation: stripeEnergyPulse 1.4s ease-in-out infinite;
+}
+
+.stripe-energy:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.02);
+}
+
+@keyframes stripeEnergyPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 rgba(255,255,255,.34),
+      inset 0 0 42px rgba(255,255,255,.16);
+  }
+  50% {
+    box-shadow:
+      0 0 0 48px rgba(255,255,255,0),
+      inset 0 0 52px rgba(255,255,255,.22);
+  }
+}
+
+/* Efeito especial Personalidade: radar/chips */
+.stripe-personality::after {
+  content: '';
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  z-index: 1;
+  width: clamp(122px, 13vw, 200px);
+  height: clamp(122px, 13vw, 200px);
+  transform: translateX(-50%);
+  border: 2px solid rgba(255,255,255,.52);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.75) 0 4px, transparent 5px),
+    repeating-radial-gradient(circle, transparent 0 28px, rgba(255,255,255,.16) 29px 30px);
+  opacity: 0;
+  transition: opacity .25s ease;
+  animation: personalityRadar 7s linear infinite;
+}
+
+.stripe-personality:hover::after {
+  opacity: 1;
+}
+
+@keyframes personalityRadar {
+  to { rotate: 360deg; }
+}
+
+/* Na landing, conteúdo dos stripes sempre acima do preview */
+.stripe-number,
+.stripe h2,
+.stripe p,
+.explore-label {
+  z-index: 5 !important;
+}
+
+@media (max-width: 900px) {
+  .vibe-landing {
+    overflow: auto !important;
+  }
+
+  .landing-hero {
+    min-height: 62vh !important;
+    padding-top: 86px !important;
+  }
+
+  .stripe h2,
+  .stripe-personality h2 {
+    font-size: clamp(48px, 15vw, 86px) !important;
+  }
+
+  .stripe-preview.pulse span,
+  .stripe-energy::after,
+  .stripe-personality::after {
+    top: 16% !important;
+  }
+}
+
+/* V95 landing */
+.stripe-number{display:none!important}
+.stripe p{max-width:410px!important;line-height:1.08!important}
+.stripe-personality h2{font-size:clamp(36px,4.25vw,76px)!important}
+
+
+/* === V96: gradientes da landing dentro da paleta Evena === */
+.stripe-voice {
+  background: linear-gradient(180deg, #00ff00 0%, #14c94c 48%, #07742d 100%) !important;
+}
+
+.stripe-energy {
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255,255,255,.18), transparent 28%),
+    linear-gradient(180deg, #00ff00 0%, #4c007d 74%, #21002e 100%) !important;
+}
+
+.stripe-personality {
+  background: linear-gradient(180deg, #7b19ba 0%, #4c007d 52%, #21002e 100%) !important;
+}
+
+.stripe-voice h2,
+.stripe-voice p,
+.stripe-voice .explore-label,
+.stripe-voice .stripe-number {
+  color: #101010 !important;
+}
+
+.stripe-voice .stripe-preview.chat i {
+  color: #101010 !important;
+  border-color: rgba(16,16,16,.55) !important;
+  background: rgba(255,255,255,.42) !important;
+}
+
+
+/* === V97: correções específicas da landing /vibe === */
+
+/* Personalidade com texto verde */
+.stripe-personality h2,
+.stripe-personality p,
+.stripe-personality .explore-label {
+  color: #00ff00 !important;
+}
+
+/* Radar da personalidade afastado do chip Moderna */
+.stripe-personality::after {
+  top: 12% !important;
+  left: auto !important;
+  right: 8% !important;
+  transform: none !important;
+  width: clamp(86px, 9vw, 150px) !important;
+  height: clamp(86px, 9vw, 150px) !important;
+  opacity: 0 !important;
+  z-index: 1 !important;
+}
+
+.stripe-personality:hover::after {
+  opacity: .62 !important;
+}
+
+/* Chips da personalidade longe do radar */
+.stripe-preview.chips i:nth-child(1) {
+  top: 30% !important;
+  left: 9% !important;
+  right: auto !important;
+}
+
+.stripe-preview.chips i:nth-child(2) {
+  top: 48% !important;
+  right: 12% !important;
+}
+
+.stripe-preview.chips i:nth-child(3) {
+  top: 66% !important;
+  left: 16% !important;
+}
+
+/* Voz da landing: agora 5 mensagens no hover */
+.stripe-preview.chat i:nth-child(1) {
+  top: 16% !important;
+  left: 8% !important;
+}
+
+.stripe-preview.chat i:nth-child(2) {
+  top: 29% !important;
+  right: 7% !important;
+}
+
+.stripe-preview.chat i:nth-child(3) {
+  top: 47% !important;
+  left: 14% !important;
+}
+
+.stripe-preview.chat i:nth-child(4) {
+  top: 63% !important;
+  right: 9% !important;
+  animation-delay: -2.1s !important;
+}
+
+.stripe-preview.chat i:nth-child(5) {
+  top: 76% !important;
+  left: 10% !important;
+  animation-delay: -2.8s !important;
+}
+
+.voice-quote {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  color: rgba(16,16,16,.24);
+  font-size: clamp(90px, 9vw, 170px);
+  line-height: .7;
+  font-style: normal;
+  font-weight: 900;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(18px) rotate(-8deg);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.stripe-voice:hover .voice-quote {
+  opacity: 1;
+  transform: translateY(0) rotate(-8deg);
+}
+
+.vq1 {
+  top: 7%;
+  right: 12%;
+}
+
+.vq2 {
+  bottom: 18%;
+  right: 20%;
+  transform: translateY(18px) rotate(10deg);
+}
+
+.stripe-voice:hover .vq2 {
+  transform: translateY(0) rotate(10deg);
+}
+
+/* garante que mensagens fiquem sobre as aspas */
+.stripe-preview.chat i {
+  z-index: 4 !important;
+}
+
+/* desliga a aspas antiga única para não confundir */
+.stripe-voice::after {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .stripe-personality::after {
+    top: 10% !important;
+    right: 5% !important;
+  }
+}
+
+
+/* === V98: /vibe hover Voz e Personalidade corrigidos === */
+
+/* Voz: 5 mensagens visíveis e fora do título */
+.stripe-preview.chat {
+  z-index: 6 !important;
+}
+
+.stripe-preview.chat i {
+  z-index: 8 !important;
+  font-size: 12px !important;
+  padding: 9px 12px !important;
+  max-width: 190px;
+  white-space: nowrap;
+}
+
+.stripe-preview.chat i:nth-child(1) {
+  top: 12% !important;
+  left: 8% !important;
+}
+
+.stripe-preview.chat i:nth-child(2) {
+  top: 24% !important;
+  right: 8% !important;
+}
+
+.stripe-preview.chat i:nth-child(3) {
+  top: 37% !important;
+  left: 14% !important;
+}
+
+.stripe-preview.chat i:nth-child(4) {
+  top: 50% !important;
+  right: 7% !important;
+  animation-delay: -1.8s !important;
+}
+
+.stripe-preview.chat i:nth-child(5) {
+  top: 62% !important;
+  left: 9% !important;
+  animation-delay: -2.4s !important;
+}
+
+/* Aspas no hover da Voz */
+.voice-quote {
+  position: absolute !important;
+  display: block !important;
+  z-index: 7 !important;
+  color: rgba(16,16,16,.28) !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(88px, 10vw, 180px) !important;
+  line-height: .7 !important;
+  font-weight: 900 !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity .25s ease, transform .25s ease !important;
+}
+
+.vq1 {
+  top: 5% !important;
+  right: 12% !important;
+  transform: translateY(18px) rotate(-9deg) !important;
+}
+
+.vq2 {
+  top: 45% !important;
+  right: 22% !important;
+  transform: translateY(18px) rotate(9deg) !important;
+}
+
+.stripe-voice:hover .voice-quote {
+  opacity: 1 !important;
+}
+
+.stripe-voice:hover .vq1 {
+  transform: translateY(0) rotate(-9deg) !important;
+}
+
+.stripe-voice:hover .vq2 {
+  transform: translateY(0) rotate(9deg) !important;
+}
+
+/* remove aspas antiga e evita conflito */
+.stripe-voice::after {
+  display: none !important;
+}
+
+/* Personalidade: radar girando e longe de Moderna */
+.stripe-personality::after {
+  top: 8% !important;
+  right: 7% !important;
+  left: auto !important;
+  width: clamp(92px, 8vw, 142px) !important;
+  height: clamp(92px, 8vw, 142px) !important;
+  transform: none !important;
+  opacity: 0 !important;
+  z-index: 2 !important;
+  animation: personalityRadarSpin 6s linear infinite !important;
+}
+
+.stripe-personality:hover::after {
+  opacity: .62 !important;
+}
+
+@keyframes personalityRadarSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Reposiciona chips do hover da Personalidade */
+.stripe-preview.chips i:nth-child(1) {
+  top: 32% !important;
+  left: 8% !important;
+  right: auto !important;
+}
+
+.stripe-preview.chips i:nth-child(2) {
+  top: 49% !important;
+  right: 10% !important;
+  left: auto !important;
+}
+
+.stripe-preview.chips i:nth-child(3) {
+  top: 66% !important;
+  left: 14% !important;
+  right: auto !important;
+}
+
+.stripe-personality h2,
+.stripe-personality p,
+.stripe-personality .explore-label {
+  color: #00ff00 !important;
+}

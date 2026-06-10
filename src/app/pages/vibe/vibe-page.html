@@ -1,0 +1,67 @@
+<main class="vibe-landing">
+  <button class="page-close" type="button" aria-label="Voltar para a tela inicial" (click)="goHome()">×</button>
+
+  <section class="landing-hero">
+    <div class="stage-light left"></div>
+    <div class="stage-light right"></div>
+
+    <div class="hero-equalizer" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <h1>Vibe</h1>
+    <p>A forma como a Evena fala, pulsa e se comporta.</p>
+
+    <div class="vibe-system" aria-label="Sistema VIBE">
+      <span><strong>V</strong>oz</span>
+      <span><strong>I</strong>dentidade</span>
+      <span><strong>B</strong>atida</span>
+      <span><strong>E</strong>nergia</span>
+    </div>
+  </section>
+
+  <section class="explore-stripes" aria-label="Explorar Vibe">
+    <button class="stripe stripe-voice" type="button" (click)="open('/vibe/voz')">
+      <h2>Voz</h2>
+      <p>Tom de voz, exemplos de comunicação e jeito de falar da marca.</p>
+
+      <div class="stripe-preview chat" aria-hidden="true">
+        <i>partiu?</i>
+        <i>ao vivo é outro rolê</i>
+        <i>chama a galera</i>
+        <i>descubra algo hoje</i>
+        <i>menos scroll, mais encontro</i>
+        <b class="voice-quote vq1">“</b>
+        <b class="voice-quote vq2">”</b>
+      </div>
+
+      <strong class="explore-label">Explorar voz</strong>
+    </button>
+
+    <button class="stripe stripe-energy" type="button" (click)="open('/vibe/energia')">
+      <h2>Energia</h2>
+      <p>Ritmo visual, presença e sensação de movimento da marca.</p>
+
+      <div class="stripe-preview pulse" aria-hidden="true">
+        <span></span>
+        <em>cultura</em>
+        <em>presença</em>
+      </div>
+
+      <strong class="explore-label">Explorar energia</strong>
+    </button>
+
+    <button class="stripe stripe-personality" type="button" (click)="open('/vibe/personalidade')">
+      <h2>Personalidade</h2>
+      <p>Características, comportamento e traços que definem a Evena.</p>
+
+      <div class="stripe-preview chips" aria-hidden="true">
+        <i>Humana</i>
+        <i>Moderna</i>
+        <i>Próxima</i>
+      </div>
+
+      <strong class="explore-label">Explorar personalidade</strong>
+    </button>
+  </section>
+</main>

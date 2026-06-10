@@ -1,0 +1,67 @@
+<main class="energy-page">
+  <button class="page-close" type="button" aria-label="Voltar para Vibe" (click)="goHome()">×</button>
+
+  <section class="energy-hero">
+    <div class="energy-photo"></div>
+    <div class="energy-overlay">
+      <div class="breadcrumb">Vibe / <strong>Energia</strong></div>
+      <h1>Energia</h1>
+      <p>A energia da Evena é viva, urbana, cultural e espontânea. Ela nasce do movimento de pessoas saindo da rotina para viver algo real.</p>
+    </div>
+
+    <div class="hero-pulse" aria-hidden="true">
+      <span class="core"></span>
+      <span class="ring r1"></span>
+      <span class="ring r2"></span>
+      <span class="ring r3"></span>
+      <em>ao vivo</em>
+    </div>
+  </section>
+
+  <section class="sound-deck">
+    <div class="deck-copy">
+      <h2>Equalizador da experiência</h2>
+      <p>O som visual da Evena se divide em três ondas: descoberta, presença e conexão.</p>
+    </div>
+
+    <div class="equalizer" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+  </section>
+
+  <section class="waves">
+    <article>
+      <h3>Descoberta</h3>
+      <p>Encontrar um novo show, evento, lugar ou rolê que tira a pessoa do automático.</p>
+    </article>
+    <article>
+      <h3>Presença</h3>
+      <p>Trocar o excesso de tela por experiências reais, encontros e sensações ao vivo.</p>
+    </article>
+    <article>
+      <h3>Conexão</h3>
+      <p>Aproximar pessoas, cultura, organizadores e momentos compartilhados.</p>
+    </article>
+  </section>
+
+  <section class="color-stage">
+    <h2>Pilares emocionais por cor</h2>
+
+    <div class="color-grid">
+      <article class="color-card green">
+        <strong>Verde</strong>
+        <p>Ao vivo, movimento, presença e chamada para ação.</p>
+      </article>
+      <article class="color-card white">
+        <strong>Branco</strong>
+        <p>Respiro, clareza e equilíbrio para a marca não ficar pesada.</p>
+      </article>
+      <article class="color-card purple">
+        <strong>Roxo</strong>
+        <p>Cultura, noite, identidade e profundidade visual.</p>
+      </article>
+    </div>
+  </section>
+<button class="nav-arrow left" type="button" (click)="goLeft()"><span class="mark">‹</span><span>Voz</span></button>
+  <button class="nav-arrow right" type="button" (click)="goRight()"><span>Personalidade</span><span class="mark">›</span></button>
+</main>

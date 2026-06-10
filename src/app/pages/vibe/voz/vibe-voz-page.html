@@ -1,0 +1,118 @@
+<main class="voice-page">
+  <button class="page-close" type="button" aria-label="Voltar para Vibe" (click)="goHome()">×</button>
+
+  <section class="voice-hero">
+    <div class="voice-copy">
+      <div class="breadcrumb">Vibe / <strong>Voz</strong></div>
+      <h1>Voz</h1>
+      <p>A Evena fala como quem chama para viver algo junto: leve, próxima, clara e com energia de convite.</p>
+    </div>
+
+    <div class="poster-board" aria-hidden="true">
+      <div class="poster-image"></div>
+      <span class="chat c1">partiu?</span>
+      <span class="chat c2">ao vivo é outro rolê</span>
+      <span class="chat c3">chama a galera</span>
+      <span class="chat c4">descubra algo hoje</span>
+      <span class="chat c5">menos scroll, mais encontro</span>
+      <span class="quote q1">“</span>
+      <span class="quote q2">”</span>
+      <span class="quote q3">“</span>
+      <span class="quote q4">”</span>
+    </div>
+  </section>
+
+  <section class="voice-lab">
+    <div class="lab-title">
+      <h2>Tradutor Evena</h2>
+      <p>O mesmo conteúdo, só que com o jeito da marca: menos robô, mais gente.</p>
+    </div>
+
+    <div class="mode-switch">
+      <button type="button" [class.active]="mode === 'evena'" (click)="setMode('evena')">Modo Evena</button>
+      <button type="button" [class.active]="mode === 'formal'" (click)="setMode('formal')">Modo formal</button>
+    </div>
+
+    <div class="translator-stage" [class.formal]="mode === 'formal'">
+      <article class="translator-card evena-card">
+        <small>A Evena fala assim</small>
+        <strong>Escolhe um rolê e vai viver ao vivo.</strong>
+        <p>Curto, humano, fácil de entender e com energia.</p>
+      </article>
+
+      <article class="translator-card formal-card">
+        <small>Formal demais</small>
+        <strong>Usuário, selecione uma atividade cultural.</strong>
+        <p>Funciona, mas parece frio e distante da vibe da marca.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="talk-grid">
+    <article class="talk-card good">
+      <h2>Fala assim</h2>
+      <ul>
+        <li>Bora viver isso ao vivo?</li>
+        <li>Descubra o que tá rolando perto de você.</li>
+        <li>Chama a galera e vai viver esse momento.</li>
+        <li>Menos scroll. Mais encontro.</li>
+      </ul>
+    </article>
+
+    <article class="talk-card bad">
+      <h2>Não fala assim</h2>
+      <ul>
+        <li>Realize a aquisição de ingressos.</li>
+        <li>Selecione uma atividade cultural disponível.</li>
+        <li>O usuário deverá comparecer ao local indicado.</li>
+        <li>Efetue sua busca através da plataforma.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="tone-section">
+    <div class="tone-copy">
+      <h2>Tomômetro</h2>
+      <p class="tone-note">É um termômetro de tom: ele mostra o equilíbrio ideal entre uma comunicação clara e uma comunicação espontânea.</p>
+      <p>O ponto ideal da Evena fica entre clareza e espontaneidade. A marca pode ser informal, mas nunca confusa.</p>
+    </div>
+
+    <div class="tone-meter" aria-hidden="true">
+      <span>Clareza</span>
+      <span>Simples</span>
+      <strong>Evena</strong>
+      <span>Leve</span>
+      <span>Espontaneidade</span>
+    </div>
+  </section>
+
+  <section class="microcopy">
+    <h2>Microcopy da plataforma</h2>
+    <div class="microcopy-grid">
+      <article>
+        <small>Botão</small>
+        <strong>Encontrar eventos</strong>
+      </article>
+      <article>
+        <small>Empty state</small>
+        <strong>Nada por aqui ainda. Bora descobrir outro rolê?</strong>
+      </article>
+      <article>
+        <small>Erro</small>
+        <strong>Ops, esse evento saiu do radar.</strong>
+      </article>
+      <article>
+        <small>Chamada</small>
+        <strong>Viver é melhor ao vivo.</strong>
+      </article>
+    </div>
+  </section>
+
+  <div class="vibe-page-nav" [style.--nav-bottom]="navBottom + 'px'"><button class="nav-arrow left" type="button" (click)="goLeft()"><span class="mark">‹</span><span>Personalidade</span></button>
+  <button class="nav-arrow right" type="button" (click)="goRight()"><span>Energia</span><span class="mark">›</span></button></div>
+
+  <div class="word-marquee" aria-hidden="true">
+    <span>AO VIVO · ROLÊ · ENCONTRO · CULTURA · PRESENÇA · PARTIU · DESCOBRIR · VIVER · </span>
+    <span>AO VIVO · ROLÊ · ENCONTRO · CULTURA · PRESENÇA · PARTIU · DESCOBRIR · VIVER · </span>
+  </div>
+</main>

@@ -1,0 +1,30 @@
+<main class="concept-page purpose-page">
+  <button class="page-close" type="button" aria-label="Voltar para a tela inicial" (click)="goHome()">×</button>
+  <h1 class="page-title">Propósito</h1>
+  <p class="page-subtitle">A Evena existe para aproximar pessoas de experiências reais, incentivando conexões, cultura e momentos memoráveis.</p>
+
+  <section class="page-content">
+<div class="content-grid">
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'missao'" (click)="toggleCard('missao')">
+        <small>Clique para abrir</small>
+        <h3>Missão</h3>
+        <p>Facilitar o acesso a eventos e experiências, conectando organizadores e público em uma única plataforma simples, intuitiva e acessível.</p>
+      </button>
+
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'visao'" (click)="toggleCard('visao')">
+        <small>Clique para abrir</small>
+        <h3>Visão</h3>
+        <p>Ser a principal plataforma de descobertas de eventos do Brasil, tornando-se referência em conexão entre pessoas, cultura e experiências ao vivo.</p>
+      </button>
+
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'valores'" (click)="toggleCard('valores')">
+        <small>Clique para abrir</small>
+        <h3>Valores</h3>
+        <p>Acessibilidade, presença, descoberta, conexão e cultura. Esses valores guiam a forma como a Evena aproxima pessoas de experiências reais.</p>
+      </button>
+    </div>
+  </section>
+
+  <button class="nav-arrow left" type="button" (click)="goLeft()"><span class="mark">‹</span><span>Posicionamento</span></button>
+  <button class="nav-arrow right" type="button" (click)="goRight()"><span>Arquétipos</span><span class="mark">›</span></button>
+</main>

@@ -1,0 +1,177 @@
+<main class="evena-home" [style.--progress]="progress">
+  <section class="stage">
+    <div class="moving-lines" aria-hidden="true">
+      <span class="line v v1"></span>
+      <span class="line v v2"></span>
+      <span class="line v v3"></span>
+      <span class="line v v4"></span>
+      <span class="line h h1"></span>
+      <span class="line h h2"></span>
+      <span class="line h h3"></span>
+      <span class="line h h4"></span>
+    </div>
+    <article class="intro intro-two">
+      <h2>Entre telas e algoritmos, a gente escolheu o ao vivo.</h2>
+      <img class="intro-logo" src="/logo%20verde.png" alt="Logo Evena">
+
+      <button class="scroll-arrow" type="button" aria-label="Ir para a página principal" (click)="goToMain($event)">
+        <span></span>
+      </button>
+    </article>
+
+    <section class="cards-grid" aria-label="Manual da marca Evena">
+      <a class="card concept-card" href="#" aria-label="Conceito" (click)="openConcept($event)">
+        <span class="card-title">Conceito</span>
+        <span class="card-subtitle">propósito · arquétipos · posicionamento</span>
+
+                <div class="symbol concept-symbol evena-crown-wrap" aria-hidden="true">
+          <svg class="evena-crown-svg" viewBox="0 0 100 74" preserveAspectRatio="xMidYMid meet">
+            <g class="evena-crown-lines">
+              <path class="evena-crown-line" d="M14 22 L35 38" />
+              <path class="evena-crown-line" d="M35 38 L51 14" />
+              <path class="evena-crown-line" d="M51 14 L67 38" />
+              <path class="evena-crown-line" d="M67 38 L86 23" />
+              <path class="evena-crown-line" d="M86 23 L78 66" />
+              <path class="evena-crown-line" d="M78 66 L23 67" />
+              <path class="evena-crown-line" d="M23 67 L14 22" />
+            </g>
+
+            <g class="evena-crown-dots">
+              <circle cx="14" cy="22" r="3.8"></circle>
+              <circle cx="35" cy="38" r="3.8"></circle>
+              <circle cx="51" cy="14" r="3.8"></circle>
+              <circle cx="67" cy="38" r="3.8"></circle>
+              <circle cx="86" cy="23" r="3.8"></circle>
+              <circle cx="78" cy="66" r="3.8"></circle>
+              <circle cx="23" cy="67" r="3.8"></circle>
+            </g>
+          </svg>
+        </div>
+      </a>
+
+      <a class="card vibe-card" href="#" aria-label="Vibe" (click)="openVibe($event)">
+        <span class="card-title">Vibe</span>
+        <span class="card-subtitle">voz · energia · personalidade</span>
+
+        <div class="symbol vibe-symbol" aria-hidden="true">
+          <svg viewBox="0 0 640 300">
+            <g class="equalizer">
+              <rect class="bar b1" x="142" y="124" width="42" height="92" rx="21" />
+              <rect class="bar b2" x="210" y="80" width="42" height="180" rx="21" />
+              <rect class="bar b3" x="278" y="44" width="42" height="252" rx="21" />
+              <rect class="bar b4" x="346" y="92" width="42" height="156" rx="21" />
+              <rect class="bar b5" x="414" y="116" width="42" height="100" rx="21" />
+            </g>
+
+            <g class="smile-face">
+              <path class="smile-arc" d="M188 146 C252 228, 386 228, 452 146" />
+              <circle class="eye e1" cx="250" cy="112" r="17" />
+              <circle class="eye e2" cx="390" cy="112" r="17" />
+            </g>
+          </svg>
+        </div>
+      </a>
+
+      <div class="logo-node" aria-label="Logo Evena">
+        <img src="/evena-logo.svg" alt="Logo Evena">
+      </div>
+
+      <a class="tagline-node" href="https://evena.online" target="_blank" rel="noopener noreferrer" aria-label="Abrir site Evena">
+        <span>Viver é melhor<br>ao vivo!</span>
+      </a>
+
+      <a class="card aesthetic-card" href="#" aria-label="Estética">
+        <span class="card-title">Estética</span>
+        <span class="card-subtitle">logo · cores · tipo · aplicações</span>
+
+        <div class="symbol aesthetic-symbol" aria-hidden="true">
+          <svg viewBox="0 0 680 400">
+            <defs>
+              <clipPath id="posterClipEvena">
+                <rect x="122" y="118" width="330" height="245" rx="22" />
+              </clipPath>
+            </defs>
+
+            <g class="posters">
+              <rect class="poster p3" x="186" y="62" width="330" height="245" rx="22" />
+              <rect class="poster p2" x="154" y="90" width="330" height="245" rx="22" />
+
+              <!-- A moldura principal e a paisagem estão no mesmo grupo.
+                   Assim, quando a moldura mexe no hover, a paisagem acompanha. -->
+              <g class="poster-main">
+                <rect class="poster p1" x="122" y="118" width="330" height="245" rx="22" />
+
+                <g clip-path="url(#posterClipEvena)">
+                  <rect class="poster-sky" x="122" y="118" width="330" height="245" />
+                  <circle class="sun" cx="238" cy="214" r="43" />
+                  <path class="moon" d="M274 171C248 176 230 198 236 224C242 252 276 267 302 250C282 249 264 238 256 220C246 198 254 181 274 171Z" />
+                  <path class="hill h-back" d="M122 306 C184 240, 242 284, 304 306 C374 332, 416 236, 452 284 V363 H122Z" />
+                  <path class="hill h-front" d="M122 334 C210 286, 280 312, 346 338 C396 358, 426 326, 452 336 V363 H122Z" />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </a>
+    </section>
+
+    <section class="concept-expand" [class.is-open]="conceptOpen" [class.is-morphed]="conceptMorphed" aria-label="Conceito Evena expandido">
+      <button class="concept-expand-close" type="button" aria-label="Fechar Conceito" (click)="closeConcept($event)">
+        ×
+      </button>
+
+      <div class="concept-expand-card">
+        <span class="concept-expand-title">Conceito</span>
+        <span class="concept-expand-subtitle">propósito · arquétipos · posicionamento</span>
+
+        <div class="concept-crown-transition" aria-label="Coroa do conceito Evena">
+          <svg class="concept-crown-constellation" viewBox="0 0 100 74" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <g class="concept-zoom-lines">
+              <path style="--i:0" d="M14 22 L35 38" />
+              <path style="--i:1" d="M35 38 L51 14" />
+              <path style="--i:2" d="M51 14 L67 38" />
+              <path style="--i:3" d="M67 38 L86 23" />
+              <path style="--i:4" d="M86 23 L78 66" />
+              <path style="--i:5" d="M78 66 L23 67" />
+              <path style="--i:6" d="M23 67 L14 22" />
+            </g>
+
+            <g class="concept-zoom-dots">
+              <circle cx="14" cy="22" r="3.8"></circle>
+              <circle cx="35" cy="38" r="3.8"></circle>
+              <circle cx="51" cy="14" r="3.8"></circle>
+              <circle cx="67" cy="38" r="3.8"></circle>
+              <circle cx="86" cy="23" r="3.8"></circle>
+              <circle cx="78" cy="66" r="3.8"></circle>
+              <circle cx="23" cy="67" r="3.8"></circle>
+            </g>
+          </svg>
+
+          <div class="concept-crown-side-arrow" aria-hidden="true">
+            <span class="chevron c1"></span>
+            <span class="chevron c2"></span>
+            <span class="chevron c3"></span>
+          </div>
+
+          <div class="concept-evena-crown-panel">
+            <div class="concept-evena-crown-stage">
+              <img class="concept-evena-crown-image" src="/evena-logo.svg" alt="Coroa Evena" />
+<button class="crown-part crown-part-left" type="button" (click)="selectConceptPart('proposito', $event)" aria-label="Abrir Propósito">
+                <span>Propósito</span>
+              </button>
+
+              <button class="crown-part crown-part-middle" type="button" (click)="selectConceptPart('arquetipos', $event)" aria-label="Abrir Arquétipos">
+                <span>Arquétipos</span>
+              </button>
+
+              <button class="crown-part crown-part-right" type="button" (click)="selectConceptPart('posicionamento', $event)" aria-label="Abrir Posicionamento">
+                <span>Posicionamento</span>
+              </button>
+            </div>
+          </div>
+        </div>
+</div>
+    </section>
+
+  </section>
+</main>

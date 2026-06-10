@@ -1,0 +1,988 @@
+@font-face {
+  font-family: "Fredoka Evena";
+  src:
+    url("/assets/fonts/Fredoka-VariableFont_wdth,wght.ttf") format("truetype"),
+    url("/assets/fonts/Fredoka.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:host { display: block; min-height: 100vh; }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+.voice-page {
+  --purple: #4c007d;
+  --green: #00ff00;
+  --black: #101010;
+  --paper: #f4efe7;
+  --muted: #6f675f;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--black);
+  font-family: "Fredoka Evena", "Comfortaa", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.page-close {
+  position: fixed;
+  top: clamp(18px, 2.4vw, 34px);
+  right: clamp(18px, 2.4vw, 34px);
+  z-index: 40;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--black);
+  background: var(--paper);
+  color: var(--black);
+  font: inherit;
+  font-size: 36px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+.page-close:hover {
+  background: var(--black);
+  color: var(--paper);
+  transform: rotate(8deg) scale(1.04);
+}
+
+.voice-hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  gap: clamp(28px, 5vw, 84px);
+  align-items: center;
+  width: min(1240px, 90vw);
+  margin: 0 auto;
+  padding: clamp(90px, 10vh, 130px) 0 clamp(60px, 8vh, 100px);
+}
+
+.breadcrumb {
+  width: fit-content;
+  border: 2px solid var(--black);
+  padding: 10px 14px;
+  margin-bottom: 26px;
+  font-weight: 700;
+}
+
+.breadcrumb strong { color: var(--purple); }
+
+.voice-copy h1 {
+  margin: 0;
+  font-size: clamp(88px, 16vw, 260px);
+  line-height: .68;
+  letter-spacing: -.12em;
+}
+
+.voice-copy p {
+  width: min(620px, 86vw);
+  margin: clamp(24px, 3vw, 42px) 0 0;
+  color: var(--muted);
+  font-size: clamp(24px, 3vw, 54px);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+
+.poster-board {
+  position: relative;
+  min-height: 620px;
+}
+
+.poster-image {
+  position: absolute;
+  inset: 4% 7% 10% 0;
+  background:
+    linear-gradient(180deg, rgba(16,16,16,.08), rgba(16,16,16,.72)),
+    url("/assets/images/vibe-posters.jpg") center / cover;
+  border: 3px solid var(--black);
+  transform: rotate(-2deg);
+  box-shadow: 22px 22px 0 var(--green);
+  filter: grayscale(.18) contrast(1.04);
+}
+
+.poster-image::after {
+  content: 'VOZ DA MARCA';
+  position: absolute;
+  left: 24px;
+  bottom: 22px;
+  color: white;
+  font-size: clamp(30px, 4vw, 72px);
+  line-height: .82;
+  letter-spacing: -.07em;
+  width: 260px;
+}
+
+.chat {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  padding: 12px 16px;
+  background: var(--paper);
+  border: 3px solid var(--black);
+  font-weight: 700;
+  box-shadow: 8px 8px 0 var(--purple);
+  animation: floatChat 3.6s ease-in-out infinite;
+}
+
+.c1 { top: 8%; left: 4%; }
+.c2 { top: 34%; right: 0; animation-delay: -.9s; }
+.c3 { bottom: 18%; left: 10%; animation-delay: -1.8s; }
+
+@keyframes floatChat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+.stamp {
+  position: absolute;
+  right: 3%;
+  bottom: 5%;
+  z-index: 3;
+  color: var(--purple);
+  border: 4px solid var(--purple);
+  padding: 10px 16px;
+  font-size: clamp(26px, 3vw, 50px);
+  font-weight: 700;
+  transform: rotate(-10deg);
+  background: rgba(244,239,231,.82);
+}
+
+.voice-lab,
+.tone-section,
+.microcopy,
+.talk-grid {
+  width: min(1240px, 90vw);
+  margin: 0 auto clamp(34px, 5vw, 74px);
+}
+
+.voice-lab {
+  border: 3px solid var(--black);
+  background: var(--black);
+  color: white;
+  padding: clamp(24px, 3vw, 48px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 22px;
+}
+
+.lab-title span,
+.talk-card span,
+.tone-copy span {
+  display: inline-flex;
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.lab-title h2,
+.talk-card h2,
+.tone-copy h2,
+.microcopy h2 {
+  margin: 0 0 12px;
+  font-size: clamp(44px, 6vw, 112px);
+  line-height: .76;
+  letter-spacing: -.09em;
+}
+
+.lab-title p,
+.tone-copy p {
+  margin: 0;
+  color: rgba(255,255,255,.75);
+  font-size: clamp(16px, 1.3vw, 23px);
+  line-height: 1.06;
+}
+
+.mode-switch {
+  align-self: start;
+  display: inline-flex;
+  gap: 8px;
+  border: 2px solid rgba(255,255,255,.35);
+  padding: 6px;
+}
+
+.mode-switch button {
+  border: 0;
+  padding: 10px 14px;
+  background: transparent;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mode-switch button.active {
+  background: var(--green);
+  color: var(--black);
+}
+
+.translator-stage {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.translator-card {
+  min-height: 245px;
+  border: 2px solid rgba(255,255,255,.25);
+  padding: clamp(18px, 2vw, 30px);
+  background: rgba(255,255,255,.06);
+  opacity: .35;
+  transform: scale(.98);
+  transition: opacity .25s ease, transform .25s ease, background .25s ease;
+}
+
+.translator-stage:not(.formal) .evena-card,
+.translator-stage.formal .formal-card {
+  opacity: 1;
+  transform: scale(1);
+  background: var(--green);
+  color: var(--black);
+}
+
+.translator-card small {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.translator-card strong {
+  display: block;
+  font-size: clamp(30px, 4vw, 72px);
+  line-height: .82;
+  letter-spacing: -.06em;
+}
+
+.translator-card p {
+  margin: 16px 0 0;
+  line-height: 1.08;
+}
+
+.talk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(18px, 2vw, 30px);
+}
+
+.talk-card {
+  min-height: 470px;
+  padding: clamp(24px, 3vw, 46px);
+  border: 3px solid var(--black);
+  background: white;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.talk-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 16px 16px 0 var(--green);
+}
+
+.talk-card.good {
+  background: var(--green);
+}
+
+.talk-card.bad {
+  background: var(--paper);
+}
+
+.talk-card ul {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+
+.talk-card li {
+  font-size: clamp(18px, 1.6vw, 30px);
+  line-height: .98;
+}
+
+.talk-card.bad li {
+  text-decoration: line-through;
+  opacity: .72;
+}
+
+.tone-section {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: clamp(18px, 4vw, 64px);
+  align-items: center;
+}
+
+.tone-copy p {
+  color: var(--muted);
+}
+
+.tone-meter {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 3px solid var(--black);
+  background: white;
+}
+
+.tone-meter span,
+.tone-meter strong {
+  min-height: 130px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 10px;
+  border-right: 3px solid var(--black);
+  font-weight: 700;
+}
+
+.tone-meter strong {
+  background: var(--purple);
+  color: white;
+  border-right: 0;
+}
+
+.microcopy {
+  border: 3px solid var(--black);
+  padding: clamp(24px, 3vw, 46px);
+  background: white;
+}
+
+.microcopy-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.microcopy-grid article {
+  min-height: 170px;
+  border: 2px solid var(--black);
+  padding: 18px;
+  background: var(--paper);
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+.microcopy-grid article:hover {
+  background: var(--black);
+  color: white;
+  transform: translateY(-6px);
+}
+
+.microcopy-grid small {
+  display: block;
+  color: var(--purple);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.microcopy-grid strong {
+  display: block;
+  font-size: clamp(19px, 1.65vw, 30px);
+  line-height: .95;
+  letter-spacing: -.04em;
+}
+
+.word-marquee {
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  border-top: 3px solid var(--black);
+  border-bottom: 3px solid var(--black);
+  background: var(--green);
+  color: var(--black);
+  font-size: clamp(30px, 5vw, 90px);
+  line-height: .9;
+  white-space: nowrap;
+  padding: 16px 0;
+  font-weight: 700;
+}
+
+.word-marquee span {
+  animation: marquee 18s linear infinite;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-100%); }
+}
+
+.nav-arrow {
+  position: fixed;
+  bottom: clamp(22px, 3vw, 38px);
+  z-index: 30;
+  min-width: 150px;
+  border: 2px solid var(--black);
+  background: var(--paper);
+  color: var(--black);
+  padding: 14px 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+.nav-arrow:hover {
+  background: var(--black);
+  color: var(--paper);
+  transform: translateY(-4px);
+}
+
+.nav-arrow.left { left: clamp(18px, 2.6vw, 38px); }
+.nav-arrow.right { right: clamp(18px, 2.6vw, 38px); justify-content: flex-end; }
+.nav-arrow .mark { font-size: 28px; line-height: 0; }
+
+@media (max-width: 900px) {
+  .voice-hero,
+  .voice-lab,
+  .translator-stage,
+  .talk-grid,
+  .tone-section,
+  .microcopy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .poster-board { min-height: 440px; }
+  .tone-meter { grid-template-columns: 1fr; }
+  .tone-meter span,
+  .tone-meter strong {
+    min-height: 74px;
+    border-right: 0;
+    border-bottom: 3px solid var(--black);
+  }
+
+  .nav-arrow { min-width: auto; }
+  .nav-arrow span:not(.mark) { display: none; }
+}
+
+/* V95 Voz */
+.chat{
+  border-radius:999px!important;border:2px solid var(--black)!important;
+  box-shadow:6px 6px 0 rgba(76,0,125,.86)!important;background:rgba(244,239,231,.94)!important;
+}
+.chat::before,.chat::after{content:'';position:absolute;background:inherit;border:2px solid var(--black);border-radius:50%;z-index:-1}
+.chat::before{width:18px;height:18px;left:14px;bottom:-12px}
+.chat::after{width:10px;height:10px;left:2px;bottom:-24px}
+.c1{top:8%!important;left:4%!important}
+.c2{top:29%!important;right:0!important}
+.c3{top:55%!important;right:5%!important;left:auto!important;bottom:auto!important}
+.c4{bottom:8%!important;left:8%!important;top:auto!important}
+.c5{top:19%!important;right:22%!important;left:auto!important;bottom:auto!important}
+.quote{position:absolute;z-index:2;color:rgba(255,255,255,.52);font-size:clamp(82px,8vw,150px);line-height:.7;font-weight:700;pointer-events:none}
+.q1{top:4%;right:14%;transform:rotate(-8deg)}
+.q2{bottom:21%;right:21%;transform:rotate(10deg)}
+.q3{top:42%;left:0;transform:rotate(-14deg);color:rgba(0,255,0,.62)}
+.stamp{border-radius:999px!important;color:var(--purple)!important}
+.lab-title h2,.talk-card h2,.tone-copy h2,.microcopy h2{line-height:.88!important;padding-bottom:.08em}
+.tone-note{color:var(--purple)!important;font-weight:700;margin-bottom:12px!important}
+.tone-meter strong{background:var(--green)!important;color:var(--black)!important}
+.microcopy-grid article{padding:24px 22px 28px!important;min-height:190px!important;overflow:visible!important}
+.microcopy-grid strong{line-height:1.06!important;padding-bottom:.18em!important}
+.word-marquee{font-family:Arial,Helvetica,sans-serif!important;font-weight:900!important;letter-spacing:.06em!important;font-size:clamp(24px,3.8vw,68px)!important;padding:18px 0 22px!important;margin-bottom:92px!important}
+.word-marquee span{padding-right:46px}
+.nav-arrow{position:static!important;margin-bottom:24px!important}
+.voice-page>.nav-arrow.left,.voice-page>.nav-arrow.right{display:inline-flex!important;margin-top:18px!important}
+.voice-page>.nav-arrow.left{margin-left:clamp(18px,2.6vw,38px)!important}
+.voice-page>.nav-arrow.right{float:right;margin-right:clamp(18px,2.6vw,38px)!important}
+.voice-page{padding-bottom:0!important}
+@media(max-width:900px){
+  .c3{top:61%!important;right:2%!important}.c5{top:22%!important;right:8%!important}.quote{font-size:76px!important}
+}
+
+
+/* === V96: correções finais Voz === */
+.stamp {
+  display: none !important;
+}
+
+.poster-board {
+  min-height: 660px !important;
+}
+
+.poster-image {
+  inset: 6% 8% 10% 0 !important;
+}
+
+.poster-image::after {
+  z-index: 1 !important;
+  left: 28px !important;
+  bottom: 28px !important;
+}
+
+/* balões reposicionados para não entrar em VOZ DA MARCA */
+.chat {
+  z-index: 4 !important;
+}
+
+.c1 {
+  top: 8% !important;
+  left: 3% !important;
+}
+
+.c2 {
+  top: 26% !important;
+  right: -1% !important;
+}
+
+.c3 {
+  top: 57% !important;
+  right: 2% !important;
+  left: auto !important;
+  bottom: auto !important;
+}
+
+.c4 {
+  top: 5% !important;
+  right: 28% !important;
+  left: auto !important;
+  bottom: auto !important;
+}
+
+.c5 {
+  top: 42% !important;
+  left: -2% !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+/* mais aspas visíveis */
+.quote {
+  z-index: 3 !important;
+}
+
+.q1 {
+  top: 12% !important;
+  right: 12% !important;
+}
+
+.q2 {
+  top: 36% !important;
+  right: 24% !important;
+}
+
+.q3 {
+  top: 47% !important;
+  left: 2% !important;
+}
+
+.q4 {
+  position: absolute;
+  z-index: 3;
+  bottom: 10%;
+  right: 18%;
+  color: rgba(255,255,255,.48);
+  font-size: clamp(82px, 8vw, 150px);
+  line-height: .7;
+  font-weight: 700;
+  pointer-events: none;
+  transform: rotate(8deg);
+}
+
+/* tomômetro certo: Evena no meio */
+.tone-meter {
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+.tone-meter span,
+.tone-meter strong {
+  min-height: 132px !important;
+  border-right: 3px solid var(--black) !important;
+}
+
+.tone-meter strong {
+  order: 0 !important;
+  border-right: 3px solid var(--black) !important;
+  background: var(--green) !important;
+  color: var(--black) !important;
+}
+
+.tone-meter span:last-child {
+  border-right: 0 !important;
+}
+
+.tone-note {
+  color: var(--purple) !important;
+  font-weight: 700 !important;
+}
+
+/* botões voltam a flutuar, mas ficam acima do letreiro */
+.voice-page .nav-arrow {
+  position: fixed !important;
+  bottom: 118px !important;
+  z-index: 45 !important;
+  margin: 0 !important;
+}
+
+.voice-page .nav-arrow.left {
+  left: clamp(18px, 2.6vw, 38px) !important;
+}
+
+.voice-page .nav-arrow.right {
+  right: clamp(18px, 2.6vw, 38px) !important;
+  float: none !important;
+}
+
+@media (max-width: 900px) {
+  .poster-board {
+    min-height: 520px !important;
+  }
+
+  .c4 {
+    top: 8% !important;
+    right: 12% !important;
+  }
+
+  .c5 {
+    top: 43% !important;
+    left: 2% !important;
+  }
+
+  .tone-meter {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tone-meter span,
+  .tone-meter strong {
+    border-right: 0 !important;
+    border-bottom: 3px solid var(--black) !important;
+  }
+
+  .tone-meter span:last-child {
+    border-bottom: 0 !important;
+  }
+}
+
+
+/* === V97: setas de Voz sticky, param antes do letreiro === */
+.vibe-page-nav {
+  position: sticky;
+  bottom: 24px;
+  z-index: 45;
+  width: min(1240px, 90vw);
+  margin: 0 auto 26px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.vibe-page-nav .nav-arrow {
+  position: static !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto;
+}
+
+.voice-page .nav-arrow {
+  bottom: auto !important;
+}
+
+.word-marquee {
+  position: relative;
+  z-index: 50;
+}
+
+
+/* === V98: setas de Voz iguais às da Energia === */
+.voice-page .vibe-page-nav {
+  display: contents !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow,
+.voice-page > .nav-arrow {
+  position: fixed !important;
+  bottom: 32px !important;
+  z-index: 45 !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow.left,
+.voice-page > .nav-arrow.left {
+  left: clamp(18px, 2.6vw, 38px) !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow.right,
+.voice-page > .nav-arrow.right {
+  right: clamp(18px, 2.6vw, 38px) !important;
+}
+
+/* o letreiro passa por cima caso chegue no final, igual proteção visual */
+.word-marquee {
+  position: relative !important;
+  z-index: 80 !important;
+  margin-bottom: 0 !important;
+}
+
+.voice-page {
+  padding-bottom: 120px !important;
+}
+
+
+/* === V99: setas Voz param antes do letreiro === */
+.voice-page .vibe-page-nav {
+  display: flex !important;
+  position: sticky !important;
+  bottom: 24px !important;
+  z-index: 45 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 auto 26px !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.voice-page > .nav-arrow {
+  position: static !important;
+}
+
+.voice-page .word-marquee {
+  position: relative !important;
+  z-index: 80 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* === V100: setas com lock/unlock antes do letreiro === */
+.voice-page .vibe-page-nav {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 32px !important;
+  transform: translateX(-50%) !important;
+  z-index: 70 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.voice-page .vibe-page-nav.is-locked {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 auto 26px !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.voice-page .word-marquee {
+  position: relative !important;
+  z-index: 90 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.voice-page {
+  padding-bottom: 0 !important;
+}
+
+
+/* === V101: espaço correto das setas antes do letreiro - VOZ === */
+.voice-page .vibe-page-nav {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 32px !important;
+  transform: translateX(-50%) !important;
+  z-index: 70 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.voice-page .vibe-page-nav.is-locked {
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: 60 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 78px auto 96px !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.voice-page .word-marquee {
+  position: relative !important;
+  z-index: 90 !important;
+  margin-top: 0 !important;
+}
+
+/* dá respiro depois da seção anterior, pra seta não atravessar card */
+.voice-page .microcopy {
+  margin-bottom: 120px !important;
+}
+
+.voice-page .vibe-page-nav.is-locked + .word-marquee {
+  margin-top: 0 !important;
+}
+
+
+/* === V102: lock real com espaço antes do letreiro - VOZ === */
+.voice-page .vibe-page-nav {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 32px !important;
+  transform: translateX(-50%) !important;
+  z-index: 70 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.voice-page .vibe-page-nav.is-locked {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: 60 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 130px auto 170px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.voice-page .microcopy {
+  margin-bottom: 180px !important;
+}
+
+.voice-page .word-marquee {
+  position: relative !important;
+  z-index: 90 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.voice-page {
+  padding-bottom: 0 !important;
+}
+
+
+/* === V104: setas com limitador real por bottom dinâmico - VOZ === */
+.voice-page .vibe-page-nav,
+.voice-page .vibe-page-nav.is-locked {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  z-index: 120 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow,
+.voice-page .vibe-page-nav.is-locked .nav-arrow {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.voice-page .word-marquee {
+  position: relative !important;
+  z-index: 80 !important;
+}
+
+.voice-page .microcopy {
+  margin-bottom: 170px !important;
+}
+
+
+/* === V105: correção definitiva - bottom dinâmico via CSS var === */
+.voice-page .vibe-page-nav,
+.voice-page .vibe-page-nav.is-locked {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: var(--nav-bottom, 32px) !important;
+  transform: translateX(-50%) !important;
+  z-index: 120 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.voice-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.voice-page .microcopy {
+  margin-bottom: 230px !important;
+}
+
+.voice-page .word-marquee {
+  position: relative !important;
+  z-index: 80 !important;
+}
+
+
+/* === V106: setas mais afastadas, igual Energia - VOZ === */
+.voice-page .vibe-page-nav,
+.voice-page .vibe-page-nav.is-locked {
+  width: calc(100vw - 96px) !important;
+  max-width: none !important;
+}
+
+@media (max-width: 900px) {
+  .voice-page .vibe-page-nav,
+  .voice-page .vibe-page-nav.is-locked {
+    width: calc(100vw - 36px) !important;
+  }
+}

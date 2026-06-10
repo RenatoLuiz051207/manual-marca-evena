@@ -1,0 +1,89 @@
+<main class="personality-page">
+  <button class="page-close" type="button" aria-label="Voltar para Vibe" (click)="goHome()">×</button>
+
+  <section class="personality-hero">
+    <div class="hero-copy">
+      <div class="breadcrumb">Vibe / <strong>Personalidade</strong></div>
+      <h1>Personalidade</h1>
+      <p>A Evena é moderna, energética, humana, espontânea, cultural e próxima.</p>
+    </div>
+
+    <div class="moodboard" aria-hidden="true">
+      <div class="photo p1"></div>
+      <div class="photo p2"></div>
+      <div class="photo p3"></div>
+      <div class="note">Viver é melhor ao vivo</div>
+    </div>
+  </section>
+
+  <section class="trait-lab">
+    <div class="radar-wrap" aria-hidden="true">
+      <div class="radar">
+        <span class="rp p1"></span>
+        <span class="rp p2"></span>
+        <span class="rp p3"></span>
+        <span class="rp p4"></span>
+        <span class="rp p5"></span>
+        <span class="rp p6"></span>
+      </div>
+    </div>
+
+    <div class="trait-content">
+      <h2>Chips de personalidade</h2>
+      <div class="trait-chips">
+        <button type="button" [class.selected]="selectedTrait === 'Moderna'" (click)="setTrait('Moderna')">Moderna</button>
+        <button type="button" [class.selected]="selectedTrait === 'Energética'" (click)="setTrait('Energética')">Energética</button>
+        <button type="button" [class.selected]="selectedTrait === 'Humana'" (click)="setTrait('Humana')">Humana</button>
+        <button type="button" [class.selected]="selectedTrait === 'Espontânea'" (click)="setTrait('Espontânea')">Espontânea</button>
+        <button type="button" [class.selected]="selectedTrait === 'Cultural'" (click)="setTrait('Cultural')">Cultural</button>
+        <button type="button" [class.selected]="selectedTrait === 'Próxima'" (click)="setTrait('Próxima')">Próxima</button>
+      </div>
+
+      <article class="trait-description">
+        <small>{{ selectedTrait }}</small>
+        <p>{{ traitText[selectedTrait] }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="yes-no">
+    <article class="yes">
+      <h2>É Evena</h2>
+      <p>leve · viva · cultural · próxima · direta · curiosa · humana</p>
+    </article>
+
+    <article class="no">
+      <h2>Não&nbsp;é&nbsp;Evena</h2>
+      <p>fria · robótica · formal demais · distante · confusa · genérica</p>
+    </article>
+  </section>
+
+  <section class="behavior">
+    <h2>Como a personalidade aparece</h2>
+
+    <div class="behavior-grid">
+      <article>
+        <strong>No design</strong>
+        <p>Usa cor com intenção, movimento com ritmo e composições que lembram palco, convite, cartaz e experiência.</p>
+      </article>
+      <article>
+        <strong>No texto</strong>
+        <p>Fala como gente. Simplifica. Convida. Evita excesso de formalidade.</p>
+      </article>
+      <article>
+        <strong>No produto</strong>
+        <p>Organiza o rolê sem tirar a espontaneidade da experiência.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="vibe-page-nav" [style.--nav-bottom]="navBottom + 'px'"><button class="nav-arrow left" type="button" (click)="goLeft()"><span class="mark">‹</span><span>Energia</span></button>
+  <button class="nav-arrow right" type="button" (click)="goRight()"><span>Voz</span><span class="mark">›</span></button></div>
+
+  <section class="poster-strip" aria-hidden="true">
+    <div class="strip-track">
+      <span>MODERNA</span><span>ENERGÉTICA</span><span>HUMANA</span><span>ESPONTÂNEA</span><span>CULTURAL</span><span>PRÓXIMA</span>
+      <span>MODERNA</span><span>ENERGÉTICA</span><span>HUMANA</span><span>ESPONTÂNEA</span><span>CULTURAL</span><span>PRÓXIMA</span>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,3328 @@
+@font-face {
+  font-family: "Fredoka Evena";
+  src:
+    url("/assets/fonts/Fredoka-VariableFont_wdth,wght.ttf") format("truetype"),
+    url("/assets/fonts/Fredoka.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Comfortaa Evena";
+  src:
+    url("/assets/fonts/Comfortaa-VariableFont_wght.ttf") format("truetype"),
+    url("/assets/fonts/Comfortaa.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+:host ::ng-deep html,
+:host ::ng-deep body {
+  overflow: hidden !important;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+.evena-home {
+  --purple: #4c007d;
+  --purple-dark: #21002e;
+  --vibe: #7290d5;
+  --green: #00ff00;
+  --ink: #111111;
+  --card-dark: #202026;
+  --line: rgba(0, 255, 0, .24);
+  --gap: 18px;
+  --p: clamp(0, var(--progress), 1);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--purple-dark);
+  color: white;
+  font-family: "Fredoka Evena", "Comfortaa Evena", "Fredoka", "Comfortaa", Arial, sans-serif;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--purple-dark);
+}
+
+.moving-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: calc(.9 - max(0, (var(--p) - .68) * 1.3));
+}
+
+.line {
+  position: absolute;
+  display: block;
+  will-change: transform;
+}
+
+.line.v {
+  top: -10vh;
+  width: 2px;
+  height: 120vh;
+  background: linear-gradient(180deg, transparent, var(--line), var(--line), transparent);
+  transform: translateY(calc((var(--p) - .5) * 92px));
+}
+
+.line.h {
+  left: -10vw;
+  height: 2px;
+  width: 120vw;
+  background: linear-gradient(90deg, transparent, var(--line), var(--line), transparent);
+  transform: translateX(calc((.5 - var(--p)) * 96px));
+}
+
+.v1 { left: var(--gap); }
+.v2 { left: calc(var(--gap) + (100vw - var(--gap) * 2) * .38); }
+.v3 { left: calc(var(--gap) + (100vw - var(--gap) * 2) * .50); }
+.v4 { right: var(--gap); }
+.h1 { top: var(--gap); }
+.h2 { top: calc(var(--gap) + (100vh - var(--gap) * 2) * .46); }
+.h3 { top: calc(var(--gap) + (100vh - var(--gap) * 2) * .62); }
+.h4 { bottom: var(--gap); }
+
+.intro {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(590px, 76vw);
+  height: min(660px, 78vh);
+  padding: clamp(28px, 3.2vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+.intro h1,
+.intro h2 {
+  margin: 0;
+  max-width: 10ch;
+  font-size: clamp(42px, 4.9vw, 82px);
+  line-height: .88;
+  letter-spacing: -.055em;
+  font-weight: 700;
+}
+
+.intro-one h1 { color: var(--green); }
+.intro-two { background: var(--purple); }
+.intro-two h2 { color: white; max-width: 10.5ch; }
+
+.intro-logo {
+  width: 102px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.intro-one {
+  opacity: calc(1 - min(1, max(0, (var(--p) - .06) * 8)));
+  transform:
+    translate(-50%, -50%)
+    scale(calc(1 - min(1, max(0, (var(--p) - .06) * 5)) * .09));
+}
+
+.intro-two {
+  opacity: calc(min(1, max(0, (var(--p) - .28) * 9)) * (1 - min(1, max(0, (var(--p) - .58) * 9))));
+  transform:
+    translate(-50%, -50%)
+    scale(calc(.84 + min(1, max(0, (var(--p) - .28) * 5)) * .16));
+}
+
+.cards-grid {
+  position: absolute;
+  inset: var(--gap);
+  display: grid;
+  grid-template-columns: 38% 12% calc(50% - var(--gap));
+  grid-template-rows: 46% 16% calc(38% - var(--gap));
+  gap: var(--gap);
+  width: calc(100vw - var(--gap) * 2);
+  height: calc(100vh - var(--gap) * 2);
+  opacity: min(1, max(0, (var(--p) - .66) * 9));
+  transform: scale(calc(.84 + min(1, max(0, (var(--p) - .66) * 4)) * .16));
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.card,
+.logo-node,
+.tagline-node {
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 0;
+  transition:
+    transform .55s cubic-bezier(.4,0,.2,1),
+    border-radius .55s cubic-bezier(.4,0,.2,1),
+    background-color .55s cubic-bezier(.4,0,.2,1),
+    color .35s ease;
+}
+
+.card {
+  padding: clamp(24px, 2.6vw, 42px);
+  color: var(--ink);
+}
+
+.card:hover,
+.tagline-node:hover {
+  border-radius: 20px;
+  transform: scale(.988);
+}
+
+.card-title {
+  position: relative;
+  z-index: 2;
+  display: block;
+  color: inherit;
+  font-size: clamp(42px, 5.6vw, 104px);
+  line-height: .82;
+  letter-spacing: -.07em;
+  font-weight: 700;
+  transition: color .35s ease;
+}
+
+.card-subtitle {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 14px;
+  max-width: 26ch;
+  color: inherit;
+  font-size: clamp(15px, 1.15vw, 21px);
+  line-height: 1;
+  letter-spacing: -.025em;
+  font-weight: 500;
+  opacity: .76;
+  transition: color .35s ease, opacity .35s ease;
+}
+
+.concept-card {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  background: var(--purple);
+  transform: translateX(calc((1 - min(1, max(0, (var(--p) - .66) * 4))) * -44vw));
+}
+
+.vibe-card {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  background: var(--vibe);
+  transform: translateY(calc((1 - min(1, max(0, (var(--p) - .66) * 4))) * -38vh));
+}
+
+.aesthetic-card {
+  grid-column: 3;
+  grid-row: 2 / 4;
+  background: var(--green);
+  transform: translateX(calc((1 - min(1, max(0, (var(--p) - .66) * 4))) * 44vw));
+}
+
+.concept-card:hover,
+.vibe-card:hover,
+.aesthetic-card:hover {
+  background: var(--card-dark);
+  color: white;
+}
+
+.logo-node {
+  grid-column: 2;
+  grid-row: 2;
+  background: white;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  transform:
+    translateY(calc((1 - min(1, max(0, (var(--p) - .64) * 5))) * 18vh))
+    scale(calc(.74 + min(1, max(0, (var(--p) - .64) * 5)) * .26));
+}
+
+.logo-node img {
+  width: 96%;
+  height: 96%;
+  object-fit: contain;
+  display: block;
+}
+
+.tagline-node {
+  grid-column: 2;
+  grid-row: 3;
+  background: var(--purple-dark);
+  border: 2px solid rgba(0, 255, 0, .42);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  color: var(--green);
+  text-align: center;
+  transform: translateY(calc((1 - min(1, max(0, (var(--p) - .66) * 4))) * 36vh));
+}
+
+.tagline-node span {
+  font-size: clamp(16px, 1.5vw, 26px);
+  line-height: .95;
+  letter-spacing: -.04em;
+  font-weight: 700;
+}
+
+.tagline-node:hover {
+  background: var(--green);
+  color: var(--purple-dark);
+  border-color: var(--green);
+}
+
+.symbol {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.concept-symbol {
+  left: 8%;
+  right: 8%;
+  bottom: 7%;
+  height: 62%;
+}
+
+.concept-symbol svg,
+.vibe-symbol svg,
+.aesthetic-symbol svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.constellation-path {
+  fill: none;
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity .35s ease, stroke-dashoffset .95s cubic-bezier(.4,0,.2,1);
+}
+
+.constellation-path.base { stroke: rgba(17,17,17,.62); }
+.constellation-path.draw {
+  stroke: white;
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  opacity: 0;
+}
+
+.star {
+  fill: var(--ink);
+  stroke: transparent;
+  stroke-width: 7;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .55s cubic-bezier(.4,0,.2,1), fill .35s ease, stroke .35s ease, opacity .35s ease;
+}
+
+.concept-card:hover .constellation-path.base { opacity: .12; }
+.concept-card:hover .constellation-path.draw { opacity: 1; stroke-dashoffset: 0; }
+.concept-card:hover .star { fill: white; stroke: white; transform: scale(1.18); }
+.concept-card:hover .star.mid { fill: white; stroke: transparent; transform: scale(1.55); }
+
+.vibe-symbol {
+  left: 14%;
+  right: 8%;
+  bottom: 5%;
+  height: 68%;
+}
+
+.bar {
+  fill: var(--ink);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .65s cubic-bezier(.4,0,.2,1), opacity .35s ease, fill .35s ease;
+}
+
+.smile-face {
+  opacity: 0;
+  transform: translateY(14px) scale(.94);
+  transform-origin: center;
+  transition: opacity .35s ease, transform .7s cubic-bezier(.4,0,.2,1);
+}
+
+.smile-arc {
+  fill: none;
+  stroke: white;
+  stroke-width: 20;
+  stroke-linecap: round;
+  stroke-dasharray: 430;
+  stroke-dashoffset: 430;
+  transition: stroke-dashoffset .75s cubic-bezier(.4,0,.2,1);
+}
+
+.eye {
+  fill: white;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(.35);
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+}
+
+.vibe-card:hover .bar { opacity: 0; transform: scaleY(.22) translateY(60px); }
+.vibe-card:hover .smile-face { opacity: 1; transform: translateY(0) scale(1); }
+.vibe-card:hover .smile-arc { stroke-dashoffset: 0; }
+.vibe-card:hover .eye { transform: scale(1); }
+
+.aesthetic-symbol {
+  left: 7%;
+  right: 6%;
+  bottom: 3%;
+  height: 72%;
+}
+
+.poster {
+  stroke: var(--ink);
+  stroke-width: 8;
+  transition: transform .7s cubic-bezier(.4,0,.2,1), fill .35s ease, stroke .35s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.p3 { fill: #84e836; transform: rotate(-6deg); }
+.p2 { fill: #d4ff6a; transform: rotate(4deg); }
+.p1 { fill: white; }
+.poster-sky { fill: white; }
+
+.sun,
+.moon {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .8s cubic-bezier(.4,0,.2,1), opacity .35s ease, fill .35s ease;
+}
+
+.sun { fill: var(--purple); transform: translateX(0) scale(1); opacity: 1; }
+.moon { fill: var(--purple); transform: translateX(170px) scale(.62) rotate(-18deg); opacity: 0; }
+
+.hill { transition: transform .65s cubic-bezier(.4,0,.2,1), fill .35s ease; }
+.h-back { fill: #7290d5; }
+.h-front { fill: var(--purple); }
+
+.aesthetic-card:hover .p3 { transform: translate(34px, -22px) rotate(-12deg); fill: #2b2b33; stroke: white; }
+.aesthetic-card:hover .p2 { transform: translate(8px, -4px) rotate(8deg); fill: #3a3a44; stroke: white; }
+.aesthetic-card:hover .p1 { transform: translate(-24px, 18px) rotate(-2deg); fill: var(--card-dark); stroke: white; }
+.aesthetic-card:hover .poster-sky { fill: var(--card-dark); }
+.aesthetic-card:hover .sun { opacity: 0; transform: translateX(-170px) scale(.62) rotate(18deg); fill: white; }
+.aesthetic-card:hover .moon { opacity: 1; transform: translateX(-40px) scale(1) rotate(0); fill: white; }
+.aesthetic-card:hover .h-back { fill: #373742; transform: translateY(-10px); }
+.aesthetic-card:hover .h-front { fill: white; transform: translateY(7px); }
+
+@media (max-width: 900px) {
+  .evena-home { --gap: 12px; }
+  .card { padding: 18px; }
+  .card-title { font-size: clamp(30px, 6.5vw, 72px); }
+  .card-subtitle { font-size: 12px; }
+  .tagline-node span { font-size: 12px; }
+}
+
+
+/* === V14: Corona Borealis + estética com paisagem presa na moldura === */
+
+/* deixa a "coroa" do Conceito bem no meio do card, não grudada embaixo */
+.concept-symbol {
+  top: 30% !important;
+  bottom: auto !important;
+  left: 7% !important;
+  right: 7% !important;
+  height: 42% !important;
+}
+
+.constellation-path.corona-main {
+  stroke-width: 12px !important;
+}
+
+.constellation-path.corona-support {
+  stroke-width: 8px !important;
+  opacity: .45;
+}
+
+.concept-card:hover .constellation-path.corona-support.draw {
+  opacity: .9;
+}
+
+.corona-star {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.corona-dust {
+  opacity: .55;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.concept-card:hover .corona-dust {
+  opacity: 1;
+  fill: var(--green);
+  transform: scale(1.6);
+}
+
+/* brilho sutil no ponto central da Corona Borealis */
+.corona-star.c4 {
+  filter: drop-shadow(0 0 8px rgba(0, 255, 0, .25));
+}
+
+.concept-card:hover .corona-star.c4 {
+  filter: drop-shadow(0 0 18px rgba(0, 255, 0, .9));
+}
+
+/* estética: a moldura principal e a paisagem agora se movem juntas */
+.poster-main {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform .75s cubic-bezier(.4,0,.2,1),
+    opacity .35s ease;
+}
+
+.aesthetic-card:hover .poster-main {
+  transform: translate(-24px, 18px) rotate(-2deg);
+}
+
+/* desliga o movimento antigo do .p1 sozinho, porque agora quem mexe é o grupo */
+.aesthetic-card:hover .poster-main .p1 {
+  transform: none !important;
+}
+
+/* lua entra no mesmo lugar visual do sol */
+.moon {
+  transform: translateX(155px) scale(.62) rotate(-18deg);
+  opacity: 0;
+}
+
+.aesthetic-card:hover .sun {
+  opacity: 0;
+  transform: translateX(-155px) scale(.62) rotate(18deg);
+}
+
+.aesthetic-card:hover .moon {
+  opacity: 1;
+  transform: translateX(-38px) scale(1) rotate(0);
+}
+
+/* como o grupo já mexe, a paisagem acompanha a moldura sem escapar */
+.aesthetic-card:hover .h-back {
+  fill: #373742;
+  transform: translateY(-7px);
+}
+
+.aesthetic-card:hover .h-front {
+  fill: white;
+  transform: translateY(5px);
+}
+
+
+/* === V15: pontos do Conceito no formato enviado === */
+.concept-symbol {
+  top: 24% !important;
+  left: 9% !important;
+  right: 9% !important;
+  height: 50% !important;
+}
+
+.constellation-path.corona-main {
+  stroke-width: 7px !important;
+}
+
+.constellation-path.corona-support {
+  stroke-width: 5px !important;
+  opacity: .26;
+}
+
+.constellation-path.corona-support.lower {
+  opacity: .2;
+}
+
+.concept-card:hover .constellation-path.corona-main,
+.concept-card:hover .constellation-path.corona-support {
+  opacity: 1;
+}
+
+.corona-star {
+  r: 10;
+}
+
+.concept-card .corona-star {
+  transition: transform .55s cubic-bezier(.4,0,.2,1), fill .35s ease, opacity .35s ease;
+}
+
+.concept-card:hover .corona-star.c-top {
+  transform: scale(1.18);
+}
+
+
+/* === V16: coroa do conceito no formato do novo esboço === */
+.concept-symbol {
+  top: 23% !important;
+  left: 11% !important;
+  right: 11% !important;
+  height: 52% !important;
+}
+
+.constellation-path.corona-main {
+  stroke-width: 5px !important;
+  opacity: .9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.concept-card .corona-star {
+  transition: transform .55s cubic-bezier(.4,0,.2,1), fill .35s ease, opacity .35s ease, filter .35s ease;
+}
+
+.concept-card:hover .corona-star.s3 {
+  transform: scale(1.18);
+}
+
+.concept-card:hover .corona-star.s1,
+.concept-card:hover .corona-star.s5 {
+  transform: scale(1.1);
+}
+
+
+/* === V17: coroa ajustada + pontos totalmente verdes no hover === */
+.concept-card .corona-star {
+  fill: currentColor;
+  transition: transform .55s cubic-bezier(.4,0,.2,1), fill .25s ease, opacity .35s ease, filter .35s ease;
+}
+
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.35));
+}
+
+.concept-card:hover .corona-star.s3 {
+  transform: scale(1.18);
+}
+
+.concept-card:hover .corona-star.s1,
+.concept-card:hover .corona-star.s5 {
+  transform: scale(1.1);
+}
+
+.concept-card:hover .constellation-path.corona-main {
+  stroke: white;
+}
+
+
+/* === V18: coroa maior, diferente, e sem branco no idle === */
+.concept-symbol {
+  top: 18% !important;
+  left: 7% !important;
+  right: 7% !important;
+  height: 58% !important;
+}
+
+.concept-card .constellation-path.base {
+  stroke: rgba(20, 6, 37, .9) !important;
+  opacity: 1 !important;
+}
+
+.concept-card .constellation-path.draw {
+  stroke: white !important;
+  stroke-dasharray: 760 !important;
+  stroke-dashoffset: 760 !important;
+  opacity: 0 !important;
+}
+
+.concept-card:not(:hover) .constellation-path.draw {
+  opacity: 0 !important;
+  stroke-dashoffset: 760 !important;
+}
+
+.concept-card:hover .constellation-path.draw {
+  opacity: 1 !important;
+  stroke-dashoffset: 0 !important;
+}
+
+.concept-card .constellation-path.corona-main {
+  stroke-width: 5px !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.concept-card .corona-star {
+  fill: #120625 !important;
+  stroke: transparent !important;
+  transition: transform .55s cubic-bezier(.4,0,.2,1), fill .25s ease, opacity .35s ease, filter .35s ease;
+}
+
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.35));
+}
+
+.concept-card:hover .corona-star.s3 { transform: scale(1.16); }
+.concept-card:hover .corona-star.s1,
+.concept-card:hover .corona-star.s5 { transform: scale(1.1); }
+
+
+/* === V19: coroa tortinha + traço branco + volta completa no hover === */
+.concept-symbol {
+  top: 17% !important;
+  left: 6.5% !important;
+  right: 6.5% !important;
+  height: 60% !important;
+}
+
+.concept-card .constellation-path.base.corona-main {
+  stroke: rgba(18,6,37,.9) !important;
+  stroke-width: 5px !important;
+  opacity: 1 !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  stroke: #ffffff !important;
+  stroke-width: 8px !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 180 860 !important;
+  stroke-dashoffset: 0 !important;
+  opacity: 0 !important;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,.35));
+}
+
+.concept-card:hover .constellation-path.draw.corona-main {
+  opacity: 1 !important;
+  stroke: #ffffff !important;
+  animation: conceptCrownLap 1.35s cubic-bezier(.4,0,.2,1) 1 forwards;
+}
+
+.concept-card:hover .constellation-path.base.corona-main {
+  stroke: rgba(255,255,255,.95) !important;
+}
+
+.concept-card .corona-star {
+  fill: #120625 !important;
+  stroke: transparent !important;
+  transition: transform .55s cubic-bezier(.4,0,.2,1), fill .25s ease, opacity .35s ease, filter .35s ease;
+}
+
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.35));
+}
+
+.concept-card:hover .corona-star.s3 { transform: scale(1.16); }
+.concept-card:hover .corona-star.s1,
+.concept-card:hover .corona-star.s5 { transform: scale(1.1); }
+
+@keyframes conceptCrownLap {
+  0% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -1040; opacity: 1; }
+}
+
+
+/* === V23: remove rebarba branca da coroa no hover === */
+.concept-symbol,
+.concept-symbol svg {
+  overflow: hidden !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  stroke-linecap: butt !important;
+  stroke-width: 7px !important;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.28));
+}
+
+.concept-card:hover .constellation-path.draw.corona-main {
+  stroke-linecap: butt !important;
+}
+
+
+/* === V24: hover do Conceito sem rebarba; tudo branco e limpo === */
+.concept-card .constellation-path.draw.corona-main {
+  display: none !important;
+  opacity: 0 !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+.concept-card .constellation-path.base.corona-main {
+  stroke: rgba(18,6,37,.92) !important;
+  stroke-width: 6px !important;
+  transition: stroke .28s ease, opacity .28s ease;
+}
+
+.concept-card:hover .constellation-path.base.corona-main {
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.concept-card .corona-star {
+  transition: transform .35s ease, fill .25s ease, stroke .25s ease, opacity .25s ease, filter .25s ease;
+}
+
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  filter: none !important;
+}
+
+
+/* === V25: Conceito mostra só os pontos antes do hover; no hover a coroa se completa === */
+.concept-symbol,
+.concept-symbol svg {
+  overflow: hidden !important;
+}
+
+/* esconde qualquer linha em idle */
+.concept-card .constellation-path.base.corona-main {
+  opacity: 0 !important;
+  stroke: transparent !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  display: block !important;
+  opacity: 1 !important;
+  stroke: #ffffff !important;
+  stroke-width: 7px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  fill: none !important;
+  stroke-dasharray: 1000 !important;
+  stroke-dashoffset: 1000 !important;
+  transition: stroke-dashoffset .95s cubic-bezier(.4,0,.2,1), opacity .2s ease !important;
+  filter: none !important;
+}
+
+/* antes do hover: só pontinhos */
+.concept-card .corona-star {
+  fill: var(--ink) !important;
+  stroke: transparent !important;
+  filter: none !important;
+}
+
+/* hover: desenha a coroa e deixa tudo branco */
+.concept-card:hover .constellation-path.draw.corona-main {
+  stroke-dashoffset: 0 !important;
+}
+
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  filter: none !important;
+}
+
+
+/* === V26: corrigir coroa do Conceito - desenhar ao passar o mouse === */
+@keyframes evenaConceptCrownDraw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* estado normal: só os pontos */
+.concept-card .constellation-path.base.corona-main,
+.concept-card .constellation-path.corona-support {
+  opacity: 0 !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  display: block !important;
+  opacity: 1 !important;
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 7px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  stroke-dasharray: 1000 !important;
+  stroke-dashoffset: 1000 !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+.concept-card:not(:hover) .corona-star {
+  fill: var(--ink) !important;
+  stroke: transparent !important;
+  filter: none !important;
+}
+
+/* hover: liga os pontos desenhando a coroa */
+.concept-card:hover .constellation-path.draw.corona-main {
+  animation: evenaConceptCrownDraw 0.95s cubic-bezier(.4,0,.2,1) forwards !important;
+}
+
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  filter: none !important;
+}
+
+
+/* === V27: Conceito com animação entrando e saindo dos pontos === */
+@keyframes evenaConceptLineIn {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes evenaConceptLineOut {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 1000; }
+}
+
+.concept-card .constellation-path.base.corona-main,
+.concept-card .constellation-path.corona-support {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  display: block !important;
+  opacity: 1 !important;
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 7px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  stroke-dasharray: 1000 !important;
+  stroke-dashoffset: 1000 !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+.concept-card .corona-star {
+  fill: var(--ink) !important;
+  stroke: transparent !important;
+  transition: fill .18s ease, stroke .18s ease, transform .28s ease !important;
+  filter: none !important;
+}
+
+.concept-card.is-hovering .corona-star,
+.concept-card.is-leaving .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.concept-card.is-hovering .constellation-path.draw.corona-main {
+  animation: evenaConceptLineIn .85s cubic-bezier(.4,0,.2,1) forwards !important;
+}
+
+.concept-card.is-leaving .constellation-path.draw.corona-main {
+  animation: evenaConceptLineOut .62s cubic-bezier(.4,0,.2,1) forwards !important;
+}
+
+
+/* === V28: Conceito com animação da linha completando o desenho no hover === */
+.concept-card .constellation-path.base.corona-main,
+.concept-card .constellation-path.corona-support,
+.concept-card .constellation-path.base {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  display: block !important;
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 7px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  filter: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.concept-card .corona-star {
+  fill: var(--ink) !important;
+  stroke: transparent !important;
+  transition: fill .22s ease, stroke .22s ease, transform .3s ease !important;
+  filter: none !important;
+}
+
+.concept-card.is-hovering .corona-star,
+.concept-card.is-leaving .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.concept-card.is-hovering .corona-star.s3 {
+  transform: scale(1.12);
+}
+
+.concept-card.is-hovering .corona-star.s1,
+.concept-card.is-hovering .corona-star.s5 {
+  transform: scale(1.06);
+}
+
+
+/* === V29: linha visível ligando dois pontos no Conceito === */
+.concept-card .constellation-path.idle-link {
+  display: block !important;
+  fill: none !important;
+  stroke: rgba(255,255,255,.92) !important;
+  stroke-width: 6px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  transition: opacity .22s ease !important;
+  pointer-events: none !important;
+}
+
+.concept-card:hover .constellation-path.idle-link {
+  opacity: 0 !important;
+}
+
+
+/* === V30: Conceito começa com 1 linha e no hover completa toda a coroa === */
+.concept-card .constellation-path.base.corona-main,
+.concept-card .constellation-path.base {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.concept-card .constellation-path.idle-link {
+  display: block !important;
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 6px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  transition: opacity .18s linear !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  display: block !important;
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 6px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.concept-card .corona-star {
+  fill: #111111 !important;
+  stroke: transparent !important;
+  transition: fill .2s ease, stroke .2s ease, transform .25s ease !important;
+}
+
+.concept-card.is-hovering .corona-star,
+.concept-card.is-leaving .corona-star,
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+
+/* === V31: Conceito com linha preta parcial e desenho completo animado no hover === */
+.concept-card .constellation-path.base.corona-main,
+.concept-card .constellation-path.base {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* caminho auxiliar só para medir o comprimento do trecho inicial */
+.concept-card .constellation-path.idle-link {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  display: block !important;
+  fill: none !important;
+  stroke: #111111 !important;
+  stroke-width: 6px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  transition: stroke .28s ease, filter .28s ease !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+.concept-card .corona-star {
+  fill: #111111 !important;
+  stroke: transparent !important;
+  transition: fill .28s ease, stroke .28s ease, transform .28s ease !important;
+  filter: none !important;
+}
+
+.concept-card.is-hovering .constellation-path.draw.corona-main,
+.concept-card:hover .constellation-path.draw.corona-main {
+  stroke: #ffffff !important;
+}
+
+.concept-card.is-hovering .corona-star,
+.concept-card.is-leaving .corona-star,
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+
+/* === V32: Conceito com efeito de traço desenhando à mão === */
+.concept-card .concept-symbol {
+  overflow: visible !important;
+}
+
+.concept-card .constellation-path.draw.corona-main {
+  stroke-width: 6.5px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  transition: stroke .35s ease, filter .35s ease !important;
+}
+
+.concept-card.is-hovering .constellation-path.draw.corona-main,
+.concept-card:hover .constellation-path.draw.corona-main {
+  filter: drop-shadow(0 0 1px rgba(255,255,255,.55)) drop-shadow(0 0 6px rgba(255,255,255,.12));
+}
+
+.concept-card .corona-star {
+  transition: fill .28s ease, stroke .28s ease, transform .35s cubic-bezier(.22,.61,.36,1), filter .35s ease !important;
+}
+
+.concept-card.is-hovering .corona-star,
+.concept-card:hover .corona-star {
+  filter: drop-shadow(0 0 3px rgba(255,255,255,.2));
+}
+
+/* traço auxiliar para dar sensação de desenho manual */
+.concept-card .concept-symbol::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+
+/* === V33: linha preta em 3 pontos, vira branca e completa a coroa no hover === */
+.concept-card .constellation-path.draw.corona-main {
+  stroke: #111111 !important;
+  transition: stroke .38s ease, filter .38s ease !important;
+}
+
+.concept-card .corona-star {
+  fill: #111111 !important;
+  transition: fill .38s ease, stroke .38s ease, transform .35s cubic-bezier(.25,.1,.25,1) !important;
+}
+
+.concept-card.is-hovering .constellation-path.draw.corona-main,
+.concept-card:hover .constellation-path.draw.corona-main {
+  stroke: #ffffff !important;
+}
+
+.concept-card.is-hovering .corona-star,
+.concept-card.is-leaving .corona-star,
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+
+/* === V34: garantia de linha inicial em 3 pontos no Conceito === */
+.concept-card .constellation-path.draw.corona-main {
+  display: block !important;
+  fill: none !important;
+  stroke: #111111 !important;
+  stroke-width: 6px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+}
+
+.concept-card.is-hovering .constellation-path.draw.corona-main,
+.concept-card:hover .constellation-path.draw.corona-main {
+  stroke: #ffffff !important;
+}
+
+.concept-card .corona-star {
+  fill: #111111 !important;
+  stroke: transparent !important;
+}
+
+.concept-card.is-hovering .corona-star,
+.concept-card.is-leaving .corona-star,
+.concept-card:hover .corona-star {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+
+/* ===== FIX FINAL - CONCEITO / COROA =====
+   Estado normal: 3 pontos ligados por linha preta.
+   Hover: linha branca desenha a coroa inteira ponto por ponto.
+*/
+.evena-crown-wrap {
+  width: min(74%, 420px) !important;
+  height: min(54%, 320px) !important;
+  left: 50% !important;
+  top: 56% !important;
+  transform: translate(-50%, -50%) !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+.evena-crown-svg {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+.evena-crown-idle {
+  fill: none !important;
+  stroke: #0b0710 !important;
+  stroke-width: 3.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  transition: opacity .22s ease, stroke .22s ease !important;
+}
+
+.evena-crown-full {
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 3.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0 !important;
+  stroke-dasharray: 260 !important;
+  stroke-dashoffset: 260 !important;
+  transition:
+    stroke-dashoffset .9s cubic-bezier(.45,0,.1,1),
+    opacity .18s ease,
+    stroke .22s ease !important;
+}
+
+.evena-crown-dots circle {
+  fill: #0b0710 !important;
+  stroke: none !important;
+  filter: none !important;
+  transition: fill .22s ease, transform .22s ease !important;
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+}
+
+.tile.concept:hover .evena-crown-idle,
+.concept-card:hover .evena-crown-idle,
+.concept:hover .evena-crown-idle {
+  opacity: 0 !important;
+}
+
+.tile.concept:hover .evena-crown-full,
+.concept-card:hover .evena-crown-full,
+.concept:hover .evena-crown-full {
+  opacity: 1 !important;
+  stroke-dashoffset: 0 !important;
+}
+
+.tile.concept:hover .evena-crown-dots circle,
+.concept-card:hover .evena-crown-dots circle,
+.concept:hover .evena-crown-dots circle {
+  fill: #ffffff !important;
+  transform: scale(1.08) !important;
+}
+
+
+/* === V41: correção do scroll virtual, logo central e animações sem reset brusco === */
+html,
+body {
+  margin: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+:host::-webkit-scrollbar,
+.evena-home::-webkit-scrollbar,
+.stage::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+:host,
+.evena-home,
+.stage {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+* , *::before, *::after {
+  box-sizing: border-box !important;
+}
+
+/* Nunca arredonda nem muda tamanho no hover: mata o bug do pixel na borda */
+.card,
+.card:hover,
+.card.is-hovering,
+.card.is-leaving,
+.logo-node,
+.logo-node:hover,
+.tagline-node,
+.tagline-node:hover {
+  border-radius: 0 !important;
+}
+
+.card:hover,
+.card.is-hovering,
+.card.is-leaving,
+.tagline-node:hover {
+  scale: 1 !important;
+}
+
+.concept-card,
+.concept-card:hover,
+.concept-card.is-hovering,
+.concept-card.is-leaving {
+  transform: translateX(calc((1 - min(1, max(0, (var(--p) - .66) * 4))) * -44vw)) !important;
+}
+
+.vibe-card,
+.vibe-card:hover,
+.vibe-card.is-hovering,
+.vibe-card.is-leaving {
+  transform: translateY(calc((1 - min(1, max(0, (var(--p) - .66) * 4))) * -38vh)) !important;
+}
+
+.aesthetic-card,
+.aesthetic-card:hover,
+.aesthetic-card.is-hovering,
+.aesthetic-card.is-leaving {
+  transform: translateX(calc((1 - min(1, max(0, (var(--p) - .66) * 4))) * 44vw)) !important;
+}
+
+.concept-card:hover,
+.concept-card.is-hovering,
+.concept-card.is-leaving,
+.vibe-card:hover,
+.vibe-card.is-hovering,
+.vibe-card.is-leaving,
+.aesthetic-card:hover,
+.aesthetic-card.is-hovering,
+.aesthetic-card.is-leaving {
+  background: var(--card-dark) !important;
+  color: #ffffff !important;
+}
+
+/* Logo do meio: um pouco maior, mas sem vazar do bloco branco */
+.logo-node {
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+.logo-node img {
+  width: 122% !important;
+  height: 122% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: translate(0, -1%) !important;
+  pointer-events: none !important;
+}
+
+/* Conceito: sem linha parada; parado = só pontos. O TS desenha/apaga a coroa. */
+.evena-crown-wrap {
+  width: min(78%, 460px) !important;
+  height: min(58%, 350px) !important;
+  left: 50% !important;
+  top: 54% !important;
+  transform: translate(-50%, -50%) !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  overflow: visible !important;
+}
+
+.evena-crown-svg {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+.evena-crown-idle {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.evena-crown-full,
+.concept-card:hover .evena-crown-full,
+.concept-card.is-hovering .evena-crown-full,
+.concept-card.is-leaving .evena-crown-full {
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 3.35 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+.evena-crown-dots circle {
+  fill: #0b0710 !important;
+  stroke: none !important;
+  transition: fill .18s ease, transform .18s ease !important;
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+}
+
+/* Vibe: transições reversíveis. Se tirar/voltar rápido, ela continua do estado atual. */
+.vibe-card .bar,
+.vibe-card .smile-face,
+.vibe-card .smile-arc,
+.vibe-card .eye {
+  animation: none !important;
+}
+
+.vibe-card .bar {
+  opacity: 1 !important;
+  transform: scaleY(1) translateY(0) !important;
+  transition: transform .72s cubic-bezier(.4,0,.2,1), opacity .35s ease, fill .3s ease !important;
+}
+
+.vibe-card .smile-face {
+  opacity: 0 !important;
+  transform: translateY(18px) scale(.92) !important;
+  transition: opacity .28s ease, transform .72s cubic-bezier(.4,0,.2,1) !important;
+}
+
+.vibe-card .smile-arc {
+  stroke-dasharray: 430 !important;
+  stroke-dashoffset: 430 !important;
+  transition: stroke-dashoffset .78s cubic-bezier(.4,0,.2,1) !important;
+}
+
+.vibe-card .eye {
+  transform: scale(.35) !important;
+  transition: transform .55s cubic-bezier(.4,0,.2,1) !important;
+}
+
+.vibe-card:hover .bar,
+.vibe-card.is-hovering .bar {
+  opacity: 0 !important;
+  transform: scaleY(.22) translateY(60px) !important;
+}
+
+.vibe-card:hover .smile-face,
+.vibe-card.is-hovering .smile-face {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.vibe-card:hover .smile-arc,
+.vibe-card.is-hovering .smile-arc {
+  stroke-dashoffset: 0 !important;
+}
+
+.vibe-card:hover .eye,
+.vibe-card.is-hovering .eye {
+  transform: scale(1) !important;
+}
+
+/* Estética: sem fade. Hover = lua entra da esquerda e sol sai pela direita.
+   Mouseleave = sol vem da esquerda e lua sai pela direita. */
+.poster-main {
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+  transition: transform .75s cubic-bezier(.4,0,.2,1) !important;
+}
+
+.aesthetic-card .poster-main g[clip-path] {
+  clip-path: url(#posterClipEvena) !important;
+}
+
+.sun,
+.moon {
+  opacity: 1 !important;
+  fill: var(--purple) !important;
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+  transition: transform .86s cubic-bezier(.4,0,.2,1), fill .32s ease !important;
+}
+
+.sun { transform: translateX(0) scale(1) rotate(0deg) !important; }
+.moon { transform: translateX(-190px) scale(1) rotate(0deg) !important; }
+
+.aesthetic-card:hover .poster-main,
+.aesthetic-card.is-hovering .poster-main {
+  transform: translate(-24px, 18px) rotate(-2deg) !important;
+}
+
+.aesthetic-card:hover .poster-sky,
+.aesthetic-card.is-hovering .poster-sky {
+  fill: var(--card-dark) !important;
+}
+
+.aesthetic-card:hover .sun,
+.aesthetic-card.is-hovering .sun {
+  transform: translateX(190px) scale(1) rotate(0deg) !important;
+  fill: #ffffff !important;
+}
+
+.aesthetic-card:hover .moon,
+.aesthetic-card.is-hovering .moon {
+  transform: translateX(0) scale(1) rotate(0deg) !important;
+  fill: #ffffff !important;
+}
+
+.aesthetic-card.is-leaving .poster-main {
+  transform: translate(-24px, 18px) rotate(-2deg) !important;
+}
+
+.aesthetic-card.is-leaving .poster-sky {
+  fill: var(--card-dark) !important;
+}
+
+.aesthetic-card.is-leaving .sun {
+  animation: evenaSunFromLeftToCenter .86s cubic-bezier(.4,0,.2,1) both !important;
+  fill: #ffffff !important;
+}
+
+.aesthetic-card.is-leaving .moon {
+  animation: evenaMoonFromCenterToRight .86s cubic-bezier(.4,0,.2,1) both !important;
+  fill: #ffffff !important;
+}
+
+@keyframes evenaSunFromLeftToCenter {
+  from { transform: translateX(-190px) scale(1) rotate(0deg); }
+  to { transform: translateX(0) scale(1) rotate(0deg); }
+}
+
+@keyframes evenaMoonFromCenterToRight {
+  from { transform: translateX(0) scale(1) rotate(0deg); }
+  to { transform: translateX(190px) scale(1) rotate(0deg); }
+}
+
+.aesthetic-card:hover .h-back,
+.aesthetic-card.is-hovering .h-back,
+.aesthetic-card.is-leaving .h-back {
+  fill: #373742 !important;
+  transform: translateY(-7px) !important;
+}
+
+.aesthetic-card:hover .h-front,
+.aesthetic-card.is-hovering .h-front,
+.aesthetic-card.is-leaving .h-front {
+  fill: #ffffff !important;
+  transform: translateY(5px) !important;
+}
+
+.aesthetic-card.is-leaving .p3,
+.aesthetic-card.is-leaving .p2,
+.aesthetic-card.is-leaving .p1 {
+  stroke: #ffffff !important;
+}
+
+
+/* === V42: ajuste final da logo central e ciclo sol/lua da Estética === */
+
+/* Logo do meio: fica inteira dentro do quadrado branco e centralizada */
+.logo-node {
+  overflow: hidden !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 6px !important;
+  background: #ffffff !important;
+}
+
+.logo-node img {
+  width: 96% !important;
+  height: 96% !important;
+  max-width: 96% !important;
+  max-height: 96% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: none !important;
+  display: block !important;
+}
+
+/* Estética: ciclo contínuo sem fade.
+   Hover: sol sai totalmente pela direita e lua entra da esquerda até o centro.
+   Mouseleave: lua sai pela direita e sol entra pela esquerda até o centro. */
+.aesthetic-card .poster-main g[clip-path] {
+  clip-path: url(#posterClipEvena) !important;
+}
+
+.aesthetic-card .sun,
+.aesthetic-card .moon {
+  opacity: 1 !important;
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+  transition: transform .96s cubic-bezier(.4,0,.2,1), fill .32s ease !important;
+  will-change: transform;
+}
+
+.aesthetic-card .sun {
+  transform: translateX(0) scale(1) rotate(0deg) !important;
+  fill: var(--purple) !important;
+}
+
+.aesthetic-card .moon {
+  transform: translateX(-300px) scale(1) rotate(0deg) !important;
+  fill: var(--purple) !important;
+}
+
+.aesthetic-card:hover .sun,
+.aesthetic-card.is-hovering .sun {
+  transform: translateX(300px) scale(1) rotate(0deg) !important;
+  fill: #ffffff !important;
+  animation: none !important;
+}
+
+.aesthetic-card:hover .moon,
+.aesthetic-card.is-hovering .moon {
+  transform: translateX(-18px) scale(1) rotate(0deg) !important;
+  fill: #ffffff !important;
+  animation: none !important;
+}
+
+.aesthetic-card.is-leaving .sun {
+  animation: evenaV42SunFromLeftToCenter .96s cubic-bezier(.4,0,.2,1) both !important;
+  fill: #ffffff !important;
+}
+
+.aesthetic-card.is-leaving .moon {
+  animation: evenaV42MoonFromCenterToRight .96s cubic-bezier(.4,0,.2,1) both !important;
+  fill: #ffffff !important;
+}
+
+@keyframes evenaV42SunFromLeftToCenter {
+  from { transform: translateX(-300px) scale(1) rotate(0deg); }
+  to { transform: translateX(0) scale(1) rotate(0deg); }
+}
+
+@keyframes evenaV42MoonFromCenterToRight {
+  from { transform: translateX(-18px) scale(1) rotate(0deg); }
+  to { transform: translateX(300px) scale(1) rotate(0deg); }
+}
+
+
+/* === V43: logo central e ciclo sol/lua controlado por TS === */
+.logo-node {
+  overflow: hidden !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 10px !important;
+  background: #ffffff !important;
+}
+
+.logo-node img {
+  width: 82% !important;
+  height: 82% !important;
+  max-width: 82% !important;
+  max-height: 82% !important;
+  object-fit: contain !important;
+  object-position: center 42% !important;
+  transform: translateY(-15%) !important;
+  transform-origin: center center !important;
+  display: block !important;
+}
+
+.aesthetic-card.aesthetic-js-ready .sun,
+.aesthetic-card.aesthetic-js-ready .moon,
+.aesthetic-card.aesthetic-js-ready:hover .sun,
+.aesthetic-card.aesthetic-js-ready:hover .moon,
+.aesthetic-card.aesthetic-js-ready.is-hovering .sun,
+.aesthetic-card.aesthetic-js-ready.is-hovering .moon,
+.aesthetic-card.aesthetic-js-ready.is-leaving .sun,
+.aesthetic-card.aesthetic-js-ready.is-leaving .moon {
+  opacity: 1 !important;
+  animation: none !important;
+  transition: none !important;
+  will-change: transform;
+}
+
+.aesthetic-card.aesthetic-js-ready .poster-main g[clip-path] {
+  clip-path: url(#posterClipEvena) !important;
+}
+
+
+/* v44 - logo do meio maior, centralizada e presa dentro do quadro branco */
+.logo-card .logo-node {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.logo-card .logo-node img,
+.logo-card .logo-node picture,
+.logo-card .logo-node svg {
+  display: block !important;
+  width: 106% !important;
+  height: 106% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: 50% 50% !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+
+/* Projeto completo: trava barras de rolagem visuais sem quebrar o scroll controlado */
+html, body {
+  overflow-x: hidden !important;
+}
+
+/* Logo do meio dentro do quadrado branco */
+.logo-node {
+  overflow: hidden !important;
+}
+
+.logo-node img {
+  width: 108% !important;
+  height: 108% !important;
+  max-width: 108% !important;
+  max-height: 108% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+
+/* === AJUSTE FINAL: fontes locais + scroll invisível === */
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+.evena-home {
+  font-family: "Fredoka Evena", "Comfortaa Evena", Arial, sans-serif !important;
+}
+
+
+/* === V45: hover com cores Evena + logo sem fundo branco === */
+
+/* Texto branco parado em todos os cards */
+.concept-card,
+.vibe-card,
+.aesthetic-card {
+  color: #ffffff !important;
+}
+
+/* Hover: texto preto */
+.concept-card:hover,
+.concept-card.is-hovering,
+.vibe-card:hover,
+.vibe-card.is-hovering,
+.aesthetic-card:hover,
+.aesthetic-card.is-hovering {
+  color: #000000 !important;
+}
+
+/* Hover: roxo vira verde */
+.concept-card:hover,
+.concept-card.is-hovering {
+  background: #00ff00 !important;
+}
+
+/* Hover: ardósia/azul vira magenta */
+.vibe-card:hover,
+.vibe-card.is-hovering {
+  background: #ff00ff !important;
+}
+
+/* Hover: verde vira roxo */
+.aesthetic-card:hover,
+.aesthetic-card.is-hovering {
+  background: #4c007d !important;
+}
+
+/* Ícones/símbolos acompanhando o texto preto no hover */
+.concept-card:hover .evena-crown-dots circle,
+.concept-card.is-hovering .evena-crown-dots circle,
+.vibe-card:hover .bar,
+.vibe-card.is-hovering .bar,
+.aesthetic-card:hover .sun,
+.aesthetic-card.is-hovering .sun,
+.aesthetic-card:hover .moon,
+.aesthetic-card.is-hovering .moon {
+  fill: #000000 !important;
+}
+
+.concept-card:hover .evena-crown-full,
+.concept-card.is-hovering .evena-crown-full,
+.vibe-card:hover .smile-arc,
+.vibe-card.is-hovering .smile-arc {
+  stroke: #000000 !important;
+}
+
+.vibe-card:hover .eye,
+.vibe-card.is-hovering .eye {
+  fill: #000000 !important;
+}
+
+/* Logo do meio sem fundo branco e um pouco maior */
+.logo-node {
+  background: transparent !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.logo-node img {
+  width: 118% !important;
+  height: 118% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: translateY(-1%) !important;
+  display: block !important;
+}
+
+/* Evita qualquer arredondamento/resize estranho em hover */
+.card:hover,
+.card.is-hovering,
+.card.is-leaving,
+.logo-node:hover,
+.tagline-node:hover {
+  border-radius: 0 !important;
+}
+
+
+/* === V46: ajustes pedidos de cores, slogan, estética e logo central === */
+
+/* CONCEITO:
+   parado: pontos brancos;
+   hover: pontos e linhas pretas.
+*/
+.concept-card .evena-crown-dots circle,
+.concept-card .star,
+.concept-card .corona-star {
+  fill: #ffffff !important;
+  stroke: transparent !important;
+}
+
+.concept-card .evena-crown-full,
+.concept-card .constellation-path.draw.corona-main {
+  stroke: #000000 !important;
+}
+
+.concept-card:hover .evena-crown-full,
+.concept-card.is-hovering .evena-crown-full,
+.concept-card:hover .constellation-path.draw.corona-main,
+.concept-card.is-hovering .constellation-path.draw.corona-main {
+  stroke: #000000 !important;
+}
+
+.concept-card:hover .evena-crown-dots circle,
+.concept-card.is-hovering .evena-crown-dots circle,
+.concept-card:hover .star,
+.concept-card.is-hovering .star,
+.concept-card:hover .corona-star,
+.concept-card.is-hovering .corona-star {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* CONCEITO: hover roxo -> verde e texto preto */
+.concept-card:hover,
+.concept-card.is-hovering {
+  background: #00ff00 !important;
+  color: #000000 !important;
+}
+
+/* VIBE: volta a virar roxo, não magenta.
+   Barras/som brancas parado; hover com símbolo preto.
+*/
+.vibe-card .bar {
+  fill: #ffffff !important;
+}
+
+.vibe-card:hover,
+.vibe-card.is-hovering {
+  background: #4c007d !important;
+  color: #000000 !important;
+}
+
+.vibe-card:hover .bar,
+.vibe-card.is-hovering .bar,
+.vibe-card:hover .eye,
+.vibe-card.is-hovering .eye {
+  fill: #000000 !important;
+}
+
+.vibe-card:hover .smile-arc,
+.vibe-card.is-hovering .smile-arc {
+  stroke: #000000 !important;
+}
+
+/* Texto sem hover branco em todos os cards */
+.concept-card,
+.vibe-card,
+.aesthetic-card {
+  color: #ffffff !important;
+}
+
+/* Hover dos cards: texto preto */
+.concept-card:hover,
+.concept-card.is-hovering,
+.vibe-card:hover,
+.vibe-card.is-hovering,
+.aesthetic-card:hover,
+.aesthetic-card.is-hovering {
+  color: #000000 !important;
+}
+
+/* SLOGAN: padrão verde com texto roxo; hover roxo com texto verde */
+.tagline-node {
+  background: #00ff00 !important;
+  color: #4c007d !important;
+  border-color: #00ff00 !important;
+}
+
+.tagline-node span {
+  color: inherit !important;
+}
+
+.tagline-node:hover,
+.tagline-node.is-hovering {
+  background: #4c007d !important;
+  color: #00ff00 !important;
+  border-color: #4c007d !important;
+}
+
+/* ESTÉTICA: hover verde -> roxo, texto preto, símbolos/cards em verde */
+.aesthetic-card:hover,
+.aesthetic-card.is-hovering {
+  background: #4c007d !important;
+  color: #000000 !important;
+}
+
+.aesthetic-card:hover .poster,
+.aesthetic-card.is-hovering .poster,
+.aesthetic-card:hover .p1,
+.aesthetic-card.is-hovering .p1,
+.aesthetic-card:hover .p2,
+.aesthetic-card.is-hovering .p2,
+.aesthetic-card:hover .p3,
+.aesthetic-card.is-hovering .p3 {
+  fill: #00ff00 !important;
+  stroke: #000000 !important;
+}
+
+.aesthetic-card:hover .poster-sky,
+.aesthetic-card.is-hovering .poster-sky {
+  fill: #4c007d !important;
+}
+
+.aesthetic-card:hover .h-back,
+.aesthetic-card.is-hovering .h-back,
+.aesthetic-card:hover .h-front,
+.aesthetic-card.is-hovering .h-front {
+  fill: #00ff00 !important;
+}
+
+.aesthetic-card:hover .sun,
+.aesthetic-card.is-hovering .sun,
+.aesthetic-card:hover .moon,
+.aesthetic-card.is-hovering .moon {
+  fill: #000000 !important;
+}
+
+/* LOGO DO MEIO:
+   remove qualquer vazamento para o slogan e centraliza de verdade no bloco.
+*/
+.logo-node {
+  background: transparent !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  align-items: center !important;
+  justify-items: center !important;
+  isolation: isolate !important;
+}
+
+.logo-node img {
+  width: 96% !important;
+  height: 96% !important;
+  max-width: 96% !important;
+  max-height: 96% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+  transform: translate(0, 0) !important;
+  margin: 0 !important;
+  position: static !important;
+}
+
+/* Evita bug de hover por arredondamento/resize */
+.card:hover,
+.card.is-hovering,
+.card.is-leaving,
+.logo-node:hover,
+.tagline-node:hover {
+  border-radius: 0 !important;
+}
+
+/* Garante que nada da logo invada o bloco do slogan */
+.logo-node * {
+  pointer-events: none !important;
+}
+
+
+/* === V47: remove o fundo cinza/card-dark depois das animações === */
+/* O problema era a classe .is-leaving usando var(--card-dark).
+   Agora, quando o mouse sai, cada bloco fica na cor certa, sem passar pelo cinza. */
+
+.concept-card.is-leaving:not(:hover) {
+  background: #4c007d !important;
+  color: #ffffff !important;
+}
+
+.vibe-card.is-leaving:not(:hover) {
+  background: #7290d5 !important;
+  color: #ffffff !important;
+}
+
+.aesthetic-card.is-leaving:not(:hover) {
+  background: #00ff00 !important;
+  color: #ffffff !important;
+}
+
+.tagline-node.is-leaving:not(:hover) {
+  background: #00ff00 !important;
+  color: #4c007d !important;
+}
+
+/* Garante que nenhum card caia no cinza/preto por causa de overrides antigos */
+.concept-card:not(:hover):not(.is-hovering) {
+  background: #4c007d !important;
+}
+
+.vibe-card:not(:hover):not(.is-hovering) {
+  background: #7290d5 !important;
+}
+
+.aesthetic-card:not(:hover):not(.is-hovering) {
+  background: #00ff00 !important;
+}
+
+/* Estado hover correto sem cinza */
+.concept-card:hover,
+.concept-card.is-hovering {
+  background: #00ff00 !important;
+  color: #000000 !important;
+}
+
+.vibe-card:hover,
+.vibe-card.is-hovering {
+  background: #4c007d !important;
+  color: #000000 !important;
+}
+
+.aesthetic-card:hover,
+.aesthetic-card.is-hovering {
+  background: #4c007d !important;
+  color: #000000 !important;
+}
+
+/* Conceito: parado branco; hover/animação preto */
+.concept-card:not(:hover):not(.is-hovering) .evena-crown-dots circle {
+  fill: #ffffff !important;
+  stroke: transparent !important;
+}
+
+.concept-card:hover .evena-crown-dots circle,
+.concept-card.is-hovering .evena-crown-dots circle,
+.concept-card:hover .evena-crown-full,
+.concept-card.is-hovering .evena-crown-full {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* Se estiver apagando a coroa depois de tirar o mouse, continua sem fundo cinza */
+.concept-card.is-leaving .evena-crown-full {
+  stroke: #000000 !important;
+}
+
+.concept-card.is-leaving .evena-crown-dots circle {
+  fill: #000000 !important;
+}
+
+
+/* === V48: Conceito parado = só pontos brancos; sem preenchimento preto === */
+.concept-card .evena-crown-svg,
+.concept-card .evena-crown-svg * {
+  vector-effect: non-scaling-stroke;
+}
+
+.concept-card .evena-crown-full {
+  fill: none !important;
+  opacity: 0 !important;
+  stroke: #000000 !important;
+  stroke-width: 3.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  stroke-dasharray: 260 !important;
+  stroke-dashoffset: 260 !important;
+}
+
+.concept-card .evena-crown-svg path,
+.concept-card .evena-crown-svg polygon,
+.concept-card .evena-crown-svg polyline {
+  fill: none !important;
+}
+
+/* estado parado */
+.concept-card:not(:hover):not(.is-hovering):not(.is-leaving) .evena-crown-full {
+  opacity: 0 !important;
+  fill: none !important;
+  stroke-dashoffset: 260 !important;
+}
+
+.concept-card:not(:hover):not(.is-hovering):not(.is-leaving) .evena-crown-dots circle {
+  fill: #ffffff !important;
+  stroke: transparent !important;
+  filter: none !important;
+}
+
+/* hover / animando */
+.concept-card:hover .evena-crown-full,
+.concept-card.is-hovering .evena-crown-full,
+.concept-card.is-leaving .evena-crown-full {
+  fill: none !important;
+  opacity: 1 !important;
+}
+
+.concept-card:hover .evena-crown-dots circle,
+.concept-card.is-hovering .evena-crown-dots circle,
+.concept-card.is-leaving .evena-crown-dots circle {
+  fill: #000000 !important;
+  stroke: transparent !important;
+}
+
+/* v49 — coroa do Conceito com linhas mais grossas */
+.concept-constellation .evena-crown-full {
+  stroke-width: 5.4 !important;
+}
+
+.concept-constellation .evena-crown-ghost,
+.concept-constellation .evena-crown-idle {
+  stroke-width: 5.4 !important;
+}
+
+
+/* === V50: coroa em segmentos, completando 100% === */
+.evena-crown-full,
+.evena-crown-idle {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.evena-crown-wrap {
+  width: min(78%, 460px) !important;
+  height: min(58%, 350px) !important;
+  left: 50% !important;
+  top: 54% !important;
+  transform: translate(-50%, -50%) !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  overflow: visible !important;
+}
+
+.evena-crown-svg {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+.evena-crown-line {
+  fill: none !important;
+  stroke: #000000 !important;
+  stroke-width: 3.35 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0;
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+}
+
+.evena-crown-dots circle {
+  fill: #ffffff !important;
+  stroke: transparent !important;
+  filter: none !important;
+  transition: fill .18s ease, stroke .18s ease, transform .18s ease !important;
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+}
+
+.concept-card:hover .evena-crown-dots circle,
+.concept-card.is-hovering .evena-crown-dots circle,
+.concept-card.is-leaving .evena-crown-dots circle {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+
+/* === V53: muda SOMENTE a cor do card Vibe, mantendo a coroa desta versão === */
+
+/* Vibe parado: roxo */
+.vibe-card,
+.vibe-card:not(:hover):not(.is-hovering) {
+  background: #4c007d !important;
+  color: #ffffff !important;
+}
+
+/* Vibe no hover: verde */
+.vibe-card:hover,
+.vibe-card.is-hovering {
+  background: #00ff00 !important;
+  color: #000000 !important;
+}
+
+/* Quando tira o mouse: volta direto pro roxo, sem cinza/preto */
+.vibe-card.is-leaving:not(:hover) {
+  background: #4c007d !important;
+  color: #ffffff !important;
+}
+
+/* Ícone da Vibe: branco parado */
+.vibe-card .bar {
+  fill: #ffffff !important;
+}
+
+/* Ícone da Vibe: preto no hover */
+.vibe-card:hover .bar,
+.vibe-card.is-hovering .bar,
+.vibe-card:hover .eye,
+.vibe-card.is-hovering .eye {
+  fill: #000000 !important;
+}
+
+.vibe-card:hover .smile-arc,
+.vibe-card.is-hovering .smile-arc {
+  stroke: #000000 !important;
+}
+
+
+/* === V54: Estética voltando para idle sem preto/cinza no mini card === */
+/* Durante a animação de saída, mantém só a paleta Evena:
+   branco, roxo, verde e azul da vibe. */
+
+.aesthetic-card.is-leaving .poster-sky {
+  fill: #ffffff !important;
+}
+
+.aesthetic-card.is-leaving .p1 {
+  fill: #ffffff !important;
+  stroke: #4c007d !important;
+}
+
+.aesthetic-card.is-leaving .p2 {
+  fill: #d4ff6a !important;
+  stroke: #4c007d !important;
+}
+
+.aesthetic-card.is-leaving .p3 {
+  fill: #00ff00 !important;
+  stroke: #4c007d !important;
+}
+
+.aesthetic-card.is-leaving .h-back {
+  fill: #7290d5 !important;
+  transform: translateY(0) !important;
+}
+
+.aesthetic-card.is-leaving .h-front {
+  fill: #4c007d !important;
+  transform: translateY(0) !important;
+}
+
+.aesthetic-card.is-leaving .sun,
+.aesthetic-card.is-leaving .moon {
+  fill: #4c007d !important;
+}
+
+/* Garante que nenhuma regra antiga jogue preto/cinza no poster principal */
+.aesthetic-card.is-leaving .poster,
+.aesthetic-card.is-leaving .poster-main .poster {
+  stroke: #4c007d !important;
+}
+
+.aesthetic-card.is-leaving .poster-main {
+  transform: translate(0, 0) rotate(0deg) !important;
+}
+
+
+/* === V55: sol visível ao voltar para idle === */
+/* O sol sumia porque o TS deixava ele branco durante is-leaving.
+   Aqui reforço o estado visual correto no CSS também. */
+
+.aesthetic-card.is-leaving .sun {
+  fill: #4c007d !important;
+  opacity: 1 !important;
+}
+
+.aesthetic-card.is-leaving .moon {
+  fill: #4c007d !important;
+  opacity: 1 !important;
+}
+
+.aesthetic-card:not(:hover):not(.is-hovering) .sun {
+  fill: #4c007d !important;
+  opacity: 1 !important;
+}
+
+
+/* === V56: bordas dos mini cards da Estética pretas === */
+.aesthetic-card .poster,
+.aesthetic-card .p1,
+.aesthetic-card .p2,
+.aesthetic-card .p3,
+.aesthetic-card:hover .poster,
+.aesthetic-card:hover .p1,
+.aesthetic-card:hover .p2,
+.aesthetic-card:hover .p3,
+.aesthetic-card.is-hovering .poster,
+.aesthetic-card.is-hovering .p1,
+.aesthetic-card.is-hovering .p2,
+.aesthetic-card.is-hovering .p3,
+.aesthetic-card.is-leaving .poster,
+.aesthetic-card.is-leaving .p1,
+.aesthetic-card.is-leaving .p2,
+.aesthetic-card.is-leaving .p3,
+.aesthetic-card.is-leaving .poster-main .poster {
+  stroke: #000000 !important;
+}
+
+
+
+
+/* === V60: coroa copiada sem quebrar o HTML === */
+.evena-crown-full,
+.evena-crown-idle {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.evena-crown-wrap {
+  width: min(78%, 460px) !important;
+  height: min(58%, 350px) !important;
+  left: 50% !important;
+  top: 54% !important;
+  transform: translate(-50%, -50%) !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  overflow: visible !important;
+}
+
+.evena-crown-svg {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+.evena-crown-line {
+  fill: none !important;
+  stroke: #000000 !important;
+  stroke-width: 3.35 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0;
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+}
+
+.evena-crown-dots circle {
+  fill: #ffffff !important;
+  stroke: transparent !important;
+  filter: none !important;
+  transition: fill .18s ease, stroke .18s ease, transform .18s ease !important;
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+}
+
+.concept-card:hover .evena-crown-dots circle,
+.concept-card.is-hovering .evena-crown-dots circle,
+.concept-card.is-leaving .evena-crown-dots circle {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+
+/* === V61: troca o ardósia do desenho da Estética idle para verde === */
+/* No card Estética parado, o morro/desenho que estava em ardósia agora fica #00ff00. */
+.aesthetic-card:not(:hover):not(.is-hovering):not(.is-leaving) .h-back {
+  fill: #00ff00 !important;
+}
+
+/* Garante que, ao voltar para idle, também fique verde */
+.aesthetic-card:not(.is-hovering):not(:hover) .h-back {
+  fill: #00ff00 !important;
+}
+
+
+/* === V62: troca também o roxo do mini card da Estética para verde === */
+/* Estado idle: tudo que era roxo no desenho interno do mini card fica #00ff00. */
+.aesthetic-card:not(:hover):not(.is-hovering):not(.is-leaving) .h-front,
+.aesthetic-card:not(:hover):not(.is-hovering):not(.is-leaving) .sun,
+.aesthetic-card:not(:hover):not(.is-hovering):not(.is-leaving) .moon {
+  fill: #00ff00 !important;
+}
+
+/* Ao terminar de voltar para idle, garante que não volte para roxo */
+.aesthetic-card:not(.is-hovering):not(:hover) .h-front,
+.aesthetic-card:not(.is-hovering):not(:hover) .sun,
+.aesthetic-card:not(.is-hovering):not(:hover) .moon {
+  fill: #00ff00 !important;
+}
+
+
+/* === V63: correção do bug de hover rápido + sol verde e lua roxa === */
+
+/* Quando o JS da Estética está ativo, ele controla o movimento dos astros.
+   Isso evita conflito com animações CSS ao tirar/colocar o mouse rápido. */
+.aesthetic-card.aesthetic-js-ready .sun,
+.aesthetic-card.aesthetic-js-ready .moon,
+.aesthetic-card.aesthetic-js-ready:hover .sun,
+.aesthetic-card.aesthetic-js-ready:hover .moon,
+.aesthetic-card.aesthetic-js-ready.is-hovering .sun,
+.aesthetic-card.aesthetic-js-ready.is-hovering .moon,
+.aesthetic-card.aesthetic-js-ready.is-leaving .sun,
+.aesthetic-card.aesthetic-js-ready.is-leaving .moon {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+.aesthetic-card .sun,
+.aesthetic-card.aesthetic-js-ready .sun,
+.aesthetic-card:hover .sun,
+.aesthetic-card.is-hovering .sun,
+.aesthetic-card.is-leaving .sun {
+  fill: #00ff00 !important;
+}
+
+.aesthetic-card .moon,
+.aesthetic-card.aesthetic-js-ready .moon,
+.aesthetic-card:hover .moon,
+.aesthetic-card.is-hovering .moon,
+.aesthetic-card.is-leaving .moon {
+  fill: #4c007d !important;
+}
+
+/* Reforço contra flicker de estado antigo quando entra/sai rápido dos cards. */
+.card.is-hovering {
+  transition:
+    background-color .35s cubic-bezier(.4,0,.2,1),
+    color .24s ease !important;
+}
+
+.card.is-leaving {
+  transition:
+    background-color .35s cubic-bezier(.4,0,.2,1),
+    color .24s ease !important;
+}
+
+
+/* === V64: segundo mini card da Estética verde no idle === */
+.aesthetic-card:not(:hover):not(.is-hovering):not(.is-leaving) .p2 {
+  fill: #00ff00 !important;
+}
+
+/* Garante que quando terminar de voltar pro idle ele fique verde */
+.aesthetic-card:not(:hover):not(.is-hovering) .p2 {
+  fill: #00ff00 !important;
+}
+
+
+/* === V66: remove as linhas verdes do fundo do site === */
+.moving-lines,
+.line {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+
+/* === V67: remove a primeira tela "Na Evena..." === */
+.intro-one {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+/* === V68: primeira tela atual com fonte e coroa verdes === */
+.intro-two h2 {
+  color: #00ff00 !important;
+}
+
+.intro-two .intro-logo {
+  filter: none !important;
+}
+
+
+/* === V69: seta animada na parte de baixo da primeira tela === */
+.intro-two {
+  position: absolute !important;
+}
+
+.scroll-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(18px, 3vh, 34px);
+  width: 38px;
+  height: 38px;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: .95;
+  animation: evenaArrowFloat 1.35s ease-in-out infinite;
+}
+
+.scroll-arrow span {
+  width: 18px;
+  height: 18px;
+  border-right: 4px solid #00ff00;
+  border-bottom: 4px solid #00ff00;
+  transform: rotate(45deg);
+  display: block;
+}
+
+@keyframes evenaArrowFloat {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: .65;
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(10px);
+    opacity: 1;
+  }
+}
+
+
+/* === V70: seta clicável para ir para a página principal === */
+.scroll-arrow {
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  z-index: 20 !important;
+}
+
+.scroll-arrow:focus {
+  outline: none !important;
+}
+
+.scroll-arrow:focus-visible {
+  outline: 2px solid #00ff00 !important;
+  outline-offset: 8px !important;
+}
+
+
+/* === V71: seta realmente clicável === */
+/* O grid invisível estava podendo ficar por cima e pegar o clique. */
+.intro-two {
+  z-index: 30 !important;
+  pointer-events: auto !important;
+}
+
+.cards-grid {
+  z-index: 10 !important;
+}
+
+.scroll-arrow {
+  position: absolute !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  border: 0 !important;
+  background: transparent !important;
+  padding: 12px !important;
+  width: 62px !important;
+  height: 62px !important;
+  left: 50% !important;
+  bottom: clamp(18px, 3vh, 34px) !important;
+  transform: translateX(-50%) !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  touch-action: manipulation !important;
+}
+
+.scroll-arrow span {
+  pointer-events: none !important;
+}
+
+.scroll-arrow:hover span {
+  filter: drop-shadow(0 0 8px rgba(0, 255, 0, .8));
+}
+
+/* Quando chega na página principal, a primeira tela some e não bloqueia cliques. */
+.evena-home[style*="--progress: 1"] .intro-two {
+  pointer-events: none !important;
+}
+
+
+/* === V72: lua preta sem quebrar a animação da coroa === */
+.aesthetic-card .moon,
+.aesthetic-card.aesthetic-js-ready .moon,
+.aesthetic-card:hover .moon,
+.aesthetic-card.is-hovering .moon,
+.aesthetic-card.is-leaving .moon {
+  fill: #000000 !important;
+}
+
+
+/* === V73: último mini card da Estética verde no idle === */
+.aesthetic-card:not(:hover):not(.is-hovering):not(.is-leaving) .p3 {
+  fill: #00ff00 !important;
+}
+
+/* Garante que, ao terminar de voltar pro idle, continue verde */
+.aesthetic-card:not(:hover):not(.is-hovering) .p3 {
+  fill: #00ff00 !important;
+}
+
+
+/* === V74: sobe um pouco a coroa/logo do meio === */
+.logo-node img {
+  transform: translateY(-15%) !important;
+}
+
+
+/* === V78: Conceito expande, coroa nasce e vira coroa Evena clicável === */
+.concept-expand {
+  position: fixed;
+  inset: 0;
+  z-index: 15000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  background: transparent;
+  transition: opacity .26s ease, visibility .26s ease;
+}
+
+.concept-expand.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.concept-expand-card {
+  position: absolute;
+  inset: 0;
+  padding: clamp(28px, 4vw, 68px);
+  background:
+    radial-gradient(circle at 72% 28%, rgba(0, 255, 0, .18), transparent 26%),
+    linear-gradient(135deg, #4c007d 0%, #5e009c 52%, #21002e 100%);
+  color: #ffffff;
+  overflow: hidden;
+  transform-origin: 19% 52%;
+}
+
+.concept-expand.is-open .concept-expand-card {
+  animation: evenaConceptCardExpand .9s cubic-bezier(.18,.9,.2,1) both;
+}
+
+@keyframes evenaConceptCardExpand {
+  0% {
+    clip-path: inset(18px 62vw 18px 18px);
+    transform: scale(.94);
+  }
+
+  62% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1.015);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+}
+
+.concept-expand-title {
+  position: relative;
+  z-index: 3;
+  display: block;
+  font-size: clamp(54px, 8vw, 150px);
+  line-height: .78;
+  letter-spacing: -.08em;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.concept-expand-subtitle {
+  position: relative;
+  z-index: 3;
+  display: block;
+  margin-top: 16px;
+  font-size: clamp(16px, 1.4vw, 24px);
+  line-height: .95;
+  font-weight: 600;
+  color: rgba(255,255,255,.78);
+}
+
+.concept-expand-close {
+  position: fixed;
+  top: clamp(16px, 2vw, 34px);
+  right: clamp(16px, 2vw, 34px);
+  z-index: 15002;
+  width: 52px;
+  height: 52px;
+  border: 2px solid #00ff00;
+  background: #4c007d;
+  color: #00ff00;
+  display: grid;
+  place-items: center;
+  font: inherit;
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .25s ease, background .25s ease, color .25s ease;
+}
+
+.concept-expand-close:hover {
+  background: #00ff00;
+  color: #4c007d;
+  transform: rotate(8deg) scale(1.04);
+}
+
+.concept-crown-transition {
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  width: min(760px, 72vw);
+  height: min(440px, 50vh);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.concept-crown-constellation,
+.concept-evena-crown-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.concept-crown-constellation {
+  overflow: visible;
+  transform: scale(.82) translateY(22px);
+  opacity: 0;
+}
+
+.concept-expand.is-open .concept-crown-constellation {
+  animation: evenaConstellationEnter 1.35s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.concept-expand.is-morphed .concept-crown-constellation {
+  animation: evenaConstellationToLogo .72s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes evenaConstellationEnter {
+  0% {
+    opacity: 0;
+    transform: scale(.48) translateY(70px) rotate(-4deg);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.04) translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes evenaConstellationToLogo {
+  to {
+    opacity: .08;
+    transform: scale(.9) translateY(6px) rotate(0deg);
+    filter: blur(1px);
+  }
+}
+
+.concept-zoom-lines path {
+  fill: none;
+  stroke: #00ff00;
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  filter: drop-shadow(0 0 10px rgba(0,255,0,.5));
+}
+
+.concept-expand.is-open .concept-zoom-lines path {
+  animation: evenaConceptLineDraw .62s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay: calc(.28s + var(--i) * .105s);
+}
+
+@keyframes evenaConceptLineDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.concept-zoom-dots circle {
+  fill: #00ff00;
+  stroke: #00ff00;
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 8px rgba(0,255,0,.65));
+}
+
+.concept-expand.is-open .concept-zoom-dots circle {
+  animation: evenaConceptDotPop .95s ease both;
+}
+
+@keyframes evenaConceptDotPop {
+  0%, 100% { transform: scale(1); }
+  52% { transform: scale(1.42); }
+}
+
+.concept-evena-crown-panel {
+  opacity: 0;
+  transform: scale(.88) translateY(18px);
+  pointer-events: none;
+}
+
+.concept-expand.is-morphed .concept-evena-crown-panel {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+  transition: opacity .48s ease, transform .65s cubic-bezier(.18,.9,.2,1);
+}
+
+.concept-evena-crown-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.18));
+}
+
+.concept-crown-piece {
+  stroke: rgba(255,255,255,.72);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: filter .25s ease, transform .25s ease, opacity .25s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: .96;
+}
+
+.piece-left { fill: #00ff00; }
+.piece-middle { fill: #7290d5; }
+.piece-right { fill: #4c007d; }
+
+.concept-crown-outline,
+.concept-crown-bottom,
+.concept-crown-inner {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.concept-crown-outline {
+  stroke: #ffffff;
+  stroke-width: 10;
+  opacity: .95;
+}
+
+.concept-crown-bottom {
+  stroke: #00ff00;
+  stroke-width: 14;
+}
+
+.concept-crown-inner {
+  stroke: rgba(255,255,255,.82);
+  stroke-width: 7;
+}
+
+.concept-expand.is-morphed .concept-crown-outline,
+.concept-expand.is-morphed .concept-crown-bottom,
+.concept-expand.is-morphed .concept-crown-inner {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: evenaLogoCrownDraw .9s cubic-bezier(.35,0,.15,1) forwards;
+}
+
+.concept-expand.is-morphed .concept-crown-bottom { animation-delay: .1s; }
+.concept-expand.is-morphed .concept-crown-inner { animation-delay: .18s; }
+
+@keyframes evenaLogoCrownDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.crown-part {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  z-index: 5;
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(15px, 1.5vw, 26px);
+  line-height: .9;
+  letter-spacing: -.045em;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  transition: transform .25s ease, color .25s ease, filter .25s ease;
+}
+
+.crown-part span {
+  display: inline-block;
+  padding: 10px 12px;
+  border: 2px solid rgba(255,255,255,.62);
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(6px);
+  transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.crown-part:hover span {
+  background: #ffffff;
+  color: #4c007d;
+  border-color: #ffffff;
+  transform: translateY(-4px) rotate(-1deg);
+}
+
+.crown-part-left {
+  left: 9%;
+  top: 39%;
+  width: 30%;
+  height: 40%;
+}
+
+.crown-part-middle {
+  left: 36%;
+  top: 13%;
+  width: 28%;
+  height: 50%;
+}
+
+.crown-part-right {
+  right: 8%;
+  top: 38%;
+  width: 30%;
+  height: 40%;
+}
+
+.concept-part-hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(24px, 4vh, 52px);
+  transform: translateX(-50%);
+  z-index: 5;
+  color: #00ff00;
+  font-size: clamp(16px, 1.45vw, 24px);
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity .38s ease .2s, transform .38s ease .2s;
+}
+
+.concept-expand.is-morphed .concept-part-hint {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.concept-part-hint span::after {
+  content: '';
+}
+
+.concept-part-hint[data-selected="proposito"] span::after {
+  content: ': Propósito';
+  color: #ffffff;
+}
+
+.concept-part-hint[data-selected="arquetipos"] span::after {
+  content: ': Arquétipos';
+  color: #ffffff;
+}
+
+.concept-part-hint[data-selected="posicionamento"] span::after {
+  content: ': Posicionamento';
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .concept-crown-transition {
+    width: 95vw;
+    height: 56vh;
+    top: 56%;
+  }
+
+  .concept-expand-title {
+    font-size: clamp(46px, 15vw, 92px);
+  }
+
+  .crown-part {
+    font-size: 14px;
+  }
+
+  .crown-part span {
+    padding: 8px 9px;
+  }
+}
+
+
+/* === V79: conceito maior, coroa Evena real, labels dentro da coroa === */
+.concept-expand-card {
+  padding: clamp(24px, 3.2vw, 52px);
+}
+
+.concept-crown-transition {
+  top: 57%;
+  width: min(1080px, 88vw);
+  height: min(620px, 58vh);
+}
+
+.concept-crown-constellation {
+  z-index: 2;
+  transform: scale(.72) translateY(48px);
+  opacity: 0;
+}
+
+.concept-expand.is-open .concept-crown-constellation {
+  animation: evenaConstellationEnterV79 1.35s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.concept-expand.is-morphed .concept-crown-constellation {
+  animation: evenaConstellationMorphOutV79 .85s cubic-bezier(.22,.8,.2,1) forwards;
+}
+
+@keyframes evenaConstellationEnterV79 {
+  0% { opacity: 0; transform: scale(.34) translateY(120px) rotate(-6deg); }
+  20% { opacity: 1; }
+  100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+}
+
+@keyframes evenaConstellationMorphOutV79 {
+  0% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); filter: blur(0); }
+  100% { opacity: 0; transform: scale(1.28) translateY(18px) rotate(1deg); filter: blur(4px); }
+}
+
+.concept-zoom-lines path {
+  stroke: #ffffff;
+  stroke-width: 3.8;
+  filter: drop-shadow(0 0 14px rgba(255,255,255,.28));
+}
+
+.concept-zoom-dots circle {
+  fill: #ffffff;
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,.32));
+}
+
+.concept-evena-crown-panel {
+  z-index: 3;
+  opacity: 0;
+  transform: scale(.72) translateY(38px);
+  pointer-events: none;
+}
+
+.concept-expand.is-morphed .concept-evena-crown-panel {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+  transition: opacity .34s ease, transform .78s cubic-bezier(.18,.9,.2,1);
+}
+
+.concept-evena-crown-stage {
+  position: absolute;
+  inset: 0;
+}
+
+.concept-evena-crown-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(980px, 88%);
+  max-width: none;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,.16));
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.crown-part {
+  z-index: 5;
+  color: #ffffff;
+  font-size: clamp(13px, 1.2vw, 22px);
+  text-shadow: 0 2px 10px rgba(0,0,0,.22);
+}
+
+.crown-part span {
+  padding: 10px 12px;
+  border: 1.5px solid rgba(255,255,255,.48);
+  background: rgba(255,255,255,.14);
+  backdrop-filter: blur(8px);
+  border-radius: 0;
+}
+
+.crown-part:hover span {
+  background: #ffffff;
+  color: #4c007d;
+  border-color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.crown-part-left {
+  left: 29.2%;
+  top: 59%;
+  width: 22%;
+  height: 16%;
+  transform: translate(-50%, -50%);
+}
+
+.crown-part-middle {
+  left: 49.8%;
+  top: 30.5%;
+  width: 20%;
+  height: 16%;
+  transform: translate(-50%, -50%);
+}
+
+.crown-part-right {
+  left: 71.8%;
+  top: 58.5%;
+  width: 23%;
+  height: 16%;
+  transform: translate(-50%, -50%);
+}
+
+.concept-part-hint {
+  bottom: clamp(18px, 3vh, 34px);
+}
+
+@media (max-width: 900px) {
+  .concept-crown-transition {
+    width: 96vw;
+    height: 58vh;
+    top: 58%;
+  }
+
+  .concept-evena-crown-image {
+    width: 94%;
+  }
+
+  .crown-part {
+    font-size: 12px;
+  }
+
+  .crown-part span {
+    padding: 8px 10px;
+  }
+
+  .crown-part-left { left: 27.5%; top: 61%; width: 26%; }
+  .crown-part-middle { left: 49.5%; top: 32%; width: 22%; }
+  .crown-part-right { left: 73%; top: 61%; width: 26%; }
+}
+
+
+/* === V80: labels nas pontas da coroa e sem hint extra === */
+.concept-evena-crown-image {
+  width: min(1040px, 92%) !important;
+}
+
+.crown-part {
+  z-index: 6;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0;
+}
+
+.crown-part span {
+  padding: 10px 14px;
+  border: 1.5px solid rgba(255,255,255,.52);
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  transition: transform .22s ease, background .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.crown-part:hover span,
+.crown-part:focus-visible span {
+  background: #ffffff;
+  color: #4c007d;
+  border-color: #ffffff;
+  box-shadow: 0 14px 28px rgba(0,0,0,.18);
+}
+
+.crown-part-left {
+  left: 15.5% !important;
+  top: 19% !important;
+  width: 20% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.crown-part-middle {
+  left: 50% !important;
+  top: 8% !important;
+  width: 18% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.crown-part-right {
+  left: 84.5% !important;
+  top: 19% !important;
+  width: 22% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+@media (max-width: 900px) {
+  .concept-evena-crown-image {
+    width: 96% !important;
+  }
+
+  .crown-part span {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .crown-part-left { left: 16% !important; top: 20% !important; width: 22% !important; }
+  .crown-part-middle { left: 50% !important; top: 9% !important; width: 20% !important; }
+  .crown-part-right { left: 84% !important; top: 20% !important; width: 24% !important; }
+}
+
+
+/* === V83: seta ao lado direito da coroa do conceito === */
+.concept-crown-side-arrow {
+  position: absolute;
+  right: 3.5%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.concept-crown-side-arrow .chevron {
+  position: relative;
+  display: block;
+  width: 64px;
+  height: 32px;
+  opacity: .96;
+}
+
+.concept-crown-side-arrow .chevron::before,
+.concept-crown-side-arrow .chevron::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 36px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(255,255,255,.22);
+}
+
+.concept-crown-side-arrow .chevron::before {
+  left: 0;
+  transform-origin: right center;
+  transform: translateY(-50%) rotate(32deg);
+}
+
+.concept-crown-side-arrow .chevron::after {
+  right: 0;
+  transform-origin: left center;
+  transform: translateY(-50%) rotate(-32deg);
+}
+
+.concept-expand.is-morphed .concept-crown-side-arrow {
+  animation: crownArrowFloat 1.8s ease-in-out infinite;
+}
+
+@keyframes crownArrowFloat {
+  0%, 100% { transform: translateY(-50%); }
+  50% { transform: translateY(calc(-50% + 8px)); }
+}
+
+@media (max-width: 900px) {
+  .concept-crown-side-arrow {
+    right: 1.8%;
+    gap: 10px;
+  }
+  .concept-crown-side-arrow .chevron {
+    width: 48px;
+    height: 24px;
+  }
+  .concept-crown-side-arrow .chevron::before,
+  .concept-crown-side-arrow .chevron::after {
+    width: 27px;
+    height: 2.5px;
+  }
+}
+
+
+/* === V84: seta aparece antes da coroa Evena e some no morph === */
+.concept-crown-side-arrow {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.concept-expand.is-open:not(.is-morphed) .concept-crown-side-arrow {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: crownArrowFloat 1.8s ease-in-out infinite !important;
+}
+
+.concept-expand.is-morphed .concept-crown-side-arrow {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  animation: none !important;
+  transition: opacity .22s ease, visibility .22s ease !important;
+}

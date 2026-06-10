@@ -1,0 +1,24 @@
+<main class="concept-page arquetipo-page">
+  <button class="page-close" type="button" aria-label="Voltar para a tela inicial" (click)="goHome()">×</button>
+  <h1 class="page-title">Arquétipos</h1>
+  <p class="page-subtitle">A Evena combina descoberta e conexão: ela convida o público a explorar experiências e viver momentos com outras pessoas.</p>
+
+  <section class="page-content">
+    <div class="content-grid">
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'explorador'" (click)="toggleCard('explorador')">
+        <small>Clique para abrir</small>
+        <h3>Explorador</h3>
+        <p>A Evena incentiva a descoberta de novos lugares, pessoas e experiências. A marca tem movimento, curiosidade e vontade de sair da rotina.</p>
+      </button>
+
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'conector'" (click)="toggleCard('conector')">
+        <small>Clique para abrir</small>
+        <h3>Conector</h3>
+        <p>A marca aproxima pessoas através de interesses, eventos e momentos compartilhados, transformando um rolê em ponto de encontro.</p>
+      </button>
+    </div>
+  </section>
+
+  <button class="nav-arrow left" type="button" (click)="goLeft()"><span class="mark">‹</span><span>Propósito</span></button>
+  <button class="nav-arrow right" type="button" (click)="goRight()"><span>Posicionamento</span><span class="mark">›</span></button>
+</main>

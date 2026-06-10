@@ -1,0 +1,893 @@
+@font-face {
+  font-family: "Fredoka Evena";
+  src:
+    url("/assets/fonts/Fredoka-VariableFont_wdth,wght.ttf") format("truetype"),
+    url("/assets/fonts/Fredoka.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:host { display: block; min-height: 100vh; }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+.personality-page {
+  --purple: #4c007d;
+  --green: #00ff00;
+  --blue: #7290d5;
+  --black: #101010;
+  --paper: #f4efe7;
+  --muted: #70685f;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--black);
+  font-family: "Fredoka Evena", "Comfortaa", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.page-close {
+  position: fixed;
+  top: clamp(18px, 2.4vw, 34px);
+  right: clamp(18px, 2.4vw, 34px);
+  z-index: 40;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--black);
+  background: var(--paper);
+  color: var(--black);
+  font: inherit;
+  font-size: 36px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+.page-close:hover {
+  background: var(--black);
+  color: var(--paper);
+  transform: rotate(8deg) scale(1.04);
+}
+
+.personality-hero {
+  min-height: 100vh;
+  width: min(1260px, 90vw);
+  margin: 0 auto;
+  padding: clamp(90px, 10vh, 130px) 0 clamp(60px, 8vh, 100px);
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: clamp(28px, 5vw, 84px);
+  align-items: center;
+}
+
+.breadcrumb {
+  width: fit-content;
+  border: 2px solid var(--black);
+  padding: 10px 14px;
+  margin-bottom: 26px;
+  font-weight: 700;
+}
+
+.breadcrumb strong { color: var(--purple); }
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(60px, 9vw, 158px);
+  line-height: .72;
+  letter-spacing: -.095em;
+}
+
+.hero-copy p {
+  margin: clamp(22px, 3vw, 38px) 0 0;
+  color: var(--muted);
+  font-size: clamp(23px, 2.7vw, 52px);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+
+.moodboard {
+  position: relative;
+  min-height: 660px;
+}
+
+.photo {
+  position: absolute;
+  border: 3px solid var(--black);
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(.12) contrast(1.05);
+  transition: transform .28s ease, filter .28s ease;
+}
+
+.photo:hover {
+  transform: translateY(-8px) rotate(0deg) scale(1.02);
+  filter: grayscale(0) contrast(1.08);
+}
+
+.photo.p1 {
+  width: 54%;
+  height: 50%;
+  left: 0;
+  top: 6%;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.36)),
+    url("/assets/images/vibe-people-event.jpg");
+  transform: rotate(-3deg);
+  box-shadow: 18px 18px 0 var(--green);
+}
+
+.photo.p2 {
+  width: 47%;
+  height: 42%;
+  right: 0;
+  top: 18%;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.34)),
+    url("/assets/images/vibe-wristbands.jpg");
+  transform: rotate(4deg);
+  box-shadow: 16px 16px 0 var(--purple);
+}
+
+.photo.p3 {
+  width: 58%;
+  height: 40%;
+  left: 20%;
+  bottom: 4%;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.46)),
+    url("/assets/images/vibe-ticket.jpg");
+  transform: rotate(-1deg);
+  box-shadow: 18px 18px 0 var(--blue);
+}
+
+.note {
+  position: absolute;
+  right: 4%;
+  bottom: 26%;
+  z-index: 5;
+  background: var(--green);
+  color: var(--black);
+  border: 3px solid var(--black);
+  padding: 18px 20px;
+  font-weight: 700;
+  font-size: clamp(22px, 2.4vw, 44px);
+  line-height: .88;
+  width: min(260px, 54%);
+  transform: rotate(-5deg);
+}
+
+.trait-lab,
+.yes-no,
+.behavior {
+  width: min(1240px, 90vw);
+  margin: 0 auto clamp(42px, 6vw, 86px);
+}
+
+.trait-lab {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: clamp(28px, 5vw, 80px);
+  align-items: center;
+  border: 3px solid var(--black);
+  background: var(--black);
+  color: white;
+  padding: clamp(26px, 4vw, 60px);
+}
+
+.radar-wrap {
+  display: grid;
+  place-items: center;
+}
+
+.radar {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border: 2px solid rgba(0,255,0,.55);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(0,255,0,.22) 0 2px, transparent 3px),
+    repeating-radial-gradient(circle, transparent 0 40px, rgba(0,255,0,.20) 41px 42px);
+  animation: radarRotate 10s linear infinite;
+}
+
+.radar::before,
+.radar::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(0,255,0,.34);
+  transform: translateX(-50%);
+}
+
+.radar::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+@keyframes radarRotate {
+  to { transform: rotate(360deg); }
+}
+
+.rp {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 16px rgba(0,255,0,.7);
+}
+
+.rp.p1 { left: 50%; top: 7%; }
+.rp.p2 { right: 14%; top: 28%; }
+.rp.p3 { right: 18%; bottom: 18%; }
+.rp.p4 { left: 50%; bottom: 8%; }
+.rp.p5 { left: 16%; bottom: 24%; }
+.rp.p6 { left: 12%; top: 28%; }
+
+.trait-content > span {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.trait-content h2,
+.behavior h2,
+.yes-no h2 {
+  margin: 12px 0 18px;
+  font-size: clamp(42px, 6vw, 110px);
+  line-height: .76;
+  letter-spacing: -.085em;
+}
+
+.trait-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.trait-chips button {
+  border: 2px solid rgba(0,255,0,.6);
+  background: transparent;
+  color: var(--green);
+  padding: 12px 16px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+.trait-chips button:hover,
+.trait-chips button.selected {
+  background: var(--green);
+  color: var(--black);
+  transform: translateY(-4px);
+}
+
+.trait-description {
+  margin-top: 22px;
+  border: 2px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.08);
+  padding: 22px;
+}
+
+.trait-description small {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.trait-description p {
+  margin: 10px 0 0;
+  font-size: clamp(26px, 3vw, 54px);
+  line-height: .86;
+  letter-spacing: -.055em;
+}
+
+.yes-no {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 3px solid var(--black);
+}
+
+.yes-no article {
+  min-height: 430px;
+  padding: clamp(26px, 4vw, 60px);
+}
+
+.yes-no .yes {
+  background: var(--green);
+}
+
+.yes-no .no {
+  background: var(--paper);
+  border-left: 3px solid var(--black);
+}
+
+.yes-no span {
+  font-weight: 700;
+}
+
+.yes-no p {
+  margin: 0;
+  font-size: clamp(28px, 3.5vw, 70px);
+  line-height: .88;
+  letter-spacing: -.06em;
+}
+
+.no p {
+  text-decoration: line-through;
+  opacity: .75;
+}
+
+.behavior {
+  padding-bottom: 110px;
+}
+
+.behavior-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.behavior-grid article {
+  min-height: 260px;
+  border: 3px solid var(--black);
+  background: white;
+  padding: 22px;
+  transition: background .22s ease, color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+
+.behavior-grid article:hover {
+  background: var(--black);
+  color: white;
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 12px 12px 0 var(--green);
+}
+
+.behavior-grid strong {
+  display: block;
+  font-size: clamp(23px, 2vw, 38px);
+  line-height: .88;
+  letter-spacing: -.05em;
+  margin-bottom: 14px;
+}
+
+.behavior-grid p {
+  margin: 0;
+  color: inherit;
+  opacity: .78;
+  line-height: 1.05;
+}
+
+.poster-strip {
+  display: flex;
+  overflow: hidden;
+  border-top: 3px solid var(--black);
+  border-bottom: 3px solid var(--black);
+  background: var(--purple);
+  color: white;
+  white-space: nowrap;
+}
+
+.poster-strip span {
+  display: inline-flex;
+  padding: 20px 32px;
+  font-size: clamp(32px, 5vw, 88px);
+  line-height: .85;
+  letter-spacing: -.065em;
+  font-weight: 700;
+  animation: stripMove 16s linear infinite;
+}
+
+@keyframes stripMove {
+  to { transform: translateX(-100%); }
+}
+
+.nav-arrow {
+  position: fixed;
+  bottom: clamp(22px, 3vw, 38px);
+  z-index: 30;
+  min-width: 150px;
+  border: 2px solid var(--black);
+  background: var(--paper);
+  color: var(--black);
+  padding: 14px 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+.nav-arrow:hover {
+  background: var(--black);
+  color: var(--paper);
+  transform: translateY(-4px);
+}
+
+.nav-arrow.left { left: clamp(18px, 2.6vw, 38px); }
+.nav-arrow.right { right: clamp(18px, 2.6vw, 38px); justify-content: flex-end; }
+.nav-arrow .mark { font-size: 28px; line-height: 0; }
+
+@media (max-width: 900px) {
+  .personality-hero,
+  .trait-lab,
+  .yes-no,
+  .behavior-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .moodboard { min-height: 520px; }
+  .yes-no .no { border-left: 0; border-top: 3px solid var(--black); }
+  .radar { width: 220px; height: 220px; }
+
+  .nav-arrow { min-width: auto; }
+  .nav-arrow span:not(.mark) { display: none; }
+}
+
+/* V95 Personalidade */
+.photo.p3{box-shadow:18px 18px 0 var(--purple)!important}
+.trait-content h2,.behavior h2,.yes-no h2{line-height:.88!important;padding-bottom:.16em!important}
+.trait-chips{margin-top:10px!important}
+.trait-chips button{margin-bottom:4px}
+.yes-no h2{white-space:nowrap!important;font-size:clamp(38px,5vw,96px)!important}
+.behavior h2{margin-bottom:34px!important;line-height:.9!important}
+.behavior-grid{grid-template-columns:repeat(3,1fr)!important}
+.behavior-grid article{padding:28px 22px 32px!important;min-height:275px!important}
+.behavior-grid strong{line-height:.98!important;padding-bottom:.12em!important}
+.poster-strip{margin-bottom:94px!important;overflow:hidden!important}
+.poster-strip .strip-track{display:flex;width:max-content;animation:stripTrackMove 20s linear infinite}
+.poster-strip span{flex:0 0 auto!important;padding:20px 48px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(28px,4vw,72px)!important;letter-spacing:.055em!important;animation:none!important;white-space:nowrap!important}
+@keyframes stripTrackMove{to{transform:translateX(-50%)}}
+.trait-lab{grid-template-columns:280px 1fr!important}
+.radar-wrap{transform:translateX(-18px) translateY(18px)}
+.radar{width:220px!important;height:220px!important}
+.nav-arrow{position:static!important;margin-bottom:26px!important}
+.personality-page>.nav-arrow.left,.personality-page>.nav-arrow.right{display:inline-flex!important;margin-top:18px!important}
+.personality-page>.nav-arrow.left{margin-left:clamp(18px,2.6vw,38px)!important}
+.personality-page>.nav-arrow.right{float:right;margin-right:clamp(18px,2.6vw,38px)!important}
+@media(max-width:900px){
+  .behavior-grid{grid-template-columns:1fr!important}
+  .trait-lab{grid-template-columns:1fr!important}
+  .radar-wrap{transform:none!important}
+  .yes-no h2{white-space:normal!important}
+}
+
+
+/* === V96: radar não passa nos chips + botões flutuantes === */
+.trait-lab {
+  grid-template-columns: 210px 1fr !important;
+  column-gap: clamp(42px, 6vw, 92px) !important;
+  overflow: hidden !important;
+}
+
+.radar-wrap {
+  transform: translateX(-34px) translateY(8px) !important;
+  z-index: 1 !important;
+}
+
+.radar {
+  width: 178px !important;
+  height: 178px !important;
+}
+
+.trait-content {
+  position: relative;
+  z-index: 5 !important;
+}
+
+.trait-chips button {
+  position: relative;
+  z-index: 6 !important;
+}
+
+/* botões flutuam, mas ficam acima do letreiro */
+.personality-page .nav-arrow {
+  position: fixed !important;
+  bottom: 118px !important;
+  z-index: 45 !important;
+  margin: 0 !important;
+}
+
+.personality-page .nav-arrow.left {
+  left: clamp(18px, 2.6vw, 38px) !important;
+}
+
+.personality-page .nav-arrow.right {
+  right: clamp(18px, 2.6vw, 38px) !important;
+  float: none !important;
+}
+
+@media (max-width: 900px) {
+  .trait-lab {
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+  }
+
+  .radar-wrap {
+    transform: none !important;
+  }
+
+  .radar {
+    width: 210px !important;
+    height: 210px !important;
+  }
+}
+
+
+/* === V97: setas de Personalidade sticky, param antes do letreiro === */
+.vibe-page-nav {
+  position: sticky;
+  bottom: 24px;
+  z-index: 45;
+  width: min(1240px, 90vw);
+  margin: 0 auto 26px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.vibe-page-nav .nav-arrow {
+  position: static !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto;
+}
+
+.personality-page .nav-arrow {
+  bottom: auto !important;
+}
+
+.poster-strip {
+  position: relative;
+  z-index: 50;
+}
+
+/* reforço: radar da página interna não passa nos chips */
+.trait-lab {
+  grid-template-columns: 190px 1fr !important;
+}
+
+.radar-wrap {
+  transform: translateX(-48px) translateY(2px) !important;
+}
+
+.radar {
+  width: 160px !important;
+  height: 160px !important;
+}
+
+@media (max-width: 900px) {
+  .vibe-page-nav {
+    width: min(90vw, 720px);
+  }
+
+  .trait-lab {
+    grid-template-columns: 1fr !important;
+  }
+
+  .radar-wrap {
+    transform: none !important;
+  }
+
+  .radar {
+    width: 210px !important;
+    height: 210px !important;
+  }
+}
+
+
+/* === V98: setas de Personalidade iguais às da Energia === */
+.personality-page .vibe-page-nav {
+  display: contents !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow,
+.personality-page > .nav-arrow {
+  position: fixed !important;
+  bottom: 32px !important;
+  z-index: 45 !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow.left,
+.personality-page > .nav-arrow.left {
+  left: clamp(18px, 2.6vw, 38px) !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow.right,
+.personality-page > .nav-arrow.right {
+  right: clamp(18px, 2.6vw, 38px) !important;
+}
+
+.poster-strip {
+  position: relative !important;
+  z-index: 80 !important;
+  margin-bottom: 0 !important;
+}
+
+.personality-page {
+  padding-bottom: 120px !important;
+}
+
+/* mantém o radar interno girando e menor */
+.personality-page .radar {
+  animation: radarRotate 10s linear infinite !important;
+}
+
+
+/* === V99: setas Personalidade param antes do letreiro === */
+.personality-page .vibe-page-nav {
+  display: flex !important;
+  position: sticky !important;
+  bottom: 24px !important;
+  z-index: 45 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 auto 26px !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.personality-page > .nav-arrow {
+  position: static !important;
+}
+
+.personality-page .poster-strip {
+  position: relative !important;
+  z-index: 80 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* === V100: setas com lock/unlock antes do letreiro === */
+.personality-page .vibe-page-nav {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 32px !important;
+  transform: translateX(-50%) !important;
+  z-index: 70 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.personality-page .vibe-page-nav.is-locked {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 auto 26px !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.personality-page .poster-strip {
+  position: relative !important;
+  z-index: 90 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.personality-page {
+  padding-bottom: 0 !important;
+}
+
+
+/* === V101: espaço correto das setas antes do letreiro - PERSONALIDADE === */
+.personality-page .vibe-page-nav {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 32px !important;
+  transform: translateX(-50%) !important;
+  z-index: 70 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.personality-page .vibe-page-nav.is-locked {
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: 60 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 78px auto 96px !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.personality-page .poster-strip {
+  position: relative !important;
+  z-index: 90 !important;
+  margin-top: 0 !important;
+}
+
+/* dá respiro depois da seção anterior, pra seta não atravessar card */
+.personality-page .behavior {
+  padding-bottom: 150px !important;
+  margin-bottom: 0 !important;
+}
+
+.personality-page .vibe-page-nav.is-locked + .poster-strip {
+  margin-top: 0 !important;
+}
+
+
+/* === V102: lock real com espaço antes do letreiro - PERSONALIDADE === */
+.personality-page .vibe-page-nav {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 32px !important;
+  transform: translateX(-50%) !important;
+  z-index: 70 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.personality-page .vibe-page-nav.is-locked {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: 60 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 130px auto 170px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.personality-page .behavior {
+  padding-bottom: 190px !important;
+  margin-bottom: 0 !important;
+}
+
+.personality-page .poster-strip {
+  position: relative !important;
+  z-index: 90 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.personality-page {
+  padding-bottom: 0 !important;
+}
+
+
+/* === V104: setas com limitador real por bottom dinâmico - PERSONALIDADE === */
+.personality-page .vibe-page-nav,
+.personality-page .vibe-page-nav.is-locked {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  z-index: 120 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow,
+.personality-page .vibe-page-nav.is-locked .nav-arrow {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.personality-page .poster-strip {
+  position: relative !important;
+  z-index: 80 !important;
+}
+
+.personality-page .behavior {
+  padding-bottom: 190px !important;
+}
+
+
+/* === V105: correção definitiva - bottom dinâmico via CSS var === */
+.personality-page .vibe-page-nav,
+.personality-page .vibe-page-nav.is-locked {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: var(--nav-bottom, 32px) !important;
+  transform: translateX(-50%) !important;
+  z-index: 120 !important;
+  width: min(1240px, 90vw) !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+}
+
+.personality-page .vibe-page-nav .nav-arrow {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  pointer-events: auto !important;
+}
+
+.personality-page .behavior {
+  padding-bottom: 240px !important;
+}
+
+.personality-page .poster-strip {
+  position: relative !important;
+  z-index: 80 !important;
+}
+
+
+/* === V106: setas mais afastadas, igual Energia - PERSONALIDADE === */
+.personality-page .vibe-page-nav,
+.personality-page .vibe-page-nav.is-locked {
+  width: calc(100vw - 96px) !important;
+  max-width: none !important;
+}
+
+@media (max-width: 900px) {
+  .personality-page .vibe-page-nav,
+  .personality-page .vibe-page-nav.is-locked {
+    width: calc(100vw - 36px) !important;
+  }
+}

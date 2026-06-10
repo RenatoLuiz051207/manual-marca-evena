@@ -1,0 +1,30 @@
+<main class="concept-page positioning-page">
+  <button class="page-close" type="button" aria-label="Voltar para a tela inicial" (click)="goHome()">×</button>
+  <h1 class="page-title">Posicionamento</h1>
+  <p class="page-subtitle">A Evena não conecta pessoas apenas a eventos. Ela conecta pessoas a experiências reais, momentos memoráveis e novas conexões fora das telas.</p>
+
+  <section class="page-content">
+<div class="content-grid">
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'publico'" (click)="toggleCard('publico')">
+        <small>Clique para abrir</small>
+        <h3>Público-Alvo</h3>
+        <p>Jovens e adultos que buscam experiências culturais, entretenimento, conexões sociais e novas descobertas, valorizando momentos presenciais e experiências ao vivo.</p>
+      </button>
+
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'mensagem'" (click)="toggleCard('mensagem')">
+        <small>Clique para abrir</small>
+        <h3>Mensagem da Marca</h3>
+        <p>Viver é melhor ao vivo. A Evena lembra que momentos reais ficam mais tempo na memória do que qualquer curtida.</p>
+      </button>
+
+      <button class="brand-panel" type="button" [class.is-open]="activeCard === 'manifesto'" (click)="toggleCard('manifesto')">
+        <small>Clique para abrir</small>
+        <h3>Manifesto</h3>
+        <p>A vida não acontece só nas redes sociais. Ela acontece fora de casa, nos encontros, nos shows, nas conversas e nas experiências inesperadas.</p>
+      </button>
+    </div>
+  </section>
+
+  <button class="nav-arrow left" type="button" (click)="goLeft()"><span class="mark">‹</span><span>Arquétipos</span></button>
+  <button class="nav-arrow right" type="button" (click)="goRight()"><span>Propósito</span><span class="mark">›</span></button>
+</main>
