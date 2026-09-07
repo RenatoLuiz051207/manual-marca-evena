@@ -1,59 +1,59 @@
-# ManualMarcaEvena
+# Manual da marca Evena
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+Manual interativo em Angular com Conceito, Propósito, Posicionamento, Vibe e Estética.
 
-## Development server
+## Abrir no computador
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Na pasta do projeto:
 
 ```bash
-ng generate component component-name
+npm ci
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Abra http://localhost:4200. Alterações nos arquivos são refletidas no navegador enquanto o servidor estiver em execução.
+
+## Gerar a versão de produção
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
+Os arquivos públicos ficam em `dist/manual-marca-evena/browser`. Essa é a pasta de saída a configurar na hospedagem. O arquivo `vercel.json` mantém o redirecionamento necessário às páginas internas da aplicação.
 
-To build the project run:
+Para verificar os testes existentes:
 
 ```bash
-ng build
+npm test -- --watch=false
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Um commit local não atualiza o site publicado. Envie as alterações à branch usada pela hospedagem e acompanhe o resultado do deploy.
 
-## Running unit tests
+## O que esta revisão inclui
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- Revisões anteriores incorporadas ao estado do repositório enviado no ZIP.
+- Cabeçalho com a coroa colorida e o logotipo oficial, preservando os PNGs originais.
+- Cards roxos com texto branco; verde com texto preto na interação.
+- Conceito com valores interativos e acesso direto ao manifesto.
+- Posicionamento com públicos, diferenciais da plataforma e manifesto expansível com cópia.
+- Cores com descrições voltadas a eventos, cópia de HEX/RGB e a paleta principal do documento mais recente.
+- Poppins como fonte principal, Lato e Comfortaa como secundárias. Fredoka permanece na interface dos cards.
+- Galeria com uma única coroa branca, as demais variações e o logotipo.
+- Navegação interna em Estética e redirecionamento de endereços antigos.
 
-```bash
-ng test
-```
+## Fontes e arquivos originais
 
-## Running end-to-end tests
+Poppins e Lato são carregadas pelo stylesheet oficial do Google Fonts, reduzindo o peso versionado do projeto. Comfortaa e Fredoka continuam usando os arquivos já existentes no repositório.
 
-For end-to-end (e2e) testing, run:
+**Ganker-Storm:** foi fornecida uma cópia demo cujo `Read Me.txt` limita o uso a fins pessoais. Por isso, os arquivos TTF/OTF não são incorporados nem redistribuídos neste repositório público. O laboratório aceita um arquivo TTF, OTF, WOFF ou WOFF2 para prévia local, sem envio a um servidor. Para publicar a Ganker-Storm na identidade da Evena, use uma cópia coberta por licença comercial/web apropriada. [Fonte do estúdio responsável](https://cikareotype.com/product/ganker-storm-wild-graffiti-font/).
 
-```bash
-ng e2e
-```
+A coroa colorida reutiliza `public/evena-logo.svg`; as versões verde e branca reutilizam os arquivos já existentes. O novo logotipo usado no cabeçalho fica em `public/assets/logos/logotipo-evena.webp`, otimizado para web para reduzir o peso de carregamento. O enquadramento do cabeçalho usa CSS para desconsiderar as margens transparentes do canvas; os desenhos não são distorcidos, recoloridos ou regravados.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+As definições de público, diferenciais e manifesto foram desenvolvidas a partir do texto fornecido pelo responsável pela marca. As descrições de cor consideram esse texto e o contexto do [site Evena](https://www.evena.online/).
 
-## Additional Resources
+## Verificação desta revisão
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Build de produção concluído.
+- 3 testes do projeto aprovados.
+- 8 verificações adicionais de lógica e arquivos aprovadas: fontes, clipboard, valores, públicos, diferenciais, âncoras e integridade dos logos.
+- Sem validação visual em navegador nesta sessão.

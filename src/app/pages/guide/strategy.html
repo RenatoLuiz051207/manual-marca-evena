@@ -1,0 +1,150 @@
+@if (section() !== 'posicionamento') {
+  <section class="strategy-section" aria-labelledby="values-title">
+    <div class="strategy-heading">
+      <p class="eyebrow">Descoberta · conexão · cultura</p>
+      <h2 id="values-title">Valores na prática</h2>
+      <p>Escolha um valor para ver como ele orienta o produto e a comunicação.</p>
+    </div>
+    <div class="value-selector" role="group" aria-label="Explorar valores da marca">
+      @for (value of values; track value.name; let i = $index) {
+        <button
+          type="button"
+          [class.is-selected]="selectedValue() === i"
+          [attr.aria-pressed]="selectedValue() === i"
+          aria-controls="value-panel"
+          (click)="selectedValue.set(i)"
+        >
+          <span aria-hidden="true">{{ i + 1 }}</span
+          >{{ value.name }}
+        </button>
+      }
+    </div>
+    <div id="value-panel" class="value-panel" aria-live="polite" aria-atomic="true">
+      <h3>{{ currentValue().name }}</h3>
+      <p class="value-description">{{ currentValue().description }}</p>
+      <div class="value-applications">
+        <article>
+          <h4>No produto</h4>
+          <p>{{ currentValue().product }}</p>
+        </article>
+        <article>
+          <h4>Na comunicação</h4>
+          <p>{{ currentValue().communication }}</p>
+        </article>
+      </div>
+    </div>
+    <div class="strategy-links">
+      <a class="strategy-link" routerLink="/posicionamento">Explorar posicionamento</a>
+      <a class="strategy-link" routerLink="/posicionamento" fragment="manifesto">Ler manifesto</a>
+    </div>
+  </section>
+}
+
+@if (section() === 'posicionamento') {
+  <section class="strategy-section audience-section" aria-labelledby="audience-title">
+    <div class="strategy-heading">
+      <p class="eyebrow">Público e proposta de valor</p>
+      <h2 id="audience-title">Para quem a Evena cria valor</h2>
+    </div>
+    <div class="audience-selector" role="group" aria-label="Escolher público">
+      <button
+        type="button"
+        [class.is-selected]="selectedAudience() === 'public'"
+        [attr.aria-pressed]="selectedAudience() === 'public'"
+        aria-controls="audience-panel"
+        (click)="selectedAudience.set('public')"
+      >
+        Público final
+      </button>
+      <button
+        type="button"
+        [class.is-selected]="selectedAudience() === 'organizers'"
+        [attr.aria-pressed]="selectedAudience() === 'organizers'"
+        aria-controls="audience-panel"
+        (click)="selectedAudience.set('organizers')"
+      >
+        Organizadores
+      </button>
+    </div>
+    <div id="audience-panel" class="audience-panel" aria-live="polite" aria-atomic="true">
+      <div>
+        <h3>{{ currentAudience().label }}</h3>
+        <p>{{ currentAudience().description }}</p>
+        <ul>
+          @for (need of currentAudience().needs; track need) {
+            <li>{{ need }}</li>
+          }
+        </ul>
+      </div>
+      <aside class="benefit-note">
+        <h4>O que a Evena facilita</h4>
+        <p>{{ currentAudience().benefit }}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="strategy-section" aria-labelledby="features-title">
+    <div class="strategy-heading">
+      <p class="eyebrow">Diferenciais da plataforma</p>
+      <h2 id="features-title">Descoberta e planejamento integrados</h2>
+      <p>Explore os recursos que dão forma ao posicionamento da Evena.</p>
+    </div>
+    <div class="feature-explorer">
+      <div class="feature-selector" role="group" aria-label="Explorar diferenciais">
+        @for (feature of features; track feature.name; let i = $index) {
+          <button
+            type="button"
+            [class.is-selected]="selectedFeature() === i"
+            [attr.aria-pressed]="selectedFeature() === i"
+            aria-controls="feature-panel"
+            (click)="selectedFeature.set(i)"
+          >
+            <span aria-hidden="true">{{ i + 1 }}</span
+            >{{ feature.name }}
+          </button>
+        }
+      </div>
+      <article id="feature-panel" class="feature-panel" aria-live="polite" aria-atomic="true">
+        <p class="feature-count">{{ selectedFeature() + 1 }} de {{ features.length }}</p>
+        <h3>{{ currentFeature().title }}</h3>
+        <p>{{ currentFeature().text }}</p>
+        <ul>
+          @for (detail of currentFeature().details; track detail) {
+            <li>{{ detail }}</li>
+          }
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section
+    id="manifesto"
+    class="strategy-section manifesto-section"
+    aria-labelledby="manifesto-title"
+    tabindex="-1"
+  >
+    <div class="strategy-heading"><h2 id="manifesto-title">Manifesto</h2></div>
+    <div class="manifesto-copy">
+      <p>{{ manifesto[0] }}</p>
+      <div id="manifesto-more" [hidden]="!fullManifesto()">
+        @for (paragraph of manifesto.slice(1); track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </div>
+    <div class="manifesto-actions">
+      <button
+        type="button"
+        [attr.aria-expanded]="fullManifesto()"
+        aria-controls="manifesto-more"
+        (click)="fullManifesto.set(!fullManifesto())"
+      >
+        {{ fullManifesto() ? 'Recolher manifesto' : 'Ler manifesto completo' }}
+      </button>
+      <button type="button" class="outline-button" (click)="copyManifesto()">
+        Copiar manifesto
+      </button>
+    </div>
+    <p class="copy-status" role="status">{{ copyStatus() }}</p>
+  </section>
+}

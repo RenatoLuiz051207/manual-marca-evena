@@ -1,1 +1,44 @@
-<router-outlet></router-outlet>
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header">
+  <div class="header-inner page-width">
+    <a class="brand" routerLink="/" aria-label="Evena — início do manual">
+      <span class="brand-mark" aria-hidden="true"
+        ><img src="/evena-logo.svg" alt="" width="1600" height="1600"
+      /></span>
+      <span class="brand-wordmark" aria-hidden="true">
+        <img src="/assets/logos/logotipo-evena.webp" alt="" width="800" height="386" />
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a
+        routerLink="/"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ariaCurrentWhenActive="page"
+        >Início</a
+      >
+      <a routerLink="/conceito" routerLinkActive="is-active" ariaCurrentWhenActive="page"
+        >Conceito</a
+      >
+      <a routerLink="/vibe" routerLinkActive="is-active" ariaCurrentWhenActive="page">Vibe</a>
+      <a routerLink="/estetica" routerLinkActive="is-active" ariaCurrentWhenActive="page"
+        >Estética</a
+      >
+    </nav>
+    <div class="header-tools">
+      <span class="manual-label">Manual da marca</span>
+      <button
+        class="motion-toggle"
+        type="button"
+        (click)="toggleMotion()"
+        [attr.aria-pressed]="motionEnabled()"
+        aria-label="Animações"
+        [attr.title]="motionEnabled() ? 'Pausar animações' : 'Ativar animações'"
+      >
+        <span aria-hidden="true">{{ motionEnabled() ? 'Ⅱ' : '▷' }}</span>
+        <span>{{ motionEnabled() ? 'Pausar' : 'Animar' }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+<router-outlet (activate)="onRouteActivate()"></router-outlet>

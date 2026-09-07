@@ -1,24 +1,25 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app'; // ← Ajustado para importar AppComponent
+import { provideRouter } from '@angular/router';
+import { App } from './app';
 
-describe('AppComponent', () => {
+describe('Evena app', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent], // ← Ajustado aqui também
+      imports: [App],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('creates the manual', () => {
+    expect(TestBed.createComponent(App).componentInstance).toBeTruthy();
   });
 
-  it('should render title', async () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    // Se você não tiver um <h1> com esse texto no seu app.ts, esse teste específico pode falhar, mas não trava o build.
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, manual-marca-evena');
+  it('lets the visitor pause and resume motion', () => {
+    const app = TestBed.createComponent(App).componentInstance;
+    const initial = app.motionEnabled();
+    app.toggleMotion();
+    expect(app.motionEnabled()).toBe(!initial);
+    app.toggleMotion();
+    expect(app.motionEnabled()).toBe(initial);
   });
 });

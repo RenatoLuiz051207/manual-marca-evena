@@ -1,0 +1,378 @@
+<main id="main-content" class="guide-page page-width" tabindex="-1">
+  <aside class="guide-aside">
+    <a class="back-link" routerLink="/"><span aria-hidden="true">←</span> Início</a>
+    <nav class="chapter-nav" aria-label="Capítulos do manual">
+      @for (item of navigation; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ariaCurrentWhenActive="page"
+          [class.subchapter]="item.child"
+        >
+          @if (item.number) {
+            <span>{{ item.number }}</span>
+          }
+          {{ item.label }}
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <div class="guide-content">
+    <header class="chapter-header">
+      <p class="eyebrow">Seção {{ section().number }}</p>
+      <h1>{{ section().label }}</h1>
+      <p class="chapter-lead">{{ section().lead }}</p>
+    </header>
+
+    @if (section().entries.length > 0) {
+      <section class="entries" [attr.aria-label]="'Fundamentos de ' + section().label">
+        @for (entry of section().entries; track entry.title; let i = $index) {
+          @if (entry.path) {
+            <a class="entry entry-link" [routerLink]="entry.path">
+              <span class="entry-index">{{ section().number }}.{{ i + 1 }}</span>
+              <div>
+                <h2>{{ entry.title }}</h2>
+                <p>{{ entry.text }}</p>
+              </div>
+              <span class="entry-arrow" aria-hidden="true">↗</span>
+            </a>
+          } @else {
+            <article class="entry">
+              <span class="entry-index">{{ i + 1 }}</span>
+              <div>
+                <h2>{{ entry.title }}</h2>
+                <p>{{ entry.text }}</p>
+              </div>
+            </article>
+          }
+        }
+      </section>
+    }
+
+    @let chapterId = section().id;
+    @if (chapterId === 'conceito' || chapterId === 'proposito' || chapterId === 'posicionamento') {
+      <app-strategy-explorer [section]="chapterId" />
+    }
+
+    @if (section().id === 'vibe') {
+      <section class="manual-section voice-lab" aria-labelledby="voice-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Na prática</p>
+            <h2 id="voice-title">Exemplos de tom de voz</h2>
+          </div>
+        </div>
+        <div class="segmented" role="group" aria-label="Comparar tom de voz">
+          <button
+            type="button"
+            [class.is-selected]="toneAudience() === 'public'"
+            [attr.aria-pressed]="toneAudience() === 'public'"
+            (click)="toneAudience.set('public')"
+          >
+            Público final
+          </button>
+          <button
+            type="button"
+            [class.is-selected]="toneAudience() === 'b2b'"
+            [attr.aria-pressed]="toneAudience() === 'b2b'"
+            (click)="toneAudience.set('b2b')"
+          >
+            Institucional e B2B
+          </button>
+        </div>
+        <div
+          class="speech"
+          [class.is-b2b]="toneAudience() === 'b2b'"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <span class="eyebrow">{{ toneExample().context }}</span>
+          <p>{{ toneExample().text }}</p>
+        </div>
+      </section>
+    }
+
+    @if (section().id === 'estetica') {
+      <nav class="section-jumps" aria-label="Nesta página">
+        <a href="/estetica#cores" (click)="navigateToSection($event, 'cores')">Cores</a>
+        <a href="/estetica#tipografia" (click)="navigateToSection($event, 'tipografia')"
+          >Tipografia</a
+        >
+        <a href="/estetica#logos" (click)="navigateToSection($event, 'logos')">Logos</a>
+        <a href="/estetica#aplicacoes" (click)="navigateToSection($event, 'aplicacoes')"
+          >Aplicações</a
+        >
+      </nav>
+
+      <section id="cores" class="manual-section" aria-labelledby="colors-title" tabindex="-1">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">3.1 / Paleta</p>
+            <h2 id="colors-title">Cores</h2>
+          </div>
+          <p>Escolha HEX ou RGB para copiar a cor.</p>
+        </div>
+        <div class="palette-grid">
+          @for (color of palette; track color.hex) {
+            <article
+              class="swatch"
+              [style.background-color]="color.hex"
+              [style.color]="color.ink"
+              [attr.aria-label]="color.name"
+            >
+              <div class="swatch-top">
+                <span>{{ color.name }}</span
+                ><small>{{ color.group }}</small>
+              </div>
+              <div class="swatch-values">
+                <code>{{ color.hex }}</code>
+                <small>rgb({{ color.rgb }})</small>
+                <p class="swatch-description">{{ color.role }}</p>
+                <div class="swatch-actions">
+                  <button
+                    type="button"
+                    (click)="copy(color.hex)"
+                    [attr.aria-label]="'Copiar HEX de ' + color.name + ': ' + color.hex"
+                  >
+                    HEX <span aria-hidden="true">⧉</span>
+                  </button>
+                  <button
+                    type="button"
+                    (click)="copy('rgb(' + color.rgb + ')')"
+                    [attr.aria-label]="'Copiar RGB de ' + color.name + ': rgb(' + color.rgb + ')'"
+                  >
+                    RGB <span aria-hidden="true">⧉</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+        <p class="color-rule">
+          Use branco sobre roxo e preto sobre verde para manter chamadas e informações de eventos
+          legíveis.
+        </p>
+        <p class="copy-status" role="status" aria-live="polite">{{ status() }}</p>
+      </section>
+
+      <section id="tipografia" class="manual-section" aria-labelledby="type-title" tabindex="-1">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">3.2 / Tipografia</p>
+            <h2 id="type-title">Tipografia</h2>
+          </div>
+        </div>
+        <p class="supporting-note">
+          Poppins é a fonte principal. Lato e Comfortaa são secundárias. Selecione uma fonte e
+          experimente tamanho, peso e contraste.
+        </p>
+        <div class="font-picker" role="group" aria-label="Escolher fonte">
+          @for (font of fonts; track font.id) {
+            <button
+              type="button"
+              [class.is-selected]="previewFont() === font.id"
+              [attr.aria-pressed]="previewFont() === font.id"
+              (click)="selectFont(font.id)"
+            >
+              <span>{{ font.name }}</span
+              ><small>{{ font.role }}</small>
+            </button>
+          }
+        </div>
+        <p class="font-description" aria-live="polite">{{ currentFont().description }}</p>
+        <div class="type-controls">
+          <label class="text-control" for="type-text"
+            >Experimente uma frase<input
+              id="type-text"
+              type="text"
+              maxlength="96"
+              [value]="previewText()"
+              (input)="setText($event)"
+              placeholder="Evena"
+          /></label>
+          <label for="type-size"
+            >Tamanho <output>{{ previewSize() }} px</output
+            ><input
+              id="type-size"
+              type="range"
+              min="32"
+              max="120"
+              step="2"
+              [value]="previewSize()"
+              (input)="setSize($event)"
+          /></label>
+          <label for="type-weight"
+            >Peso
+            <select
+              id="type-weight"
+              [value]="previewWeight()"
+              (change)="setWeight($event)"
+              [disabled]="currentFont().weights.length === 1"
+            >
+              @for (weight of currentFont().weights; track weight) {
+                <option [value]="weight">{{ weight }}</option>
+              }
+            </select>
+          </label>
+        </div>
+        @if (previewFont() === 'ganker') {
+          <div class="font-loader">
+            <label for="ganker-file">{{
+              gankerReady() ? 'Trocar arquivo da Ganker-Storm' : 'Carregar Ganker-Storm'
+            }}</label>
+            <input
+              id="ganker-file"
+              type="file"
+              accept=".ttf,.otf,.woff,.woff2"
+              [disabled]="fontLoading()"
+              (change)="loadGankerFont($event)"
+              aria-describedby="font-file-note font-load-status"
+            />
+            <p id="font-file-note">
+              Use um arquivo TTF, OTF, WOFF ou WOFF2 que você tenha direito de usar. A prévia é local e o arquivo não é enviado.
+            </p>
+            <p id="font-load-status" role="status">
+              {{ fontLoading() ? 'Carregando fonte…' : fontStatus() }}
+            </p>
+          </div>
+        }
+        <div class="type-specimen" [class.green-specimen]="previewGreen()">
+          <div class="specimen-toolbar">
+            <span>{{ currentFont().name }} / {{ previewWeight() }}</span>
+            <button
+              type="button"
+              (click)="previewGreen.set(!previewGreen())"
+              [attr.aria-pressed]="previewGreen()"
+            >
+              Inverter cores <span aria-hidden="true">⇄</span>
+            </button>
+          </div>
+          @if (previewFont() !== 'ganker' || gankerReady()) {
+            <p
+              [style.font-family]="currentFont().family"
+              [style.font-size.rem]="previewSize() / 16"
+              [style.font-weight]="previewWeight()"
+            >
+              {{ specimen() }}
+            </p>
+            <span class="specimen-alphabet" [style.font-family]="currentFont().family"
+              >Aa Bb Cc · 0123456789 · !?&amp;</span
+            >
+          } @else {
+            <p class="font-pending">
+              Carregue a Ganker-Storm acima para visualizar seu texto nessa fonte.
+            </p>
+          }
+        </div>
+      </section>
+
+      <section id="logos" class="manual-section" aria-labelledby="logo-title" tabindex="-1">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">3.3 / Marca</p>
+            <h2 id="logo-title">Logo e logotipo</h2>
+          </div>
+        </div>
+        <p class="supporting-note">
+          A coroa é o símbolo da marca. O logotipo é a assinatura escrita. Baixe as versões
+          originais abaixo.
+        </p>
+        <div class="logo-grid">
+          @for (logo of logos; track logo.path) {
+            <article class="logo-panel" [class.wordmark-panel]="logo.name === 'Logotipo'">
+              <div
+                class="logo-preview"
+                [class.dark]="logo.background === 'dark'"
+                [class.light]="logo.background === 'light'"
+              >
+                <img
+                  [src]="logo.path"
+                  [alt]="'Evena — ' + logo.name"
+                  width="1600"
+                  height="1600"
+                  loading="lazy"
+                />
+              </div>
+              <a
+                [href]="logo.path"
+                [download]="logo.filename"
+                [attr.aria-label]="'Baixar ' + logo.name + ' da Evena em PNG'"
+              >
+                {{ logo.name }} <span>PNG ↓</span>
+              </a>
+            </article>
+          }
+        </div>
+        <a class="source-download" href="/evena-logo.svg" download="evena-logo-original.svg"
+          >Baixar o arquivo SVG original <span aria-hidden="true">↓</span></a
+        >
+        <p class="supporting-note">
+          Preserve a proporção e a integridade do símbolo. Use os arquivos originais, sem esticar,
+          recortar ou acrescentar efeitos.
+        </p>
+        <div class="logo-guidelines">
+          <details>
+            <summary>Usos incorretos</summary>
+            <ul>
+              <li>Não distorcer ou alterar as proporções.</li>
+              <li>Não rotacionar o logo ou o logotipo de modo que prejudique o reconhecimento.</li>
+              <li>Não substituir as cores oficiais por outras cores.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Área de proteção</summary>
+            <p>
+              Use a altura da letra E em Arial, corpo 48, como referência de folga mínima em todos
+              os lados do logo, conforme o manual de identidade visual.
+            </p>
+          </details>
+          <details>
+            <summary>Tamanho mínimo</summary>
+            <p>
+              Referência indicada no manual: 300 × 300 pixels. Preserve a proporção original do
+              arquivo.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section
+        id="aplicacoes"
+        class="manual-section"
+        aria-labelledby="applications-title"
+        tabindex="-1"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">3.4 / Aplicações</p>
+            <h2 id="applications-title">Aplicações</h2>
+          </div>
+        </div>
+        <p class="supporting-note">Exemplos de contraste e hierarquia tipográfica.</p>
+        <div class="application-grid">
+          <article class="application-poster">
+            <span class="eyebrow">Aplicação em fundo roxo</span>
+            <p>Evena</p>
+            <span class="application-caption">Eventos e experiências</span>
+            <span>Texto branco sobre fundo roxo.</span>
+          </article>
+          <article class="application-poster green-poster">
+            <span class="eyebrow">Aplicação em fundo verde</span>
+            <p>Evena</p>
+            <span class="application-caption">Eventos e experiências</span>
+            <span>Texto preto sobre fundo verde.</span>
+          </article>
+        </div>
+      </section>
+    }
+
+    <a class="next-chapter" [routerLink]="section().next.path"
+      ><span
+        ><small>Continue explorando</small><strong>{{ section().next.label }}</strong></span
+      ><span aria-hidden="true">↗</span></a
+    >
+    <footer class="guide-footer">Evena — feita de conexões reais.</footer>
+  </div>
+</main>
