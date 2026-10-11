@@ -12,7 +12,7 @@ export type ChapterId =
   | 'cores'
   | 'tipografia'
   | 'marca'
-  | 'aplicacoes'
+
   | 'recursos';
 export interface Chapter {
   id: ChapterId;
@@ -157,17 +157,7 @@ export const chapters: readonly Chapter[] = [
     icon: 'crown',
     tags: 'coroa proteção mínimo usos incorretos arquivos svg png webp',
   },
-  {
-    id: 'aplicacoes',
-    path: '/aplicacoes',
-    number: '3.4',
-    title: 'Aplicações da identidade',
-    short: 'Aplicações',
-    description: 'Modelos demonstrativos para aplicar a identidade em cartazes, posts, stories, ingressos e cards de evento.',
-    group: 'Estética',
-    icon: 'grid',
-    tags: 'cartaz post story ingresso card exportação svg png modelos',
-  },
+
   {
     id: 'recursos',
     path: '/recursos',

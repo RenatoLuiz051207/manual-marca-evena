@@ -1,6 +1,5 @@
 # Evena — Manual da marca
 
-Manual interativo da identidade do Evena, desenvolvido em Angular 21. O projeto reúne conceito, propósito e posicionamento, tom de voz, identidade visual, aplicações demonstrativas e recursos para download.
 
 ## Executar localmente
 
@@ -17,8 +16,6 @@ Abra http://localhost:4200. Não é necessário banco de dados nem API para exec
 
 - **Conceito:** propósito, valores, públicos, posicionamento, manifesto e hierarquia da assinatura verbal.
 - **Vibe:** voz, personalidade, energia e exemplos de comunicação.
-- **Estética:** cores principais e de apoio, cores específicas do aplicativo, contraste, tipografia, símbolo e logotipo.
-- **Aplicações:** modelos demonstrativos de cartaz, post, story, ingresso e card, com exportação em SVG e PNG.
 - **Recursos:** kit, paleta em CSS e JSON, guia de voz, checklist e versão de leitura para imprimir.
 
 A assinatura principal é **“Viver é melhor ao vivo!”**. As outras frases são linhas de apoio para campanhas e peças específicas.
@@ -45,6 +42,5 @@ A saída de produção fica em `dist/manual-marca-evena/browser`. A hospedagem p
 - `src/app/pages/concept`: conceito, propósito e posicionamento.
 - `src/app/pages/expression`: voz, energia e personalidade.
 - `src/app/pages/identity`: cores, tipografia, símbolo e logotipo.
-- `src/app/pages/applications`: estúdio de aplicações e exportação.
 - `src/app/pages/resources`: kit, checklist e versão de leitura.
 - `public/downloads`: PDF e recursos prontos para baixar.

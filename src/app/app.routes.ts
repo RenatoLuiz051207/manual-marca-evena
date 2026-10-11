@@ -3,7 +3,6 @@ import { Home } from './pages/home/home';
 const concept = () => import('./pages/concept/concept').then((m) => m.ConceptPage);
 const expression = () => import('./pages/expression/expression').then((m) => m.ExpressionPage);
 const identity = () => import('./pages/identity/identity').then((m) => m.IdentityPage);
-const applications = () => import('./pages/applications/applications').then((m) => m.ApplicationsPage);
 export const routes: Routes = [
   { path: '', component: Home, title: 'Evena — Viver é melhor ao vivo!' },
   {
@@ -62,12 +61,6 @@ export const routes: Routes = [
     loadComponent: identity,
     data: { section: 'marca' },
     title: 'Logo e logotipo — Evena',
-  },
-  {
-    path: 'aplicacoes',
-    loadComponent: applications,
-    data: { section: 'aplicacoes' },
-    title: 'Aplicações da identidade — Evena',
   },
   {
     path: 'recursos',
