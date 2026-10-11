@@ -1,0 +1,22 @@
+KIT DA MARCA EVENA
+
+Este pacote reúne arquivos de identidade e materiais de apoio do Evena.
+
+PALETA
+- evena-paleta.css: variáveis CSS para as cores principais, de apoio e específicas do aplicativo.
+- evena-paleta.json: códigos HEX/RGB, grupo, função e cor de texto recomendada.
+
+MARCA
+- Símbolo e logotipo nos formatos disponíveis. Preserve proporções, cores e área de proteção.
+
+MODELOS
+- Cinco modelos SVG editáveis: card, post, cartaz, story e ingresso demonstrativo.
+- Os dados de evento são fictícios; os modelos não são ingressos válidos.
+
+OUTROS RECURSOS
+- Manual em PDF, guia de voz, fontes e licenças incluídas quando aplicável.
+- Fredoka é usada na interface do manual; Poppins, Lato e Comfortaa seguem as funções indicadas no capítulo de tipografia.
+
+ASSINATURA PRINCIPAL
+Viver é melhor ao vivo!
+As frases de apoio são complementares e não substituem a assinatura principal.

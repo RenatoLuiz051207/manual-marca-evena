@@ -1,0 +1,85 @@
+<ev-chapter id="recursos">
+  <a class="button" href="/downloads/kit-evena.zip" download="kit-evena.zip">Kit da marca<ev-icon name="download" /></a>
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>O que você encontra no kit.</h2>
+      </div>
+    </div>
+    <div class="resource-list">
+      <a href="/downloads/kit-evena.zip" download
+        ><ev-icon name="crown" /><span
+          ><strong>Símbolo e logotipo</strong
+          ><small>Arquivos originais / SVG, PNG e WEBP</small></span
+        ><ev-icon name="download" /></a
+      ><a href="/downloads/evena-paleta.css" download
+        ><ev-icon name="palette" /><span
+          ><strong>Paleta e cores</strong
+          ><small>Códigos para criação / CSS e JSON no kit</small></span
+        ><ev-icon name="download" /></a
+      ><a href="/downloads/guia-de-voz.txt" download
+        ><ev-icon name="microphone" /><span
+          ><strong>Guia de voz</strong><small>Situações, exemplos e orientações / TXT</small></span
+        ><ev-icon name="download" /></a
+      ><a href="/downloads/manual-evena.pdf" download
+        ><ev-icon name="download" /><span
+          ><strong>Manual para levar</strong><small>Guia de consulta / PDF</small></span
+        ><ev-icon name="download" /></a
+      ><a routerLink="/leitura"
+        ><ev-icon name="book" /><span
+          ><strong>Versão de leitura</strong
+          ><small>Conteúdo reunido, pronto para ler ou imprimir</small></span
+        ><ev-icon name="arrow"
+      /></a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>Antes de publicar, confira</h2>
+      </div>
+      <button type="button" class="button secondary small" (click)="reset()">
+        Recomeçar<ev-icon name="reset" />
+      </button>
+    </div>
+    <div class="checklist-panel">
+      <div class="checklist-progress">
+        <span>{{ count() }} de {{ checklist.length }} itens</span
+        ><strong>{{
+          count() === checklist.length
+            ? 'Revisão completa. Confira os arquivos antes de publicar.'
+            : 'Confira sua criação.'
+        }}</strong>
+        <div><i [style.width.%]="(count() / checklist.length) * 100"></i></div>
+      </div>
+      <div class="checklist-items">
+        @for (item of checklist; track item; let i = $index) {
+          <label [class.done]="checked().includes(i)"
+            ><input
+              type="checkbox"
+              [checked]="checked().includes(i)"
+              (change)="toggle(i)"
+            /><span>{{ item }}</span></label
+          >
+        }
+      </div>
+    </div>
+    <p class="fine-print" style="margin-top: 12px">Sua revisão fica salva neste navegador.</p>
+  </section>
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>Glossário</h2>
+      </div>
+    </div>
+    <div class="glossary-grid">
+      @for (item of glossary; track item.word) {
+        <article>
+          <h3>{{ item.word }}</h3>
+          <p>{{ item.definition }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+</ev-chapter>

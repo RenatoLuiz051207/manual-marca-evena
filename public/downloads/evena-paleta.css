@@ -1,0 +1,15 @@
+:root {
+  /* Principal */
+  --evena-roxo-escuro: #2F1A67;
+  --evena-verde-limao: #00FF00;
+  --evena-preto: #000000;
+  --evena-branco: #FFFFFF;
+  /* Apoio */
+  --evena-roxo-de-apoio: #4C007D;
+  --evena-preto-suave: #121212;
+  --evena-off-white: #F8F9FA;
+  /* App */
+  --evena-fundo-do-app: #080427;
+  --evena-verde-do-app: #63D13E;
+  --evena-roxo-de-destaque: #7C2BDC;
+}

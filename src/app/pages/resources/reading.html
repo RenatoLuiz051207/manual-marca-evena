@@ -1,0 +1,272 @@
+<main id="main-content" tabindex="-1" class="reading-main">
+  <div class="reading-actions page-width">
+    <a routerLink="/recursos" class="text-link"><ev-icon name="back" />Voltar ao kit</a
+    ><button type="button" class="button" (click)="print()">
+      Imprimir / salvar PDF<ev-icon name="download" />
+    </button>
+  </div>
+  <div class="reading-pages">
+    <section class="print-sheet cover">
+      <div class="sheet-header">
+        <img src="/assets/logos/logotipo-evena.webp" alt="Evena" width="800" height="386" /><span
+          >MANUAL DA MARCA / 2026</span
+        >
+      </div>
+      <span class="eyebrow">ASSINATURA PRINCIPAL</span>
+      <h1>Viver é<br />melhor<br /><em>ao vivo!</em></h1>
+      <img
+        class="cover-photo"
+        src="/assets/images/vibe-crowd.jpg"
+        alt="Público reunido em um show"
+        width="1000"
+        height="667"
+      />
+      <footer><span></span><span>Edição exploratória</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / CONCEITO</span><span>1</span></div>
+      <span class="eyebrow">Propósito</span>
+      <h2>Descoberta, conexão e cultura.</h2>
+      <p class="lead">
+        O Evena aproxima pessoas de experiências reais e integra descoberta e planejamento de
+        eventos.
+      </p>
+      <div class="print-grid">
+        <article>
+          <h3>Missão</h3>
+          <p>
+            Facilitar o acesso a eventos e experiências, conectando organizadores e público em uma
+            única plataforma simples, intuitiva e acessível.
+          </p>
+        </article>
+        <article>
+          <h3>Visão</h3>
+          <p>
+            Ser a principal plataforma de descoberta de eventos do Brasil e a referência nacional em
+            conexão entre pessoas, cultura e experiências ao vivo.
+          </p>
+        </article>
+      </div>
+      <h3>Valores que viram atitude</h3>
+      @for (value of values; track value.name) {
+        <article class="print-row">
+          <strong>{{ value.name }}</strong>
+          <div>
+            <p>{{ value.description }}</p>
+            <p><b>No produto:</b> {{ value.product }}</p>
+            <p><b>Na comunicação:</b> {{ value.communication }}</p>
+          </div>
+        </article>
+      }
+      <footer><span></span><span>2 / 9</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / CONCEITO</span><span>1.2</span></div>
+      <span class="eyebrow">Posicionamento</span>
+      <h2>Descoberta e planejamento de eventos.</h2>
+      <p class="lead">
+        O Evena é uma plataforma web e mobile que conecta jovens e adultos a experiências reais e
+        oferece a organizadores um espaço para divulgar suas programações.
+      </p>
+      <h3>Para quem o Evena cria valor</h3>
+      <div class="print-grid">
+        <article>
+          <h4>Jovens e adultos</h4>
+          <p>
+            Jovens e adultos que procuram experiências e precisam de informação para decidir e se
+            organizar. Localização, preço e distância ajudam a comparar possibilidades.
+          </p>
+        </article>
+        <article>
+          <h4>Organizadores e instituições</h4>
+          <p>
+            Empresas de entretenimento, escolas, instituições culturais e realizadores independentes
+            que querem divulgar sua programação.
+          </p>
+        </article>
+      </div>
+      <h3>Descoberta e planejamento integrados</h3>
+      <ul>
+        <li>Descoberta de eventos por localização, estado e distância.</li>
+        <li>Faixa de preço como apoio à escolha.</li>
+        <li>Referências de hospedagem nos arredores como estimativas para planejamento.</li>
+        <li>Espaço para organizadores apresentarem suas programações.</li>
+      </ul>
+      <footer><span></span><span>3 / 9</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / MANIFESTO</span><span>1.2</span></div>
+      <span class="eyebrow">Manifesto</span>
+      <h2>Experiências que conectam pessoas.</h2>
+      <div class="reading-manifesto">
+        @for (p of manifesto; track p) {
+          <p>{{ p }}</p>
+        }
+      </div>
+      <img
+        src="/assets/images/vibe-wristbands.jpg"
+        alt="Pessoas reunidas mostrando pulseiras coloridas"
+        class="manifesto-photo"
+        width="1000"
+        height="667"
+      />
+      <footer><span></span><span>4 / 9</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / VIBE</span><span>2</span></div>
+      <span class="eyebrow">Personalidade e energia</span>
+      <h2>Nosso jeito de conversar.</h2>
+      <p class="lead">
+        Urbana, empática, leve e conectiva. Seis atitudes expressam esses quatro pilares.
+      </p>
+      <div class="print-traits">
+        @for (trait of traits; track trait.name) {
+          <article>
+            <h3>{{ trait.name }}</h3>
+            <p>{{ trait.text }}</p>
+            <small>“{{ trait.sentence }}”</small>
+          </article>
+        }
+      </div>
+      <h3>O ritmo muda. A essência fica.</h3>
+      <div class="print-grid three">
+        @for (level of energyLevels; track level.name) {
+          <article>
+            <h4>{{ level.name }}</h4>
+            <p>{{ level.text }}</p>
+            <small>{{ level.example }}</small>
+          </article>
+        }
+      </div>
+      <p class="print-note">
+        Fotografia: preserve o assunto principal, reserve espaço para o texto e confira contraste.
+        Movimento: a mensagem deve continuar funcionando com as animações pausadas.
+      </p>
+      <footer><span></span><span>5 / 9</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / VOZ</span><span>2.1</span></div>
+      <span class="eyebrow">Tom de voz</span>
+      <h2>Clara. Próxima. Humana.</h2>
+      <p class="lead">
+        Adapte o vocabulário ao público. Em erros e cancelamentos, priorize clareza e acolhimento.
+      </p>
+      @for (item of situations; track item.name) {
+        <article class="voice-print">
+          <strong>{{ item.name }}</strong>
+          <p>{{ item.public }}</p>
+          <small>{{ item.why }}</small>
+        </article>
+      }
+      <p class="print-note">
+        Frases curtas, verbos diretos e próximo passo claro. Use emojis como complemento e gírias
+        com naturalidade. Evite pressão, formalidade excessiva e humor em situações delicadas.
+      </p>
+      <footer><span></span><span>6 / 9</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / ESTÉTICA</span><span>3.1 — 3.2</span></div>
+      <span class="eyebrow">Cor e tipografia</span>
+      <h2>Uma identidade fácil de reconhecer.</h2>
+      <div class="print-palette">
+        @for (color of palette; track color.hex) {
+          <div>
+            <i [style.background]="color.hex"></i><strong>{{ color.name }}</strong
+            ><code>{{ color.hex }}</code
+            ><small>RGB {{ color.rgb }}</small>
+          </div>
+        }
+      </div>
+      <p class="print-note">
+        Branco sobre roxo. Preto sobre verde. Confira contraste: 4,5:1 para texto comum e 3:1 para
+        texto grande.
+      </p>
+      <div class="print-fonts">
+        @for (font of fonts; track font.id) {
+          <article>
+            <h3 [style.font-family]="font.id === 'ganker' ? 'Poppins Evena' : font.family">
+              {{ font.name }}
+            </h3>
+            <span>{{ font.role }}</span>
+            <p>{{ font.description }}</p>
+          </article>
+        }
+      </div>
+      <p class="fine-print">
+        Ganker-Storm: prévia local com arquivo fornecido pelo visitante. Fredoka: interface do
+        manual. Poppins, Lato e Comfortaa mantêm as funções descritas acima.
+      </p>
+      <footer><span></span><span>7 / 9</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / MARCA</span><span>3.3</span></div>
+      <span class="eyebrow">Logo e logotipo</span>
+      <h2>Nossa assinatura.</h2>
+      <p class="lead">
+        A coroa é o símbolo. Evena é a assinatura escrita. Use os arquivos originais.
+      </p>
+      <div class="print-logos">
+        @for (logo of logos; track logo.path) {
+          <figure>
+            <div [style.background]="logo.surface">
+              <img [src]="logo.path" [alt]="logo.name" width="500" height="500" />
+            </div>
+            <figcaption>{{ logo.name }} / {{ logo.format }}</figcaption>
+          </figure>
+        }
+      </div>
+      <div class="print-grid">
+        <article class="print-protection-card">
+          <div class="print-protection-diagram" aria-label="Diagrama da área de proteção, com X em cima e ao lado do símbolo">
+            <span class="x-top">X</span><span class="x-left">X</span>
+            <img src="/assets/logos/coroa-preta.png" alt="Coroa preta dentro da área de proteção" width="500" height="500" />
+          </div>
+          <h3>Área de proteção</h3>
+          <p>
+            Defina X como 1/5 da altura da coroa. Mantenha pelo menos X de espaço livre em todos os lados; não aproxime texto, bordas ou outros símbolos dessa área.
+          </p>
+        </article>
+        <article>
+          <h3>Tamanho de referência</h3>
+          <p>
+            Para a coroa isolada, use no mínimo 300 × 300 px em peças digitais. Para o logotipo escrito, use largura mínima de 120 px. Em impressão, respeite 8 mm para a coroa e 25 mm de largura para o logotipo. Preserve a proporção original.
+          </p>
+        </article>
+      </div>
+      <p class="print-note">
+        Não distorcer, rotacionar, recortar, alterar cores ou acrescentar efeitos. Os rótulos SVG,
+        PNG e WEBP correspondem aos arquivos originais.
+      </p>
+      <footer><span></span><span>8 / 9</span></footer>
+    </section>
+    <section class="print-sheet">
+      <div class="sheet-header"><span>EVENA / RECURSOS</span><span>4</span></div>
+      <h2>Antes de publicar, confira</h2>
+      <ul class="print-checks">
+        <li>Logo original e proporções preservadas.</li>
+        <li>Paleta e contraste conferidos.</li>
+        <li>Informações, textos e links revisados.</li>
+        <li>Tom de voz adequado ao contexto.</li>
+        <li>Legibilidade conferida no tamanho de uso e no celular.</li>
+        <li>Direitos de uso dos materiais conferidos.</li>
+      </ul>
+      <div class="print-slogan-hierarchy">
+        <div>
+          <strong>Assinatura principal</strong>
+          <p>Viver é melhor ao vivo!</p>
+        </div>
+        <div>
+          <strong>Frases de apoio</strong>
+          <p>Descubra. Sinta. Compartilhe.</p>
+          <p>Feito de conexões reais.</p>
+          <p>Tem cultura. Tem gente. Tem Evena.</p>
+          <small>Use em campanhas e peças específicas; não substituem a assinatura principal.</small>
+        </div>
+      </div>
+      <p class="print-note">
+        O kit reúne os símbolos e o logotipo originais, a paleta, as fontes disponíveis e o guia de voz.
+      </p>
+      <footer><span></span><span>9 / 9</span></footer>
+    </section>
+  </div>
+</main>

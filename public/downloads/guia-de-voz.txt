@@ -1,0 +1,49 @@
+EVENA — GUIA DE VOZ
+
+PERSONALIDADE
+Urbana, empática, leve e conectiva.
+
+PÚBLICO FINAL
+Linguagem fluida, convidativa e inspiradora, sem formalidades excessivas ou jargões corporativos.
+
+INSTITUCIONAL E B2B
+Mantém a essência conectiva, com ênfase na clareza de dados, na eficiência operacional e na simplicidade técnica da ferramenta.
+
+EXEMPLOS
+Os exemplos de convite reproduzem o manual PDF. As demais situações adaptam essas orientações ao vocabulário do site e do aplicativo.
+
+CONVITE
+Público: Descubra eventos perto de você e escolha sua próxima experiência.
+Organizadores: Conecte seu evento ao público em uma plataforma simples, intuitiva e acessível.
+Por quê: O convite é próximo, mostra uma possibilidade e indica o próximo passo.
+
+CONFIRMAÇÃO
+Público: Evento salvo nos seus favoritos.
+Organizadores: Revise seu evento. Confira todas as informações antes de publicar.
+Por quê: Confirma a ação de forma direta, sem fazer promessas sobre compra ou reserva.
+
+ERRO
+Público: Não conseguimos carregar os eventos agora. Tente novamente em instantes.
+Organizadores: Não foi possível salvar as alterações. Tente novamente.
+Por quê: Explica o que ocorreu e orienta. Um erro pede ajuda, sem piadas ou culpa.
+
+BUSCA VAZIA
+Público: Nenhum evento encontrado. Tente pesquisar por outro nome, categoria ou local.
+Organizadores: Nenhum evento encontrado. Ajuste os filtros ou confira sua programação.
+Por quê: Apresenta uma alternativa concreta sem transformar a ausência em frustração.
+
+CANCELAMENTO
+Público: Este evento foi cancelado. Confira as orientações do organizador para os próximos passos.
+Organizadores: Evento cancelado. Atualize as informações e oriente o público sobre os próximos passos.
+Por quê: Em uma situação sensível, clareza e cuidado têm prioridade sobre descontração.
+
+LEMBRETE
+Público: Seu evento está chegando. Confira a data, o horário e como chegar.
+Organizadores: Seu evento está chegando. Confirme os detalhes da programação e as informações de acesso.
+Por quê: Ajuda a pessoa a se preparar com informação útil, sem pressão desnecessária.
+
+APRESENTAÇÃO
+Público: Encontre eventos perto de você e planeje sua próxima experiência.
+Organizadores: Conecte seu evento ao público em uma plataforma simples, intuitiva e acessível.
+Por quê: Adapta o vocabulário ao público, mantendo a mesma proposta de descoberta e conexão.
+

@@ -1,0 +1,413 @@
+.concept-cover {
+  min-height: 22.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 2.25rem;
+}
+.concept-cover > img {
+  object-position: center 40%;
+}
+.concept-cover h2 {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  margin: 1rem 0 1.25rem;
+  line-height: 1.05;
+  max-width: 22ch;
+}
+.concept-cover h2 span {
+  color: var(--green);
+}
+.essence-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.375rem;
+  padding: 1.625rem 0;
+  border-block: 1px solid var(--line);
+}
+.essence-strip > ev-icon {
+  color: var(--green);
+  opacity: 0.5;
+}
+.essence-strip h3 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0 0;
+}
+.mission-grid > .panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 18.75rem;
+  padding: 2rem;
+}
+.mission-grid h2 {
+  font-size: 2.4rem;
+  line-height: 1.1;
+  margin: 1.875rem 0 1.5rem;
+}
+.mission-grid p {
+  max-width: 38ch;
+}
+.mission-symbol {
+  position: absolute;
+  right: -15px;
+  bottom: -20px;
+  width: 10rem;
+  height: 10rem;
+  opacity: 0.05;
+  z-index: -1;
+  color: var(--green);
+}
+.paper .mission-symbol {
+  color: var(--purple);
+  opacity: 0.1;
+}
+.value-stage {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 20rem;
+}
+.value-intro {
+  background: var(--purple);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.value-intro > ev-icon {
+  font-size: 3rem;
+  color: var(--green);
+  margin-bottom: 1.5rem;
+}
+.value-intro h3 {
+  font-size: 2.1rem;
+  line-height: 1.12;
+  margin: 0 0 1.5rem;
+}
+.value-intro > p {
+  color: #d7ccef;
+  font-size: 0.875rem;
+  margin: auto 0 0;
+}
+.value-details {
+  background: var(--panel);
+  padding: 2rem;
+  display: grid;
+  gap: 1.25rem;
+}
+.value-details p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+}
+.value-sentence {
+  font-family: var(--display-font);
+  font-size: 1.3rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+  color: var(--green);
+}
+.audience-stage {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 20.9375rem;
+}
+.audience-stage > div {
+  padding: 1.875rem;
+}
+.audience-stage h3 {
+  font-size: 2.2rem;
+  margin: 1rem 0;
+}
+.audience-benefit {
+  background: var(--paper);
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.audience-benefit .tag {
+  color: #685f70;
+}
+.audience-benefit p {
+  font-size: 0.9rem;
+  color: #655f6d;
+  line-height: 1.7;
+  margin: 0.625rem 0 1.5rem;
+}
+.audience-benefit h4 {
+  font-family: var(--display-font);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 0.75rem 0 0;
+}
+.feature-stage {
+  display: grid;
+  grid-template-columns: 13.125rem 1fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.feature-options {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+}
+.feature-options button {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 1.375rem 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  text-align: left;
+  min-height: 4.0625rem;
+}
+.feature-options button:last-child {
+  border-bottom: 0;
+}
+.feature-options button > span {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  color: var(--dim);
+}
+.feature-options button > ev-icon {
+  margin-left: auto;
+}
+.feature-options button.selected {
+  background: var(--purple);
+  color: white;
+}
+.feature-options button.selected > span {
+  color: var(--green);
+}
+.feature-detail {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 18.25rem;
+}
+.feature-detail h3 {
+  font-size: 2rem;
+  margin: 1.375rem 0 1rem;
+  max-width: 20ch;
+}
+.feature-detail > p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 0 1.375rem;
+}
+.feature-detail > .chips {
+  margin-top: auto;
+}
+.manifesto {
+  position: relative;
+  border-top: 1px solid var(--line);
+  padding-top: 2.25rem;
+}
+.manifesto h2 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin: 1.25rem 0 2rem;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+.manifesto h2 em {
+  font-style: normal;
+  color: var(--green);
+}
+.manifesto .inline-actions {
+  margin-top: 1.5rem;
+}
+@media (max-width: 1000px) {
+  .mission-grid h2 {
+    font-size: 2rem;
+  }
+  .mission-grid > .panel {
+    padding: 1.5625rem;
+  }
+  .value-intro,
+  .value-details {
+    padding: 1.5625rem;
+  }
+  .feature-stage {
+    grid-template-columns: 11.25rem 1fr;
+  }
+  .feature-detail {
+    padding: 1.625rem;
+  }
+}
+@media (max-width: 600px) {
+  .concept-cover {
+    padding: 1.625rem;
+    min-height: 20rem;
+  }
+  .essence-strip {
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+  }
+  .essence-strip > ev-icon {
+    transform: rotate(90deg);
+  }
+  .value-stage,
+  .audience-stage {
+    grid-template-columns: 1fr;
+  }
+  .value-intro {
+    min-height: 13.75rem;
+  }
+  .value-intro h3 {
+    max-width: 20ch;
+  }
+  .value-details {
+    min-height: 17.8125rem;
+  }
+  .combined-archetype > div {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 2.8rem;
+  }
+  .combined-archetype > div > span {
+    font-size: 2rem;
+  }
+  .feature-stage {
+    grid-template-columns: 1fr;
+  }
+  .feature-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .feature-options button {
+    padding: 1rem 0.75rem;
+    font-size: 0.875rem;
+    gap: 0.5rem;
+  }
+  .feature-detail {
+    min-height: 18.4375rem;
+  }
+  .audience-stage > div {
+    padding: 1.5rem;
+  }
+  .mission-grid > .panel {
+    min-height: 16.25rem;
+  }
+  .mission-grid h2 {
+    font-size: 2.4rem;
+  }
+}
+
+.audience-benefit .tag {
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.audience-benefit p {
+  font-size: 1.16rem;
+  line-height: 1.65;
+}
+.audience-benefit h4 {
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+.essence-strip + .note {
+  margin-bottom: 0;
+}
+
+.audience-stage {
+  background: var(--purple);
+}
+.audience-benefit {
+  background: var(--purple);
+  color: #fff;
+  border-left: 1px solid #ffffff25;
+}
+.audience-benefit .tag {
+  color: #ded3f6;
+  font-size: 1rem;
+}
+.audience-benefit p,
+.audience-benefit h4 {
+  color: #fff;
+}
+.essence-strip .tag {
+  font-size: 0.95rem;
+  color: #cfc1e6;
+}
+.value-intro > p {
+  font-size: 0.95rem;
+}
+.value-details p {
+  font-size: 1rem;
+}
+@media (max-width: 800px) {
+  .audience-benefit {
+    border-left: 0;
+    border-top: 1px solid #ffffff25;
+  }
+}
+
+.concept-cover > img {
+  object-position: center 80%;
+}
+.manifesto h2.manifesto-title {
+  color: #fff;
+  font-size: clamp(2rem, 3vw, 3.1rem);
+  margin: 0 0 1.5rem;
+}
+
+.audience-stage .clean li { font-size: 1.08rem; line-height: 1.65; }
+
+.brand-message-hierarchy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+.brand-message-hierarchy > div:first-child {
+  grid-column: 1 / -1;
+  max-width: 68ch;
+}
+.brand-message-hierarchy > div:first-child h2 {
+  margin: 0.75rem 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+}
+.brand-message-hierarchy > div:first-child p {
+  color: var(--muted);
+  max-width: 68ch;
+}
+.primary-message, .secondary-messages {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  background: var(--panel);
+}
+.primary-message {
+  background: var(--purple);
+  border-color: transparent;
+}
+.primary-message .tag { color: var(--green); }
+.primary-message p {
+  margin: 1rem 0 0;
+  font-family: var(--display-font);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  color: #fff;
+}
+.secondary-messages p {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+@media (max-width: 700px) {
+  .brand-message-hierarchy { grid-template-columns: 1fr; }
+  .brand-message-hierarchy > div:first-child { grid-column: auto; }
+}

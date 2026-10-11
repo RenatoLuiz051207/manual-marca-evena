@@ -1,0 +1,579 @@
+:host {
+  display: block;
+}
+.home-page {
+  padding-block: 1rem 0.75rem;
+}
+.home-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+.home-intro h1 {
+  font-size: clamp(2.8rem, 5.1vw, 5.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+.home-intro em {
+  color: var(--green);
+  font-style: normal;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: minmax(16.5625rem, 1fr) minmax(17.8125rem, 1fr);
+  gap: 0.75rem;
+}
+/* The same color contract for all four cards; no stale JavaScript hover classes. */
+.brand-card {
+  --surface: var(--purple);
+  --on-surface: #fff;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(1.5rem, 2.5vw, 2.625rem);
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--on-surface);
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  animation: card-enter 0.6s both;
+}
+.brand-card:focus-visible,
+.brand-card:active {
+  --surface: var(--green);
+  --on-surface: #000;
+}
+@media (hover: hover) {
+  .brand-card:hover {
+    --surface: var(--green);
+    --on-surface: #000;
+  }
+}
+.brand-card h2 {
+  position: relative;
+  z-index: 1;
+  font-family: var(--display-font);
+  font-size: clamp(2.5rem, 4.25vw, 4.8rem);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  margin: 0 0 0.4375rem;
+}
+.card-subtitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 32ch;
+}
+.concept-card {
+  grid-column: 1 / 6;
+  grid-row: 1 / 3;
+}
+.concept-symbol {
+  width: 86%;
+  max-width: 26.25rem;
+  margin: auto;
+  padding-block: 1.375rem;
+}
+.concept-symbol svg {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+.crown-dots {
+  fill: currentColor;
+}
+.crown-lines {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.crown-lines path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.brand-card:is(:hover, :focus-visible) .crown-lines path {
+  stroke-dashoffset: 0;
+}
+.crown-lines path:nth-child(2) {
+  transition-delay: 0.04s;
+}
+.crown-lines path:nth-child(3) {
+  transition-delay: 0.08s;
+}
+.crown-lines path:nth-child(4) {
+  transition-delay: 0.12s;
+}
+.crown-lines path:nth-child(5) {
+  transition-delay: 0.16s;
+}
+.crown-lines path:nth-child(6) {
+  transition-delay: 0.2s;
+}
+.crown-lines path:nth-child(7) {
+  transition-delay: 0.24s;
+}
+.vibe-card {
+  grid-column: 6 / 13;
+  grid-row: 1;
+  animation-delay: 0.06s;
+}
+.vibe-symbol {
+  position: absolute;
+  width: 53%;
+  right: 3%;
+  bottom: 1.75rem;
+}
+.vibe-symbol svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+.equalizer,
+.smile-face {
+  fill: currentColor;
+  transform-origin: center;
+  transition:
+    opacity 0.3s ease,
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.smile-face {
+  opacity: 0;
+  transform: translateY(2.1875rem) scale(0.85);
+}
+.smile-arc {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 22;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.7s ease;
+}
+.brand-card:is(:hover, :focus-visible) .equalizer {
+  opacity: 0;
+  transform: scaleY(0.18);
+}
+.brand-card:is(:hover, :focus-visible) .smile-face {
+  opacity: 1;
+  transform: none;
+}
+.brand-card:is(:hover, :focus-visible) .smile-arc {
+  stroke-dashoffset: 0;
+}
+.aesthetic-card {
+  grid-column: 6 / 10;
+  grid-row: 2;
+  animation-delay: 0.12s;
+}
+.aesthetic-card h2 {
+  font-size: clamp(2.5rem, 3.7vw, 4.2rem);
+}
+.aesthetic-symbol {
+  width: 70%;
+  max-width: 15.3125rem;
+  margin: 2px 0 -12px auto;
+}
+.aesthetic-symbol svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+.poster {
+  fill: var(--surface);
+  stroke: currentColor;
+  stroke-width: 7;
+  stroke-linejoin: round;
+}
+.p2,
+.p3,
+.poster-main {
+  transform-origin: 20.625rem 14.375rem;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.p2 {
+  transform: rotate(6deg);
+}
+.p3 {
+  transform: rotate(-7deg);
+}
+.poster-sky {
+  fill: var(--surface);
+}
+.sun,
+.moon,
+.hill {
+  fill: currentColor;
+}
+.moon {
+  opacity: 1;
+}
+
+.brand-card:is(:hover, :focus-visible) .p3 {
+  transform: translate(1.5rem, -14px) rotate(9deg);
+}
+.brand-card:is(:hover, :focus-visible) .p2 {
+  transform: translate(-10px, -8px) rotate(-9deg);
+}
+.brand-card:is(:hover, :focus-visible) .poster-main {
+  transform: rotate(3deg);
+}
+
+.tagline-node {
+  grid-column: 10 / 13;
+  grid-row: 2;
+  animation-delay: 0.18s;
+}
+.tagline-text {
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 3.3vw, 3.8rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: auto 0;
+  padding: 1.375rem 0;
+}
+.tagline-text em {
+  font-style: normal;
+  display: inline-block;
+  transition: transform 0.35s ease;
+}
+.tagline-node:is(:hover, :focus-visible) em {
+  transform: rotate(-4deg);
+}
+.tagline-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+.tagline-share {
+  display: inline-block;
+  flex: 0 0 1.125rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: currentColor;
+  -webkit-mask: url('/compartilhar.png') center / contain no-repeat;
+  mask: url('/compartilhar.png') center / contain no-repeat;
+}
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 1050px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+  }
+  .brand-card {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 19.6875rem;
+  }
+  .concept-card {
+    grid-row: span 2;
+  }
+  .tagline-node {
+    grid-column: 1 / -1;
+    min-height: 13.75rem;
+  }
+  .tagline-text {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+  }
+  .tagline-text br {
+    display: none;
+  }
+  .vibe-symbol {
+    width: 65%;
+    right: 1%;
+    bottom: 1rem;
+  }
+  .aesthetic-symbol {
+    width: 70%;
+    max-width: 14.6875rem;
+  }
+}
+@media (max-width: 640px) {
+  .home-intro {
+    display: block;
+    margin-bottom: 1.5625rem;
+  }
+  .home-intro h1 {
+    font-size: clamp(2.6rem, 10.5vw, 4rem);
+  }
+  .cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .brand-card {
+    padding: 1.5625rem;
+    min-height: 20.625rem;
+  }
+  .brand-card h2 {
+    font-size: 3.25rem;
+  }
+  .concept-symbol {
+    width: 65%;
+    padding: 0.9375rem 0;
+  }
+  .concept-card {
+    min-height: 25.9375rem;
+  }
+  .vibe-symbol {
+    width: 70%;
+    max-width: 16.875rem;
+    bottom: 2.375rem;
+  }
+  .aesthetic-symbol {
+    width: 65%;
+  }
+  .tagline-node {
+    min-height: 18.125rem;
+  }
+  .tagline-text {
+    font-size: 3.1rem;
+  }
+  .tagline-text br {
+    display: initial;
+  }
+}
+
+/* Ajusta a página inicial à altura disponível em telas de computador. */
+@media (min-width: 1051px) and (min-height: 600px) {
+  .home-page {
+    height: calc(100svh - 4.9375rem);
+    display: flex;
+    flex-direction: column;
+  }
+  .home-intro {
+    flex: 0 0 auto;
+  }
+  .home-intro h1 {
+    font-size: clamp(2.8rem, 7.5svh, 4.5rem);
+  }
+  .cards-grid {
+    flex: 1;
+    min-height: 0;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+  .brand-card {
+    padding: clamp(1.125rem, 3svh, 2rem);
+  }
+  .brand-card h2 {
+    font-size: clamp(2rem, 5.5svh, 3.5rem);
+  }
+  .concept-symbol {
+    width: min(86%, 42svh);
+    padding-block: 0.75rem;
+  }
+  .vibe-symbol {
+    width: min(53%, 35svh);
+    bottom: 0.75rem;
+  }
+  .aesthetic-symbol {
+    width: min(70%, 24svh);
+  }
+  .tagline-text {
+    font-size: clamp(1.7rem, 4.6svh, 3rem);
+    padding-block: 0.625rem;
+  }
+}
+
+/* Botão do novo manual, no card original. */
+.tagline-node h2.tagline-text {
+  font-size: clamp(2rem, 3.3vw, 3.8rem);
+  margin: auto 0;
+  padding: 0.75rem 0 1.125rem;
+}
+.tagline-link {
+  align-self: flex-start;
+  border: 1px solid currentColor;
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.8125rem;
+  min-height: 2.75rem;
+  font-size: 0.875rem;
+  text-decoration: none;
+  background: #ffffff10;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.tagline-link:hover,
+.tagline-link:focus-visible {
+  background: var(--green);
+  color: #000;
+}
+.brand-card:focus-visible,
+.tagline-link:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -5px;
+}
+.tagline-node:hover .tagline-link {
+  background: #00000008;
+}
+@media (min-width: 1051px) and (min-height: 600px) {
+  .tagline-node h2.tagline-text {
+    font-size: clamp(1.7rem, 4.6svh, 3rem);
+  }
+  .tagline-link {
+    padding: 0.5rem 0.625rem;
+    font-size: clamp(0.875rem, 0.9vw, 1rem);
+  }
+}
+@media (max-width: 640px) {
+  .tagline-node h2.tagline-text {
+    font-size: 3.1rem;
+  }
+}
+
+/* Desenhos maiores, com espaço próprio abaixo dos títulos. */
+.brand-card {
+  border-radius: var(--radius);
+}
+.concept-symbol {
+  width: 94%;
+  max-width: 30rem;
+  padding-block: 1rem;
+}
+.vibe-symbol {
+  position: static;
+  flex: 1;
+  min-height: 0;
+  width: min(70%, 20.625rem);
+  max-width: none;
+  margin: 0.875rem auto 0;
+}
+.vibe-symbol svg {
+  height: 100%;
+  max-height: 12.5rem;
+}
+.aesthetic-symbol {
+  flex: 1;
+  min-height: 0;
+  width: min(96%, 21.25rem);
+  max-width: none;
+  margin: 0.75rem auto 0;
+}
+.aesthetic-symbol svg {
+  height: 100%;
+  max-height: 12.5rem;
+}
+/* Sol e lua percorrem um arco e desaparecem atrás da paisagem. */
+.sun-orbit,
+.moon-orbit {
+  transform-origin: 20rem 21.25rem;
+  transition:
+    transform 1.15s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.8s ease;
+}
+.sun-orbit {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.moon-orbit {
+  transform: rotate(82deg);
+  opacity: 0;
+}
+.brand-card:is(:hover, :focus-visible) .sun-orbit {
+  transform: rotate(-82deg);
+  opacity: 0;
+}
+.brand-card:is(:hover, :focus-visible) .moon-orbit {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.tagline-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.625rem;
+  flex: 1;
+  margin: 0.75rem 0 1.125rem;
+}
+.tagline-node h2.tagline-text {
+  margin: 0;
+  padding: 0;
+}
+.tagline-crown {
+  flex: 0 0 clamp(3.125rem, 5vw, 5.625rem);
+  width: clamp(3.125rem, 5vw, 5.625rem);
+  height: clamp(3.125rem, 5vw, 5.625rem);
+  background: currentColor;
+  mask: url('/logo%20branca.png') center / 160% no-repeat;
+  -webkit-mask: url('/logo%20branca.png') center / 160% no-repeat;
+  transition: background-color 0.3s;
+}
+.tagline-node:focus-within {
+  --surface: var(--green);
+  --on-surface: #000;
+}
+@media (min-width: 1051px) and (min-height: 600px) {
+  .concept-symbol {
+    width: min(94%, 48svh);
+    padding-block: 0.75rem;
+  }
+  .vibe-symbol {
+    width: min(68%, 34svh);
+    margin-top: 0.75rem;
+  }
+  .aesthetic-symbol {
+    width: min(96%, 36svh);
+    margin-top: 0.625rem;
+  }
+  .tagline-heading {
+    margin-block: 0.375rem 0.875rem;
+  }
+}
+@media (max-width: 640px) {
+  .concept-symbol {
+    width: 86%;
+    max-width: 21.25rem;
+  }
+  .vibe-symbol {
+    flex: none;
+    width: min(76%, 14.375rem);
+    margin: 1.125rem auto 0;
+  }
+  .vibe-symbol svg {
+    height: 11.875rem;
+  }
+  .aesthetic-symbol {
+    flex: none;
+    width: min(96%, 18.75rem);
+    margin: 1.125rem auto 0;
+  }
+  .aesthetic-symbol svg {
+    height: 12.1875rem;
+  }
+  .tagline-crown {
+    flex-basis: 4rem;
+    width: 4rem;
+    height: 4rem;
+  }
+  .tagline-node h2.tagline-text {
+    font-size: clamp(2.5rem, 11vw, 3.1rem);
+  }
+  .aesthetic-card {
+    min-height: 21.875rem;
+  }
+}

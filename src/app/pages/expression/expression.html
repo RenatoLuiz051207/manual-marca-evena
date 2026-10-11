@@ -1,0 +1,252 @@
+<ev-chapter [id]="id()">
+  @switch (id()) {
+    @case ('vibe') {
+      <section class="vibe-cover">
+        <div class="vibe-photo photographic">
+          <img
+            src="/assets/images/vibe-city-night.jpg"
+            alt="Cidade iluminada à noite"
+            width="1000"
+            height="667"
+          /><span class="photo-caption">Urbana por natureza.</span>
+        </div>
+        <div class="vibe-note">
+          <span class="tag">O nosso jeito</span>
+          <p>Tem cultura.<br />Tem gente.<br /><em>Tem Evena.</em></p>
+        </div>
+        <div class="vibe-photo second photographic">
+          <img
+            src="/assets/images/vibe-conectiva.png"
+            alt="Público de um evento com os braços erguidos e pulseiras coloridas"
+            width="500"
+            height="500"
+          /><span class="photo-caption">Conectiva na essência.</span>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Nossa essência verbal.</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          @for (page of pages; track page.id) {
+            <a class="content-card" [routerLink]="page.path"
+              ><div class="card-top">
+                <ev-icon [name]="page.icon" /><span class="tag">{{ page.number }}</span>
+              </div>
+              <h3>{{ page.short }}</h3>
+              <p>
+                {{
+                  page.id === 'voz'
+                    ? 'Linguagem fluida para o público e objetiva para organizadores.'
+                    : page.id === 'energia'
+                      ? 'Clareza e simplicidade em cada situação.'
+                      : 'Urbana, empática, leve e conectiva.'
+                }}
+              </p>
+              <div class="card-bottom">Explorar<ev-icon name="arrow" /></div
+            ></a>
+          }
+        </div>
+      </section>
+    }
+    @case ('voz') {
+      <section class="section">
+        <div class="section-heading voice-heading">
+          <div>
+            <h2>Forma de falar do Evena</h2>
+            <p>Compare exemplos escritos para cada situação e público.</p>
+          </div>
+        </div>
+        <div class="voice-controls">
+          <label for="voice-situation"
+            >Situação<select
+              id="voice-situation"
+              [value]="situation()"
+              (change)="selectSituation($event)"
+            >
+              @for (item of situations; track item.name; let i = $index) {
+                <option [value]="i">{{ item.name }}</option>
+              }
+            </select></label
+          >
+          <div class="tabs" role="group" aria-label="Público da mensagem">
+            <button
+              type="button"
+              [class.selected]="audience() === 'public'"
+              [attr.aria-pressed]="audience() === 'public'"
+              (click)="audience.set('public')"
+            >
+              Público final</button
+            ><button
+              type="button"
+              [class.selected]="audience() === 'b2b'"
+              [attr.aria-pressed]="audience() === 'b2b'"
+              (click)="audience.set('b2b')"
+            >
+              Organizadores
+            </button>
+          </div>
+        </div>
+        <div class="translator" aria-live="polite">
+          <article class="neutral-message">
+            <span class="tag">Versão distante</span>
+            <p>{{ example().formal }}</p>
+            <span class="message-note">Correta no sentido, distante na relação.</span>
+          </article>
+          <article class="brand-message">
+            <span class="tag">O jeito Evena</span>
+            <p>{{ brandText() }}</p>
+            <button type="button" (click)="clipboard.copy(brandText(), 'Exemplo')">
+              <ev-icon name="copy" />Copiar exemplo
+            </button>
+          </article>
+        </div>
+        <div class="note">
+          <ev-icon name="check" /><span>{{ example().why }}</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Guia rápido</span>
+            <h2>Escolhas que fazem diferença.</h2>
+          </div>
+        </div>
+        <div class="grid-2 yes-no">
+          <article class="panel yes">
+            <span class="eyebrow">Faz sentido</span
+            ><strong>Uma ação clara. Um convite possível.</strong>
+            <ul class="clean">
+              <li>Use frases curtas e verbos diretos.</li>
+              <li>Explique o que a pessoa pode fazer a seguir.</li>
+              <li>Adapte a proximidade ao momento e ao público.</li>
+            </ul>
+          </article>
+          <article class="panel no">
+            <span class="eyebrow">Evite</span
+            ><strong>Pressão, distância e informalidade forçada.</strong>
+            <ul class="clean">
+              <li>“Corre ou você vai ficar de fora!”</li>
+              <li>Jargões como “solução operacional disruptiva”.</li>
+              <li>Piadas quando a pessoa precisa de ajuda.</li>
+            </ul>
+          </article>
+        </div>
+        <details>
+          <summary>Emojis, gírias e exclamações</summary>
+          <p>
+            Emojis podem complementar convites, sem substituir informação. Use gírias que sejam
+            naturais ao contexto. Uma exclamação basta para dar energia; várias podem parecer
+            pressão. Em instruções, erros e cancelamentos, priorize a clareza.
+          </p>
+        </details>
+        <details>
+          <summary>Comunicação com organizadores</summary>
+          <p>
+            Mantenha a essência conectiva, com ênfase na clareza de dados, na eficiência operacional e na simplicidade técnica da ferramenta. Use termos diretos, como criar conta, divulgar evento e revisar informações.
+          </p>
+        </details>
+      </section>
+    }
+    @case ('energia') {
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Comunicação de eventos</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="panel">
+            <ev-icon name="waves" class="panel-icon" />
+            <h3>Público final</h3>
+            <p>Linguagem fluida, convidativa e inspiradora, sem formalidades excessivas ou jargões corporativos.</p>
+          </article>
+          <article class="panel">
+            <ev-icon name="palette" class="panel-icon" />
+            <h3>Organizadores</h3>
+            <p>Essência conectiva, com ênfase na clareza de dados, na eficiência operacional e na simplicidade técnica da ferramenta.</p>
+          </article>
+          <article class="panel">
+            <ev-icon name="grid" class="panel-icon" />
+            <h3>Informação</h3>
+            <p>Apresente o que vai acontecer, onde e para quem. Explique os próximos passos para participar ou divulgar um evento.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Presença de verdade.</h2>
+          </div>
+
+        </div>
+        <div class="photo-examples">
+          <figure>
+            <img
+              src="/assets/images/vibe-wristbands.jpg"
+              alt="Grupo reunido com pulseiras de evento"
+              width="1000"
+              height="667"
+              loading="lazy"
+            />
+            <figcaption>Gestos e vínculos.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/assets/images/vibe-city-night.jpg"
+              alt="Cidade iluminada durante a noite"
+              width="1000"
+              height="667"
+              loading="lazy"
+            />
+            <figcaption>Contexto e descoberta.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/assets/images/vibe-people-event.jpg"
+              alt="Pessoas circulando em uma feira"
+              width="600"
+              height="400"
+              loading="lazy"
+            />
+            <figcaption>Diferentes formas de cultura.</figcaption>
+          </figure>
+        </div>
+
+      </section>
+
+    }
+    @case ('personalidade') {
+      <section class="personality-board">
+        <img
+          src="/assets/images/vibe-wristbands.jpg"
+          alt="Pessoas mostrando pulseiras de evento"
+          width="1000"
+          height="667"
+        />
+        <div>
+          <span class="eyebrow">Urbana · empática · leve · conectiva</span>
+          <h2>Urbana e empática.<br /><em>Leve e conectiva.</em></h2>
+          <span class="tag">Personalidade da marca.</span>
+        </div>
+      </section>
+
+      <section class="section grid-2 yes-no">
+        <article class="panel yes">
+          <span class="eyebrow">É Evena</span><strong>Fluida, convidativa e inspiradora.</strong>
+          <p>
+            Apresenta eventos com informações claras e convida o público a escolher sua próxima experiência. Para organizadores, explica a ferramenta com objetividade.
+          </p>
+        </article>
+        <article class="panel no">
+          <span class="eyebrow">Não combina com a marca</span
+          ><strong>Fria, confusa ou excludente.</strong>
+          <p>Fala com distância, força intimidade ou apresenta um único jeito de viver cultura.</p>
+        </article>
+      </section>
+    }
+  }
+</ev-chapter>

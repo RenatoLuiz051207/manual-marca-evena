@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Roxo Escuro",
+    "hex": "#2F1A67",
+    "rgb": "47, 26, 103",
+    "group": "Principal",
+    "role": "Assinatura visual em páginas de eventos, materiais institucionais e comunicação de organizadores.",
+    "ink": "#FFFFFF"
+  },
+  {
+    "name": "Verde-Limão",
+    "hex": "#00FF00",
+    "rgb": "0, 255, 0",
+    "group": "Principal",
+    "role": "Destaque para convites, datas e informações importantes na divulgação de eventos.",
+    "ink": "#000000"
+  },
+  {
+    "name": "Preto",
+    "hex": "#000000",
+    "rgb": "0, 0, 0",
+    "group": "Principal",
+    "role": "Informações de programação, preços e locais em materiais de fundo claro.",
+    "ink": "#FFFFFF"
+  },
+  {
+    "name": "Branco",
+    "hex": "#FFFFFF",
+    "rgb": "255, 255, 255",
+    "group": "Principal",
+    "role": "Texto em fundos escuros e respiro visual em agendas e páginas de eventos.",
+    "ink": "#000000"
+  },
+  {
+    "name": "Roxo de apoio",
+    "hex": "#4C007D",
+    "rgb": "76, 0, 125",
+    "group": "Apoio",
+    "role": "Variação para peças de divulgação e composições culturais junto à paleta principal.",
+    "ink": "#FFFFFF"
+  },
+  {
+    "name": "Preto suave",
+    "hex": "#121212",
+    "rgb": "18, 18, 18",
+    "group": "Apoio",
+    "role": "Textos de apoio e descrições longas de eventos em superfícies claras.",
+    "ink": "#FFFFFF"
+  },
+  {
+    "name": "Off-White",
+    "hex": "#F8F9FA",
+    "rgb": "248, 249, 250",
+    "group": "Apoio",
+    "role": "Fundo neutro para programação, informações de acesso e detalhes de eventos.",
+    "ink": "#121212"
+  },
+  {
+    "name": "Fundo do app",
+    "hex": "#080427",
+    "rgb": "8, 4, 39",
+    "group": "App",
+    "role": "Fundo principal e base do tema do aplicativo.",
+    "ink": "#FFFFFF"
+  },
+  {
+    "name": "Verde do app",
+    "hex": "#63D13E",
+    "rgb": "99, 209, 62",
+    "group": "App",
+    "role": "Botões, ícones ativos e indicação de disponibilidade.",
+    "ink": "#000000"
+  },
+  {
+    "name": "Roxo de destaque",
+    "hex": "#7C2BDC",
+    "rgb": "124, 43, 220",
+    "group": "App",
+    "role": "Bordas, destaques e elementos do mapa.",
+    "ink": "#FFFFFF"
+  }
+]

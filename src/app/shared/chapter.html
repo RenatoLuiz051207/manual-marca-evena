@@ -1,0 +1,68 @@
+<main id="main-content" class="manual-layout page-width" tabindex="-1">
+  <aside #sidebar class="manual-sidebar" (scroll)="rememberSidebarScroll()">
+    <a routerLink="/" class="sidebar-back"><ev-icon name="back" /> Visão geral</a>
+    <nav aria-label="Capítulos do manual">
+      @for (group of groups; track group) {
+        <div class="nav-group">
+          <p>{{ group }}</p>
+          @for (item of groupItems(group); track item.id) {
+            <a
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ariaCurrentWhenActive="page"
+              ><span>{{ item.number }}</span
+              >{{ item.short }}<ev-icon name="arrow"
+            /></a>
+          }
+        </div>
+      }
+    </nav>
+  </aside>
+  <div class="manual-content">
+    <div class="chapter-topline">{{ chapter().group }}</div>
+    <header class="chapter-hero">
+      <h1 [class.purpose-title]="id() === 'proposito'" [class.long-title]="chapter().title.length > 85">{{ chapter().title }}</h1>
+      @if (chapter().description) {
+        <p>{{ chapter().description }}</p>
+      }
+      @if (id() === 'marca') {
+        <span class="hero-symbol evena-mark" aria-hidden="true"></span>
+      } @else {
+        <ev-icon
+          [name]="chapter().icon"
+          class="hero-symbol"
+          [class.hero-crown]="chapter().icon === 'crown'"
+        />
+      }
+    </header>
+    <div class="chapter-body"><ng-content /></div>
+    <nav class="chapter-pagination" aria-label="Continuar pelo manual">
+      @if (previous(); as prev) {
+        <a [routerLink]="prev.path"
+          ><ev-icon name="back" /><span
+            ><small>Anterior</small><strong>{{ prev.short }}</strong></span
+          ></a
+        >
+      } @else {
+        <a routerLink="/"
+          ><ev-icon name="back" /><span
+            ><small>Voltar para</small><strong>Visão geral</strong></span
+          ></a
+        >
+      }
+      @if (next(); as following) {
+        <a [routerLink]="following.path" class="next-page"
+          ><span
+            ><small>Próximo capítulo</small><strong>{{ following.short }}</strong></span
+          ><ev-icon name="arrow"
+        /></a>
+      } @else {
+        <a routerLink="/" class="next-page"
+          ><span><small>Voltar ao começo</small><strong>Manual da marca</strong></span
+          ><ev-icon name="arrow"
+        /></a>
+      }
+    </nav>
+  </div>
+</main>

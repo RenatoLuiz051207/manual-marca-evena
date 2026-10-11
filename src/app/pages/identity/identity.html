@@ -1,0 +1,484 @@
+<ev-chapter [id]="id()">
+  @switch (id()) {
+    @case ('estetica') {
+      <div class="identity-board">
+        <div class="identity-type">
+          <span class="tag">O sistema visual</span><strong>Aa</strong
+          ><span class="type-line">Cores. Tipografia. Marca.</span>
+        </div>
+        <div class="identity-mark">
+          <img src="/logo%20branca.png" alt="Coroa branca do Evena" width="500" height="500" /><span
+            class="tag"
+            >Símbolo da marca.</span
+          >
+        </div>
+        <div class="identity-palette"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Conheça o sistema</span>
+            <h2>Os elementos da identidade Evena.</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          @for (page of pages; track page.id) {
+            <a class="content-card" [routerLink]="page.path"
+              ><div class="card-top">
+                <ev-icon [name]="page.icon" /><span class="tag">{{ page.number }}</span>
+              </div>
+              <h3>{{ page.short }}</h3>
+              <p>
+                {{
+                  page.id === 'cores'
+                    ? 'Cores principais e de apoio para a comunicação de eventos.'
+                    : page.id === 'tipografia'
+                      ? 'Fontes principais, secundárias e expressivas do Evena.'
+                      : 'Arquivos originais e regras de uso da marca.'
+                }}
+              </p>
+              <div class="card-bottom">Explorar<ev-icon name="arrow" /></div
+            ></a>
+          }
+        </div>
+      </section>
+      <section class="section visual-principles">
+        <div>
+          <span class="tag">1 / Contraste</span>
+          <h3>Faça a informação aparecer.</h3>
+          <p>Use branco sobre roxo e preto sobre verde para manter chamadas e informações de eventos legíveis.</p>
+        </div>
+        <div>
+          <span class="tag">2 / Hierarquia</span>
+          <h3>Um destaque por vez.</h3>
+          <p>Escolha o que conduz a composição e organize os próximos passos.</p>
+        </div>
+        <div>
+          <span class="tag">3 / Respiro</span>
+          <h3>Dê espaço para o conteúdo.</h3>
+          <p>Separe os elementos para facilitar a leitura e destacar o que importa.</p>
+        </div>
+      </section>
+
+
+    }
+    @case ('cores') {
+      <section>
+        <div class="section-heading">
+          <div>
+            <h2>Paleta principal</h2>
+            <p>Roxo e verde-limão são as cores de assinatura. Preto e branco completam a base de contraste.</p>
+          </div>
+
+        </div>
+        <div class="palette-grid">
+          @for (color of palette.slice(0, 4); track color.hex) {
+            <article class="swatch" [style.background]="color.hex" [style.color]="color.ink">
+              <div class="swatch-top">
+                <span>{{ color.name }}</span
+                ><small>{{ color.group }}</small>
+              </div>
+              <strong>{{ color.hex }}</strong>
+              <p>{{ color.role }}</p>
+              <div class="swatch-actions">
+                <button type="button" (click)="clipboard.copy(color.hex, 'HEX de ' + color.name)">
+                  {{ clipboard.copied() === color.hex ? 'Copiado!' : 'HEX'
+                  }}<ev-icon name="copy" /></button
+                ><button
+                  type="button"
+                  (click)="clipboard.copy('rgb(' + color.rgb + ')', 'RGB de ' + color.name)"
+                >
+                  RGB<ev-icon name="copy" />
+                </button>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Paleta de apoio</span>
+            <h2>Variações que ampliam a composição.</h2>
+            <p>Use as cores de apoio para superfícies e textos; elas complementam, mas não substituem a assinatura principal.</p>
+          </div>
+        </div>
+        <div class="support-palette">
+          @for (color of supportPalette; track color.hex) {
+            <button type="button" (click)="clipboard.copy(color.hex, color.name)">
+              <i [style.background]="color.hex"></i
+              ><span
+                ><strong>{{ color.name }}</strong
+                ><small>{{ color.hex }}</small></span
+              ><ev-icon name="copy" />
+            </button>
+          }
+        </div>
+        <p class="fine-print" style="margin-top: 16px">
+          O fundo deste manual (#180021) é uma superfície da interface. Os códigos da identidade
+          estão na paleta acima.
+        </p>
+      </section>
+      <section class="section">
+        <div class="section-heading"><div><span class="eyebrow">Aplicativo</span><h2>Cores do app</h2></div><p>Paleta específica da interface mobile. Use-a em elementos do app; para materiais gerais da marca, priorize as cores principais.</p></div>
+        <div class="support-palette">
+          @for (color of appPalette; track color.hex) {
+            <button type="button" (click)="clipboard.copy(color.hex, color.name)" [attr.title]="color.role">
+              <i [style.background]="color.hex"></i><span><strong>{{ color.name }}</strong><small>{{ color.hex }}</small></span><ev-icon name="copy" />
+            </button>
+          }
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Laboratório de contraste</span>
+            <h2>Confira o contraste das cores.</h2>
+          </div>
+
+        </div>
+
+        <div class="contrast-lab">
+          <div
+            class="contrast-preview"
+            [style.background]="background()"
+            [style.color]="foreground()"
+          >
+            <span class="tag">EVENA / Experiências ao vivo</span>
+            <h3>Eventos em<br />sua região.</h3>
+            <p>Descubra eventos perto de você e escolha sua próxima experiência.</p>
+            <span class="contrast-button">Mais informações <ev-icon name="arrow" /></span>
+          </div>
+          <div class="contrast-controls">
+            <div class="field-grid">
+              <label for="foreground-color"
+                >Texto<select
+                  id="foreground-color"
+                  [value]="foreground()"
+                  (change)="setColor($event, 'foreground')"
+                >
+                  @for (color of contrastPalette; track color.hex) {
+                    <option [value]="color.hex" [selected]="foreground() === color.hex">
+                      {{ color.name }}
+                    </option>
+                  }
+                </select></label
+              ><label for="background-color"
+                >Fundo<select
+                  id="background-color"
+                  [value]="background()"
+                  (change)="setColor($event, 'background')"
+                >
+                  @for (color of contrastPalette; track color.hex) {
+                    <option [value]="color.hex" [selected]="background() === color.hex">
+                      {{ color.name }}
+                    </option>
+                  }
+                </select></label
+              >
+            </div>
+            <div class="contrast-score" aria-live="polite">
+              <p>
+                <ev-icon [name]="ratio() >= 4.5 ? 'check' : 'close'" />Texto comum / AA
+                {{ ratio() >= 4.5 ? 'atende' : 'não atende' }}
+              </p>
+              <p>
+                <ev-icon [name]="ratio() >= 3 ? 'check' : 'close'" />Texto grande / AA
+                {{ ratio() >= 3 ? 'atende' : 'não atende' }}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    }
+    @case ('tipografia') {
+      <section class="type-hierarchy">
+        <div>
+          <span class="tag">1 / Poppins</span>
+          <h2>Encontros ao vivo.</h2>
+        </div>
+        <div>
+          <span class="tag">2 / Lato</span>
+          <p>Confira a data, o local e as informações de acesso ao evento.</p>
+        </div>
+        <div>
+          <span class="tag">3 / Comfortaa</span>
+          <p>Descubra eventos perto de você e escolha sua próxima experiência.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Laboratório tipográfico</span>
+            <h2>Experimente a sua próxima frase.</h2>
+          </div>
+          <button type="button" class="button secondary small" (click)="reset()">
+            <ev-icon name="reset" />Restaurar
+          </button>
+        </div>
+        <div class="font-options" role="group" aria-label="Escolher fonte">
+          @for (item of fonts; track item.id) {
+            <button
+              type="button"
+              [class.selected]="fontId() === item.id"
+              [attr.aria-pressed]="fontId() === item.id"
+              (click)="selectFont(item.id)"
+            >
+              <strong>{{ item.name }}</strong
+              ><span>{{ item.role }}</span>
+            </button>
+          }
+        </div>
+        <p class="fine-print" aria-live="polite">{{ font().description }}</p>
+        <div class="type-controls">
+          <label for="specimen-text" class="text-field"
+            >Sua frase<input
+              id="specimen-text"
+              type="text"
+              maxlength="96"
+              [value]="fontText()"
+              (input)="textInput($event)" /></label
+          ><label for="specimen-size"
+            >Tamanho <output>{{ fontSize() }} px</output
+            ><input
+              id="specimen-size"
+              type="range"
+              min="24"
+              max="120"
+              step="2"
+              [value]="fontSize()"
+              (input)="sizeInput($event)" /></label
+          ><label for="specimen-weight"
+            >Peso<select
+              id="specimen-weight"
+              [value]="fontWeight()"
+              [disabled]="font().weights.length === 1"
+              (change)="weightInput($event)"
+            >
+              @for (weight of font().weights; track weight) {
+                <option [value]="weight" [selected]="fontWeight() === weight">{{ weightLabel(weight) }}</option>
+              }
+            </select></label
+          >
+        </div>
+        <div class="type-specimen" [class.green]="fontGreen()">
+          <div class="specimen-toolbar">
+            <span>{{ font().name }} / {{ weightLabel(fontWeight()) }}</span
+            ><button type="button" (click)="fontGreen.set(!fontGreen())">
+              Inverter cores <ev-icon name="palette" />
+            </button>
+          </div>
+            <p
+              [style.font-family]="font().family"
+              [style.--specimen-size]="fontSize() / 16 + 'rem'"
+              [style.font-weight]="fontWeight()"
+            >
+              {{ specimen() }}
+            </p>
+            <span class="specimen-alphabet" [style.font-family]="font().family"
+              >Aa Bb Cc · Á É Í Ó Ú · 0123456789 · !?&</span
+            >
+        </div>
+        <div class="specimen-bottom">
+          <div class="inline-actions">
+            @for (preset of presets; track preset.name; let i = $index) {
+              <button type="button" class="button secondary small" (click)="setPreset(i)">
+                {{ preset.name }}
+              </button>
+            }
+          </div>
+          <button
+            type="button"
+            class="text-link"
+            (click)="clipboard.copy(fontCss(), 'Estilo da prévia')"
+            style="background: none; border: 0"
+          >
+            Copiar estilo<ev-icon name="copy" />
+          </button>
+        </div>
+      </section>
+
+
+    }
+    @case ('marca') {
+      <div class="asset-controls">
+        <div class="tabs" role="group" aria-label="Tipos de arquivo">
+          <button
+            type="button"
+            [class.selected]="assetKind() === 'all'"
+            (click)="assetKind.set('all')"
+          >
+            Todos</button
+          ><button
+            type="button"
+            [class.selected]="assetKind() === 'symbol'"
+            (click)="assetKind.set('symbol')"
+          >
+            Símbolo</button
+          ><button
+            type="button"
+            [class.selected]="assetKind() === 'wordmark'"
+            (click)="assetKind.set('wordmark')"
+          >
+            Logotipo
+          </button>
+        </div>
+        <label for="logo-background"
+          >Fundo da prévia<select
+            id="logo-background"
+            [value]="logoBackground()"
+            (change)="setLogoBg($event)"
+          >
+            <option value="original">Recomendado</option>
+            <option value="#2F1A67">Roxo</option>
+            <option value="#00FF00">Verde</option>
+            <option value="#F8F9FA">Branco</option>
+            <option value="#121212">Preto</option>
+          </select></label
+        >
+      </div>
+      <div class="asset-grid">
+        @for (asset of filteredAssets(); track asset.path) {
+          <article class="asset-card">
+            <div
+              class="asset-preview"
+              [style.background]="
+                logoBackground() === 'original' ? asset.surface : logoBackground()
+              "
+            >
+              <img
+                [src]="asset.path"
+                [alt]="asset.name + ' do Evena'"
+                width="500"
+                height="500"
+                [class.wordmark]="asset.kind === 'wordmark'"
+              />
+            </div>
+            <div class="asset-caption">
+              <div>
+                <h3>{{ asset.name }}</h3>
+                <span
+                  >{{ asset.kind === 'symbol' ? 'Símbolo' : 'Assinatura escrita' }} /
+                  {{ asset.format }}</span
+                >
+              </div>
+              <a
+                [href]="asset.path"
+                [download]="asset.filename"
+                class="icon-button"
+                [attr.aria-label]="'Baixar ' + asset.name + ' em ' + asset.format"
+                ><ev-icon name="download"
+              /></a>
+            </div>
+          </article>
+        }
+      </div>
+      <p class="fine-print" style="margin-top: 18px">
+        Os formatos indicados correspondem aos arquivos originais. Trocar o fundo da prévia não
+        altera o arquivo baixado.
+      </p>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Integridade da marca</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="protection-panel">
+            <div class="protection-frame">
+              <span class="measure top">x</span><span class="measure left">x</span
+              ><img
+                src="/logo%20branca.png"
+                alt="Coroa com uma área livre de proteção em volta"
+                width="500"
+                height="500"
+              />
+            </div>
+            <h3>Área de proteção</h3>
+            <p>
+              Defina X como 1/5 da altura da coroa. Mantenha pelo menos X de espaço livre em todos os lados; não aproxime texto, bordas ou outros símbolos dessa área.
+            </p>
+            <span class="fine-print">Esquema ilustrativo da área livre.</span>
+          </article>
+          <article class="size-panel">
+            <span class="tag">Prévia de legibilidade</span>
+            <div class="minimum-stage">
+              <img
+                src="/logo%20branca.png"
+                alt="Coroa em tamanho ajustável para observar legibilidade"
+                width="500"
+                height="500"
+                [style.width.px]="logoSize()"
+              />
+            </div>
+            <label for="logo-size"
+              >Tamanho na prévia <output>{{ logoSize() }} px</output
+              ><input
+                id="logo-size"
+                type="range"
+                min="32"
+                max="360"
+                step="4"
+                [value]="logoSize()"
+                (input)="setLogoSize($event)"
+            /></label>
+            <p class="fine-print">
+              Para a coroa isolada, use no mínimo 300 × 300 px em peças digitais. Para o logotipo escrito, use largura mínima de 120 px. Em impressão, respeite 8 mm para a coroa e 25 mm de largura para o logotipo. Preserve a proporção original.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Usos incorretos</h2>
+          </div>
+        </div>
+        <div class="wrong-grid">
+          <article>
+            <div>
+              <img
+                src="/logo%20branca.png"
+                class="stretched"
+                alt="Exemplo incorreto: símbolo esticado"
+                width="500"
+                height="500"
+              />
+            </div>
+            <p><ev-icon name="close" />Não distorcer ou alterar as proporções.</p>
+          </article>
+          <article>
+            <div>
+              <img
+                src="/logo%20branca.png"
+                class="rotated"
+                alt="Exemplo incorreto: símbolo rotacionado"
+                width="500"
+                height="500"
+              />
+            </div>
+            <p><ev-icon name="close" />Não rotacionar de modo que prejudique o reconhecimento.</p>
+          </article>
+          <article>
+            <div>
+              <img
+                src="/logo%20verde.png"
+                class="recolored"
+                alt="Exemplo incorreto: cor alterada"
+                width="500"
+                height="500"
+              />
+            </div>
+            <p><ev-icon name="close" />Não substituir as cores oficiais.</p>
+          </article>
+        </div>
+        <div class="note">
+          <ev-icon name="download" /><span
+            >Preserve a proporção e a integridade do símbolo. Use os arquivos originais, sem esticar, recortar o símbolo ou acrescentar efeitos. É permitido remover o fundo das logos, preservando suas cores, proporções e traços.</span
+          >
+        </div>
+      </section>
+    }
+  }
+</ev-chapter>

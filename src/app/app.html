@@ -1,0 +1,61 @@
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header home-header">
+  <div class="header-inner page-width">
+    <a class="brand" routerLink="/" aria-label="Evena — início do manual"
+      ><img src="/assets/logos/logotipo-evena.webp" alt="Evena" width="800" height="386" />
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a
+        routerLink="/conceito"
+        [class.active]="currentGroup() === 'Conceito'"
+        [attr.aria-current]="currentGroup() === 'Conceito' ? 'page' : null"
+        >Conceito</a
+      ><a
+        routerLink="/vibe"
+        [class.active]="currentGroup() === 'Vibe'"
+        [attr.aria-current]="currentGroup() === 'Vibe' ? 'page' : null"
+        >Vibe</a
+      ><a
+        routerLink="/estetica"
+        [class.active]="currentGroup() === 'Estética'"
+        [attr.aria-current]="currentGroup() === 'Estética' ? 'page' : null"
+        >Estética</a
+      >
+    </nav>
+    <div class="header-actions">
+      <button
+        type="button"
+        class="motion-button icon-button"
+        (click)="toggleMotion()"
+        [attr.aria-label]="motionEnabled() ? 'Pausar animações' : 'Ativar animações'"
+        [attr.aria-pressed]="!motionEnabled()"
+        [attr.title]="motionEnabled() ? 'Pausar animações' : 'Ativar animações'"
+      >
+        <ev-icon [name]="motionEnabled() ? 'pause' : 'play'" /></button
+      ><a routerLink="/recursos" class="kit-link" aria-label="Kit da marca"
+        ><span>Kit da marca</span><ev-icon name="download" /></a
+      ><button
+        type="button"
+        class="menu-toggle icon-button"
+        (click)="menuOpen.set(!menuOpen())"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-menu"
+        aria-label="Abrir ou fechar menu"
+      >
+        <ev-icon [name]="menuOpen() ? 'close' : 'menu'" />
+      </button>
+    </div>
+  </div>
+  @if (menuOpen()) {
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Menu do celular">
+      <a routerLink="/">Visão geral</a><a routerLink="/conceito">Conceito</a
+      ><a routerLink="/vibe">Vibe</a><a routerLink="/estetica">Estética</a
+      ><a routerLink="/recursos">Kit da marca</a>
+    </nav>
+  }
+  <div class="reading-progress" [style.width.%]="progress()" aria-hidden="true"></div>
+</header>
+<router-outlet (activate)="onRouteActivate()" />
+@if (clipboard.message()) {
+  <div class="toast" role="status"><ev-icon name="check" />{{ clipboard.message() }}</div>
+}

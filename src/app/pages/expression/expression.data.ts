@@ -1,0 +1,92 @@
+export const situations = [
+  {
+    name: 'Convite',
+    formal: 'Selecione uma atividade cultural disponível em sua região.',
+    public: 'Descubra eventos perto de você e escolha sua próxima experiência.',
+    b2b: 'Conecte seu evento ao público em uma plataforma simples, intuitiva e acessível.',
+    why: 'O convite é próximo, mostra uma possibilidade e indica o próximo passo.',
+  },
+  {
+    name: 'Confirmação',
+    formal: 'O procedimento de salvamento foi realizado com sucesso.',
+    public: 'Evento salvo nos seus favoritos.',
+    b2b: 'Revise seu evento. Confira todas as informações antes de publicar.',
+    why: 'Confirma a ação de forma direta, sem fazer promessas sobre compra ou reserva.',
+  },
+  {
+    name: 'Erro',
+    formal: 'Não foi possível executar a operação solicitada pelo usuário.',
+    public: 'Não conseguimos carregar os eventos agora. Tente novamente em instantes.',
+    b2b: 'Não foi possível salvar as alterações. Tente novamente.',
+    why: 'Explica o que ocorreu e orienta. Um erro pede ajuda, sem piadas ou culpa.',
+  },
+  {
+    name: 'Busca vazia',
+    formal: 'Nenhum registro corresponde aos parâmetros informados.',
+    public: 'Nenhum evento encontrado. Tente pesquisar por outro nome, categoria ou local.',
+    b2b: 'Nenhum evento encontrado. Ajuste os filtros ou confira sua programação.',
+    why: 'Apresenta uma alternativa concreta sem transformar a ausência em frustração.',
+  },
+  {
+    name: 'Cancelamento',
+    formal: 'Informamos que a atividade previamente agendada foi cancelada.',
+    public:
+      'Este evento foi cancelado. Confira as orientações do organizador para os próximos passos.',
+    b2b: 'Evento cancelado. Atualize as informações e oriente o público sobre os próximos passos.',
+    why: 'Em uma situação sensível, clareza e cuidado têm prioridade sobre descontração.',
+  },
+  {
+    name: 'Lembrete',
+    formal: 'A data de realização da atividade selecionada se aproxima.',
+    public: 'Seu evento está chegando. Confira a data, o horário e como chegar.',
+    b2b: 'Seu evento está chegando. Confirme os detalhes da programação e as informações de acesso.',
+    why: 'Ajuda a pessoa a se preparar com informação útil, sem pressão desnecessária.',
+  },
+  {
+    name: 'Apresentação',
+    formal: 'A solução promove a centralização operacional de atividades culturais.',
+    public: 'Encontre eventos perto de você e planeje sua próxima experiência.',
+    b2b: 'Conecte seu evento ao público em uma plataforma simples, intuitiva e acessível.',
+    why: 'Adapta o vocabulário ao público, mantendo a mesma proposta de descoberta e conexão.',
+  },
+] as const;
+export const microcopy = [
+  { context: 'Ação principal', text: 'Encontrar eventos' },
+  { context: 'Convite', text: 'Descubra eventos perto de você.' },
+  { context: 'Planejamento', text: 'Confira os detalhes antes de sair.' },
+  { context: 'Favorito', text: 'Evento salvo nos seus favoritos.' },
+  { context: 'Busca vazia', text: 'Tente pesquisar por outro nome, categoria ou local.' },
+  { context: 'Nova tentativa', text: 'Tentar novamente' },
+] as const;
+export const energyLevels = [
+  {
+    name: 'Essencial',
+    word: 'Respirar.',
+    headline: 'Informação clara, no seu ritmo.',
+    text: 'Para orientação, leitura e momentos em que a informação precisa conduzir.',
+    movement: 'Transições discretas',
+    color: 'Roxo como base',
+    composition: 'Espaço e hierarquia',
+    example: 'Agenda cultural · conteúdo informativo',
+  },
+  {
+    name: 'Expressiva',
+    word: 'Encontrar.',
+    headline: 'Seu próximo encontro começa aqui.',
+    text: 'Para convites e descoberta. A identidade aparece com clareza, sem disputar a atenção.',
+    movement: 'Uma interação por vez',
+    color: 'Verde em pontos de atenção',
+    composition: 'Um destaque principal',
+    example: 'Cards de eventos · convites',
+  },
+  {
+    name: 'Vibrante',
+    word: 'Viver!',
+    headline: 'Tem evento. Tem cultura. Tem Evena.',
+    text: 'Para campanhas e peças curtas. A energia cresce enquanto o próximo passo continua visível.',
+    movement: 'Ritmo e gesto',
+    color: 'Verde com presença',
+    composition: 'Tipografia e fotografia',
+    example: 'Cartazes · stories · lançamento',
+  },
+] as const;

@@ -1,0 +1,202 @@
+<ev-chapter [id]="id()">
+  @switch (id()) {
+    @case ('conceito') {
+      <section class="concept-cover photographic">
+        <img
+          src="/assets/images/vibe-wristbands.jpg"
+          alt="Pessoas reunidas com pulseiras coloridas de evento"
+          width="1000"
+          height="667"
+        />
+        <h2>Aproximar pessoas.<br /><span>Conectar experiências reais.</span></h2>
+      </section>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Propósito e posicionamento.</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          @for (chapter of chapters; track chapter.id) {
+            <a class="content-card" [routerLink]="chapter.path"
+              ><div class="card-top">
+                <ev-icon [name]="chapter.icon" /><span class="tag">{{ chapter.number }}</span>
+              </div>
+              <h3>{{ chapter.short }}</h3>
+              <p>
+                {{
+                  chapter.id === 'proposito'
+                    ? 'Por que existimos e o que nos orienta.'
+                    : 'Para quem criamos e o que entregamos.'
+                }}
+              </p>
+              <div class="card-bottom">Explorar capítulo</div></a
+            >
+          }
+        </div>
+      </section>
+      <section class="section essence-strip">
+        <div>
+          <span class="tag">Por que</span>
+          <h3>Aproximar pessoas de experiências reais.</h3>
+        </div>
+        <ev-icon name="arrow" />
+        <div>
+          <span class="tag">Para quem</span>
+          <h3>Jovens, adultos e organizadores.</h3>
+        </div>
+        <ev-icon name="arrow" />
+        <div>
+          <span class="tag">Como</span>
+          <h3>Descobrir e planejar eventos.</h3>
+        </div>
+      </section>
+      <section class="section brand-message-hierarchy">
+        <div>
+          <span class="eyebrow">Assinatura verbal</span>
+          <h2>Uma frase principal. Outras frases de apoio.</h2>
+          <p>A assinatura oficial do Evena é a primeira frase. As demais são recursos editoriais para campanhas e peças específicas, não slogans concorrentes.</p>
+        </div>
+        <article class="primary-message">
+          <span class="tag">Assinatura principal</span>
+          <p>{{ brandMessage.primary }}</p>
+        </article>
+        <div class="secondary-messages">
+          <span class="tag">Frases de apoio</span>
+          @for (line of brandMessage.secondary; track line) {
+            <p>{{ line }}</p>
+          }
+        </div>
+      </section>
+
+    }
+    @case ('proposito') {
+      <div class="grid-2 mission-grid">
+        <article class="panel paper">
+          <span class="eyebrow">1 / Missão</span>
+          <h2>Facilitar o acesso<br />a eventos e experiências.</h2>
+          <p>
+            Facilitar o acesso a eventos e experiências, conectando organizadores e público em uma
+            única plataforma simples, intuitiva e acessível.
+          </p>
+        </article>
+        <article class="panel">
+          <span class="eyebrow">2 / Visão</span>
+          <h2>Ser referência nacional<br />em descoberta de eventos.</h2>
+          <p>
+            Ser a principal plataforma de descoberta de eventos do Brasil e a referência nacional em
+            conexão entre pessoas, cultura e experiências ao vivo.
+          </p>
+        </article>
+      </div>
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Valores na prática</h2>
+          </div>
+        </div>
+        <div class="tabs" role="group" aria-label="Explorar valores">
+          @for (item of values; track item.name; let i = $index) {
+            <button
+              type="button"
+              [class.selected]="valueIndex() === i"
+              [attr.aria-pressed]="valueIndex() === i"
+              (click)="valueIndex.set(i)"
+            >
+              <ev-icon [name]="item.icon" />{{ item.name }}
+            </button>
+          }
+        </div>
+        <div class="value-stage" aria-live="polite">
+          <div class="value-intro">
+            <ev-icon [name]="value().icon" />
+            <h3>{{ value().description }}</h3>
+            <p>{{ value().name }}</p>
+          </div>
+          <div class="value-details">
+            <article>
+              <span class="tag">No produto</span>
+              <p>{{ value().product }}</p>
+            </article>
+            <article>
+              <span class="tag">Na comunicação</span>
+              <p>{{ value().communication }}</p>
+            </article>
+            <div class="value-sentence">“{{ value().example }}”</div>
+          </div>
+        </div>
+      </section>
+    }
+    @case ('posicionamento') {
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <h2>Para quem o Evena cria valor</h2>
+          </div>
+        </div>
+        <div class="tabs" role="group" aria-label="Escolher público">
+          <button
+            type="button"
+            [class.selected]="audience() === 'public'"
+            [attr.aria-pressed]="audience() === 'public'"
+            (click)="audience.set('public')"
+          >
+            Jovens e adultos</button
+          ><button
+            type="button"
+            [class.selected]="audience() === 'organizer'"
+            [attr.aria-pressed]="audience() === 'organizer'"
+            (click)="audience.set('organizer')"
+          >
+            Organizadores e instituições
+          </button>
+        </div>
+        <div class="audience-stage" aria-live="polite">
+          <div>
+            <h3>{{ audiences[audience()].name }}</h3>
+            <ul class="clean">
+              @for (need of audiences[audience()].needs; track need) {
+                <li>{{ need }}</li>
+              }
+            </ul>
+          </div>
+          <div class="audience-benefit">
+            <span class="tag">Quem são</span>
+            <p>{{ audiences[audience()].challenge }}</p>
+            <span class="tag">O que o Evena facilita</span>
+            <h4>{{ audiences[audience()].help }}</h4>
+          </div>
+        </div>
+      </section>
+      <section class="section manifesto" id="manifesto">
+        <h2 class="manifesto-title">Manifesto</h2>
+
+        <div class="prose">
+          <p>{{ manifesto[0] }}</p>
+          @if (expanded()) {
+            @for (paragraph of manifesto.slice(1); track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+          }
+        </div>
+        <div class="inline-actions">
+          <button
+            type="button"
+            class="button secondary"
+            (click)="expanded.set(!expanded())"
+            [attr.aria-expanded]="expanded()"
+          >
+            {{ expanded() ? 'Recolher manifesto' : 'Ler manifesto completo'
+            }}<ev-icon name="down" /></button
+          ><button
+            type="button"
+            class="button secondary"
+            (click)="clipboard.copy(manifesto.join('\n\n'), 'Manifesto')"
+          >
+            <ev-icon name="copy" />Copiar manifesto
+          </button>
+        </div>
+      </section>
+    }
+  }
+</ev-chapter>
